@@ -3,26 +3,26 @@ interface ElemView {
   classNames: Array<string>,
 }
 
-class ViewElement {
-  elem: ElemView;
-  constructor(elem = { tag: 'div', classNames: [] }) {
-    this.viewElement = this.createElementView(elem);
-  }
+// class ViewElement {
+//   elem: ElemView;
+//   constructor(elem = { tag: 'div', classNames: [] }) {
+//     this.viewElement = this.createElementView(elem);
+//   }
 
-  getHtmlElement() {
-    return this.viewElement.getElement();
-  }
+//   getHtmlElement() {
+//     return this.viewElement.getElement();
+//   }
 
-  createView(params) {
+//   createView(params) {
 
-    const elementParams = {
-        tag: params.tag,
-        classNames: params.classNames,
-        textContent: '',
-        callback: null,
-    };
-    this.viewElementCreator = new ElementCreator(elementParams);
+//     const elementParams = {
+//         tag: params.tag,
+//         classNames: params.classNames,
+//         textContent: '',
+//         callback: null,
+//     };
+//     this.viewElementCreator = new ElementCreator(elementParams);
 
-    return this.viewElementCreator;
-  }
-}
+//     return this.viewElementCreator;
+//   }
+// }

@@ -41,12 +41,13 @@ export default class CreatorElement {
 
   createElem(param: ElementParam) {
     this.elem = document.createElement(param.tag);
-    if (this.elem instanceof HTMLElement) {
+    // if (this.elem instanceof HTMLElement) {
       // this.setCssClasses(param.classNames);
-      param.classNames.map((cssClass) => {
-
+    param.classNames.map((cssClass) => {
+      if (this.elem instanceof HTMLElement) {
         this.elem.classList.add(cssClass);
-      });
+      }
+    });
       
 
       // param.classNames.forEach(cssClass => {
@@ -54,33 +55,33 @@ export default class CreatorElement {
       // });
 
 
-      this.elem.textContent = param.textContent;
-      // this.setCallback(param.callback);
-    }
+    this.elem.textContent = param.textContent;
+      // this.setCallback(param.callback); !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // }
     
     
   }
 
-  /**
-   * @param {Array<string>} cssClasses
-   */
-  setCssClasses(cssClasses = []) {
-    cssClasses.map((cssClass) => this.elem.classList.add(cssClass));
-  }
+  // /**
+  //  * @param {Array<string>} cssClasses
+  //  */
+  // setCssClasses(cssClasses = []) {
+  //   cssClasses.map((cssClass) => this.elem.classList.add(cssClass));
+  // }
 
-  /**
-   * @param {string} text
-   */
-  setTextContent(text = '') {
-    this.elem.textContent = text;
-  }
+  // /**
+  // //  * @param {string} text
+  // //  */
+  // setTextContent(text = '') {
+  //   this.elem.textContent = text;
+  // }
 
-  /**
-   * @param {function} callback
-   */
-  setCallback(callback) {
-    if (typeof callback === 'function') {
-      this.elem.addEventListener('click', (event) => callback(event));
-    }
-  }
+  // /**
+  //  * @param {function} callback
+  //  */
+  // setCallback(callback) {
+  //   if (typeof callback === 'function') {
+  //     this.elem.addEventListener('click', (event) => callback(event));
+  //   }
+  // }
 }
