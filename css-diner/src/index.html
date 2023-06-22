@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/index.css">
+  <title>CSS Diner</title>
+</head>
+<body>
+  <header class="header">
+    <div class="logo">
+      <div class="logo__ico"></div>
+      <div class="logo__title">CSS Diner</div>
+    </div>
+    <div class="help"></div>
+  </header>
+  <main class="main">
+    <div class="wrapper">
+      <div class="game">
+        <div class="game__lanterns">
+          <span class="lantern">
+            <span class="lantern__title">壽司</span>
+          </span>
+          <span class="lantern">
+            <span class="lantern__title">貓</span>
+          </span>
+          <span class="lantern">
+            <span class="lantern__title">壽司</span>
+          </span>
+          <span class="lantern">
+            <span class="lantern__title">貓</span>
+          </span>
+        </div>
+        <h2 class="game__quest">Select the fancy plate</h2>
+        <div class="game__table table__wrapper">
+          <div class="table__surface"></div>
+          <div class="table__content"></div>
+        </div>
+        <div class="game__chopsticks">
+          <div class="chopstick">
+            <span class="chopstick__back"></span>
+            <span class="chopstick__top"></span>
+            <span class="chopstick__bottom"></span>
+          </div>
+        </div>
+        <div class="game__editor editor">
+          <div class="editor__pane css-pane">
+            <div class="editor__header-input">
+              <div class="editor__title">CSS Editor</div>
+              <div class="editor__file-name">style.css</div>
+            </div>
+            <div class="editor__window">
+              <div class="editor__line-numbers"></div>
+              <div class="editor__code">
+                <div class="input__wrapper">
+                  <input type="text" class="input__field" placeholder="Type in a CSS selector">
+                  <button class="input__enter">enter</button>
+                </div>
+                <pre>
+                  <code class="tip">
+                  {
+                    /* Styles would go here. */
+                  }  
+                  </code>
+                  <code class="help">
+                    {
+                      Type a number to skip to a level.
+                      Ex → "5" for level 5 
+                    }
+                  </code>
+                </pre>
+              </div>
+            </div>
+          </div>
+          <div class="editor__pane html-pane">
+            <div class="editor__header-input">
+              <div class="editor__title">HTML Viewer</div>
+              <div class="editor__file-name">table.html</div>
+            </div>
+            <div class="editor__window">
+              <div class="editor__line-numbers"></div>
+              <div class="editor__code">
+                <pre class="markup">
+                  <code>
+                    <span class="items"><</span><span>div class="table"</span><span>></span>
+                      <span class="item__plate"><span><</span>plate  id="fancy" /<span>></span></span>
+                      <span class="item__plate"><span><</span>plate /<span>></span></span>
+                      <span class="item__plate"><span><</span>bento /<span>></span></span>
+                    <span><</span><span>/div</span><span>></span>
+                  </code>
+                </pre>
+              </div>
+            </div>  
+          </div>
+        </div>
+      </div>
+      <div class="about-lvl">
+
+      </div>
+    </div>
+  </main>
+  <footer class="footer"></footer>
+  <script src="./"></script>
+</body>
+</html>
