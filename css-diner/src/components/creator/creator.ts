@@ -39,6 +39,7 @@ export default class CreatorElement {
 
 
   getElement() {
+    console.log(this.elem);
     return this.elem;
   }
 

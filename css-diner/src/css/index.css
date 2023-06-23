@@ -1,8 +1,11 @@
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
 }
+
 /* //////////// header */
 .header {
   display: flex;
@@ -44,8 +47,8 @@
 /* /////////////// lanterns ///////// */
 
 .game__lanterns {
-
-
+  display: flex;
+  padding: 6vw 28vw;
 }
 .lantern:after {
   content: "";

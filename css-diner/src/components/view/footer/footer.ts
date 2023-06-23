@@ -1,4 +1,4 @@
-
+import CreatorElement from "../../creator/creator";
 
 // export interface ElementParam {
 //   tag: string,
@@ -6,10 +6,6 @@
 //   textContent: string,
 //   callback: Callback<Event>,
 // }
-
-import CreatorElement from "../../creator/creator";
-
-
 
 export class FooterView {
   footerView: CreatorElement;
