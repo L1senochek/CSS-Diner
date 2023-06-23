@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+.tag::before {
+  content: "<";
+}
+
+.tag::after {
+  content: ">";
+}
+
+.highlight {
+  color: #AAA;
+  background: rgba(255,255,255,.1);
+  padding: 3px 6px 3px 6px;
+  margin: 0px 2px;
+  font-size: 14px;
+  font-weight: normal;
+}

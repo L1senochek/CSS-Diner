@@ -4,7 +4,7 @@ export interface ElementParam {
   tag: string,
   classNames: Array<string>,
   textContent: string,
-  callback: Callback<Event>,
+  callback: Callback<Event> | null,
 }
 
 export default class CreatorElement {
@@ -38,11 +38,17 @@ export default class CreatorElement {
    */
 
 
+  getElement() {
+    return this.elem;
+  }
+
 
   createElem(param: ElementParam) {
     this.elem = document.createElement(param.tag);
     // if (this.elem instanceof HTMLElement) {
       // this.setCssClasses(param.classNames);
+    console.log(this.elem);
+
     param.classNames.map((cssClass) => {
       if (this.elem instanceof HTMLElement) {
         this.elem.classList.add(cssClass);
@@ -56,6 +62,8 @@ export default class CreatorElement {
 
 
     this.elem.textContent = param.textContent;
+    console.log(this.elem);
+
       // this.setCallback(param.callback); !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // }
     

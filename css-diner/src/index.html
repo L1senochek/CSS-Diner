@@ -58,9 +58,9 @@
                 </div>
                 <pre>
                   <code class="tip">
-                  {
-                    /* Styles would go here. */
-                  }  
+                    {
+                      /* Styles would go here. */
+                    }  
                   </code>
                   <code class="help">
                     {
@@ -82,11 +82,11 @@
               <div class="editor__code">
                 <pre class="markup">
                   <code>
-                    <span class="items"><</span><span>div class="table"</span><span>></span>
-                      <span class="item__plate"><span><</span>plate  id="fancy" /<span>></span></span>
-                      <span class="item__plate"><span><</span>plate /<span>></span></span>
-                      <span class="item__plate"><span><</span>bento /<span>></span></span>
-                    <span><</span><span>/div</span><span>></span>
+                    <span class="items tag">div class="table"</span>
+                      <span class="item__plate tag">plate  id="fancy" /</span>
+                      <span class="item__plate tag">plate /</span>
+                      <span class="item__plate tag">bento /</span>
+                    <span class="tag">div</span>
                   </code>
                 </pre>
               </div>
@@ -94,12 +94,37 @@
           </div>
         </div>
       </div>
-      <div class="about-lvl">
-
+      <div class="lvl__about">
+        <div class="lvl__wrapper">
+          <h1 class="lvl__title">Level 1 of 32</h1>
+          <span class="lvl__checkmark"></span>
+        </div>
+        <div class="lvl__nav">
+          <div class="arrow__prev"></div>
+          <div class="arrow__next"></div>
+        </div>
+        <div class="lvl__progress-bar">
+          <div class="lvl__progress"></div>
+        </div>
+        <div class="lvl__description description">
+          <h2 class="description__selector-name">Type Selector</h2>
+          <h2 class="description__title">Select elements by their type</h2>
+          <h2 class="description__syntax highlight">A</h2>
+          <div class="description__hint">
+            Selects all elements of type <span class="highlight">A</span>. Type refers to the type of tag, so <span class="highlight tag">div</span>, <span class="highlight tag">p</span> and <span class="highlight tag">ul</span> are all different element types.
+          </div>
+          <h2 class="lvl__examples">Examples</h2>
+          <div class="lvl__example">
+            <div class="example"><span class="highlight">div</span> selects all <span class="highlight">div</span> elements.</div><div class="example"><span class="highlight">p</span> selects all <span class="highlight">p</span> elements.</div>
+          </div>
+        </div>
       </div>
     </div>
   </main>
-  <footer class="footer"></footer>
-  <script src="./"></script>
+  <footer class="footer">
+    <div class="footer__logo rsschool"></div>
+    <div class="footer__logo github"></div>
+  </footer>
+  <script src="./index.js"></script>
 </body>
 </html>
