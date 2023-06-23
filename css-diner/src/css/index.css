@@ -3,6 +3,109 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
 }
+/* //////////// header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1vw;
+}
+
+.logo {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo__ico,
+.help {
+  width: 2vw;
+  height: 2vw;
+}
+
+.logo__title {
+  color: rgb(226, 43, 217);
+}
+
+/* /////////////// main //////// */
+
+.main {
+  display: flex;
+}
+
+.wrapper {
+  display: flex;
+
+}
+
+.game {
+  display: flex;
+  flex-direction: column;
+}
+
+/* /////////////// lanterns ///////// */
+
+.game__lanterns {
+
+
+}
+.lantern:after {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 20px;
+  width: 40px;
+  height: 6px;
+  z-index: 3;
+  background-color: #808080;
+}
+
+.lantern {
+  display: flex;
+  content: "";
+  position: absolute;
+  top: 30px;
+  top: 8vw;
+  left: -10px;
+  width: 80px;
+  height: 85px;
+  border-radius: 10px;
+  z-index: 2;
+  background: radial-gradient(circle farthest-side at center center, rgb(253, 135, 63) 0%, rgb(235, 97, 54) 100%);
+  justify-content: center;
+  align-items: center;
+}
+
+.lantern:before {
+  content: "";
+  position: absolute;
+  top: -40px;
+  left: 38px;
+  width: 3px;
+  height: 40px;
+  background-color: #808080;
+}
+
+.lantern .lantern__title {
+  color:#FFE8CA;
+  font-size:40px;
+  font-family:'ＭＳ Ｐゴシック', 'MS PGothic', 'メイリオ', Meiryo, sans-serif;
+  top:10px;
+  left:10px;
+  opacity:0.9;
+}
+
+.lantern:nth-child(1) {
+  left:50px;
+}
+.lantern:nth-child(2) {
+  left:200px;
+}
+.lantern:nth-child(3) {
+  left:380px;
+}
+.lantern:nth-child(4) {
+  left:520px;
+}
+/* /////////////////// */
 
 .tag::before {
   content: "<";
