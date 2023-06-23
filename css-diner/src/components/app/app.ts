@@ -1,5 +1,6 @@
 import { FooterView } from "../view/footer/footer";
 import { HeaderView } from "../view/header/header";
+import { MainView } from "../view/main/main";
 
 export class App {
   constructor() {
@@ -13,6 +14,13 @@ export class App {
     const footerElement = footerView.getHTMLElement();
     if (footerElement) {
       document.body.prepend(footerElement);
+    }
+
+    
+    const mainView = new MainView();
+    const mainElement = mainView.getHTMLElement();
+    if (mainElement) {
+      document.body.prepend(mainElement);
     }
     
     const headerView = new HeaderView();

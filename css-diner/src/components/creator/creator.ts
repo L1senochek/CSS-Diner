@@ -2,8 +2,8 @@ export type Callback<T> = (data?: T) => void;
 
 export interface ElementParam {
   tag: string,
-  classNames: Array<string>,
-  innerHTML: string,
+  classNames: string[],
+  innerHTML: string[],
   callback: Callback<Event> | null,
 }
 
@@ -62,7 +62,10 @@ export default class CreatorElement {
       // });
 
 
-    this.elem.innerHTML = param.innerHTML;
+    this.elem.innerHTML = param.innerHTML.join('');
+    // this.elem.innerHTML.map((item) => {
+    //   item.join('')
+    // });
     console.log(this.elem);
 
       // this.setCallback(param.callback); !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
