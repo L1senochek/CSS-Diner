@@ -25,7 +25,7 @@ export class FooterView {
     const footerParam = {
       tag: 'footer',
       classNames: ['footer'],
-      textContent : '<div class="footer__logo rsschool"></div><div class="footer__logo github"></div>',
+      innerHTML : '<div class="footer__logo rsschool"></div><div class="footer__logo github"></div>',
       callback: null,
     }
 

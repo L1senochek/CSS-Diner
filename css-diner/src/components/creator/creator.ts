@@ -3,7 +3,7 @@ export type Callback<T> = (data?: T) => void;
 export interface ElementParam {
   tag: string,
   classNames: Array<string>,
-  textContent: string,
+  innerHTML: string,
   callback: Callback<Event> | null,
 }
 
@@ -61,7 +61,7 @@ export default class CreatorElement {
       // });
 
 
-    this.elem.textContent = param.textContent;
+    this.elem.innerHTML = param.innerHTML;
     console.log(this.elem);
 
       // this.setCallback(param.callback); !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
