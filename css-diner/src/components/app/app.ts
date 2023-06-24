@@ -25,8 +25,10 @@ export class App {
     
     const headerView = new HeaderView();
     const headerElement = headerView.getHTMLElement();
+    
     if (headerElement) {
       document.body.prepend(headerElement);
+      
     }
 
   }

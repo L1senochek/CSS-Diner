@@ -14,7 +14,8 @@ export class MainView {
     const mainParam = {
       tag: 'main',
       classNames: ['main'],
-      innerHTML : ['<div class="wrapper">', '</div>'],
+      innerText: '',
+      // innerHTML : ['<div class="wrapper">', '</div>'],
       callback: null,
     }
 
