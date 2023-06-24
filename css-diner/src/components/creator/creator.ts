@@ -33,7 +33,6 @@ export default class CreatorElement {
 
 
   getElement() {
-    console.log(this.elem);
     return this.elem;
   }
 
@@ -50,7 +49,6 @@ export default class CreatorElement {
     this.elem.innerText = param.innerText;
 
     // this.elem.innerHTML = param.innerHTML.join('');
-    console.log(this.elem);
   }
   /**
   //      * @param {function} callback
