@@ -55,9 +55,11 @@ export class HeaderView {
     if (logoIcoCreator instanceof Node && logoTitleCreator instanceof Node) {
       logoCreator?.prepend(logoIcoCreator, logoTitleCreator);
     }
+
     if (logoCreator instanceof Node && helpCreator instanceof Node) {
       headerCreator.getElement()?.prepend(logoCreator, helpCreator);
     }
+    
     return headerCreator;
   }
 

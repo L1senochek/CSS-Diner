@@ -7,6 +7,27 @@ import CreatorElement from "../../creator/creator";
 //   callback: Callback<Event>,
 // }
 
+const footerParam = {
+  tag: 'footer',
+  classNames: ['footer'],
+  innerText: '',
+  callback: null,
+}
+
+const footerLogoRS = {
+  tag: 'div',
+  classNames: ['footer__logo', 'rsschool'],
+  innerText: '',
+  callback: null,
+}
+
+const footerLogoGithub = {
+  tag: 'div',
+  classNames: ['footer__logo', 'github'],
+  innerText: '',
+  callback: null,
+}
+
 export class FooterView {
   footerView: CreatorElement;
   constructor() {
@@ -18,16 +39,13 @@ export class FooterView {
   }
 
   createFooter() {
-    const footerParam = {
-      tag: 'footer',
-      classNames: ['footer'],
-      innerText: '',
-      // innerHTML : ['<div class="footer__logo rsschool">', '</div><div class="footer__logo github">', '</div>'],
-      callback: null,
-    }
-
     const footerCreator = new CreatorElement(footerParam);
-    console.log(footerCreator);
+    const logoRSCreator = new CreatorElement(footerLogoRS).getElement();
+    const logoGithubCreator = new CreatorElement(footerLogoGithub).getElement();
+
+    if (logoRSCreator instanceof Node && logoGithubCreator instanceof Node) {
+      footerCreator.getElement()?.prepend(logoRSCreator, logoGithubCreator);
+    }
 
     return footerCreator;
   }
