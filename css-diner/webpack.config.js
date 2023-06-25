@@ -19,12 +19,20 @@ module.exports = {
       },
       {
         test: /\.html$/i,
-        loader: "html-loader",
+        loader: 'html-loader',
+      },
+      {
+        test: /\.json$/,
+        use: 'json-loader',
+        type: 'javascript/auto',
       },
     ],
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
+    alias: {
+      './levels.json': path.resolve(__dirname, 'src/data/levels.json'),
+    },
   },
   output: {
     filename: 'index.js',

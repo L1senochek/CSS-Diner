@@ -3,6 +3,7 @@ import { HeaderView } from "../view/header/header";
 import { ChopsticksView } from "../view/main/game/chopsticks/chopsticks";
 import { EditorView } from "../view/main/game/editor/editor";
 import { EditorCodeView } from "../view/main/game/editor/editorCode/editorCode";
+import { MarkupView } from "../view/main/game/editor/editorWindow/editorWindow";
 import { GameView } from "../view/main/game/game";
 import { LanternView } from "../view/main/game/lanterns/lanterns";
 import { GameQuestView } from "../view/main/game/quest/quest";
@@ -39,6 +40,7 @@ export class App {
     const editorView = new EditorView().getHTMLElement();
     
     const editorCodeView = new EditorCodeView().getHTMLElement();
+    const markupView = new MarkupView().getHTMLElement();
 
     
     const editorWindowCSS = editorView?.childNodes[0].childNodes[1];
@@ -46,11 +48,12 @@ export class App {
 
     
     if (editorCodeView instanceof HTMLElement) editorWindowCSS?.appendChild(editorCodeView)
+    if (markupView instanceof HTMLElement) editorWindowHtml?.appendChild(markupView)
 
     // изменяемый параметр ( input ):
     const editorInputCSS = editorCodeView?.firstChild?.firstChild;
     // const editorCodeHtml = editorView?.childNodes[1].childNodes[1];
-    console.log(editorCodeView?.firstChild?.firstChild);
+    console.log(editorWindowHtml?.childNodes, markupView);
     
     if (
       lanternView
