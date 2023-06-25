@@ -22,7 +22,13 @@ export enum LvlStatus {
 //   lvl: LvlStatus
 // }
 
-const LevelsResult = [LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2];
+const LevelsResult = [
+  LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2,
+  LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2,
+  LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2,
+  LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2,
+  LvlStatus.status2, LvlStatus.status2
+];
 
 export class App {
   lvl: number;
