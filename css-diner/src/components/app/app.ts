@@ -12,6 +12,18 @@ import { MainView } from "../view/main/main";
 import lvlJSON from '../data/levels.json';
 console.log(lvlJSON); // json  lvl file Array
 
+export enum LvlStatus {
+  status1 = 'completed',
+  status2 = 'not completed',
+  status3 = 'completed with hint'
+}
+
+// export type LevelRes = {
+//   lvl: LvlStatus
+// }
+
+const LevelsResult = [LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2];
+
 export class App {
   lvl: number;
 
@@ -191,6 +203,7 @@ export class App {
         console.log(editorInputCSS.value, 'input11')
         this.nextLvl();
         // сохранить в массив уровней пройден ли лвл
+        LevelsResult[this.lvl] = LvlStatus.status1;
       } else {
         console.log(2)
         // добавить метод/класс с анимацией не правильного ввода
