@@ -155,7 +155,7 @@ export class App {
   nextLvl() {
     if (this.lvl < 19) {
       this.lvl += 1;
-
+      console.log(this.lvl);
       this.createMarkup();
       this.changeQuestName();
       this.changeTable();
@@ -165,6 +165,7 @@ export class App {
   prevLvl() {
     if (this.lvl > 0) {
       this.lvl -= 1;
+      console.log(this.lvl);
       this.createMarkup();
       this.changeQuestName();
       this.changeTable();
