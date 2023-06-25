@@ -88,7 +88,8 @@ export class App {
     this.createMarkup();
     
     // изменяемый параметр ( input ):
-    const editorInputCSS = editorCodeViewElem?.firstChild?.firstChild;
+    // const editorCodeViewElem = this.editorCodeView.getHTMLElement();
+    // const editorInputCSS = editorCodeViewElem?.firstChild?.firstChild;
     
     if (
       lanternViewElem
@@ -173,9 +174,29 @@ export class App {
   }
 
   toLvl(num: number) {
+    // переход на нужный лвл
     this.lvl = num;
     this.createMarkup(num);
     this.changeQuestName(num);
     this.changeTable(num);
   }
+
+  checkInputValue(value: string) {
+    const editorCodeViewElem = this.editorCodeView?.getHTMLElement();
+    const editorInputCSS = editorCodeViewElem?.firstChild?.firstChild;
+
+    if (editorInputCSS instanceof HTMLInputElement) {
+      
+      if (value === lvlJSON[this.lvl].answer) {
+        console.log(editorInputCSS.value, 'input11')
+        this.nextLvl();
+        // сохранить в массив уровней пройден ли лвл
+      } else {
+        console.log(2)
+        // добавить метод/класс с анимацией не правильного ввода
+      }
+      
+    }
+  }
+
 }
