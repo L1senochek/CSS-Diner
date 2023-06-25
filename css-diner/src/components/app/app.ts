@@ -10,6 +10,7 @@ import { GameQuestView } from "../view/main/game/quest/quest";
 import { TableView } from "../view/main/game/table/table";
 import { MainView } from "../view/main/main";
 import lvlJSON from '../data/levels.json';
+import { LvlAboutView } from "../view/main/lvl/lvl";
 console.log(lvlJSON); // json  lvl file Array
 
 export enum LvlStatus {
@@ -46,6 +47,7 @@ export class App {
   editorCodeView?: EditorCodeView;
   markupView?: MarkupView;
 
+  lvlAboutView?: LvlAboutView;
   constructor() {
     this.lvl = 0;
     this.createView();
@@ -62,6 +64,7 @@ export class App {
 
     this.gameView = new GameView();
     const gameViewElem = this.gameView.getHTMLElement();
+
     if (gameViewElem && mainWrapper instanceof HTMLElement) mainWrapper.prepend(gameViewElem);
     // сюда добавлять все что в game
     console.log(mainWrapper);
@@ -108,7 +111,17 @@ export class App {
     // изменяемый параметр ( input ):
     // const editorCodeViewElem = this.editorCodeView.getHTMLElement();
     // const editorInputCSS = editorCodeViewElem?.firstChild?.firstChild;
+
     
+    this.lvlAboutView = new LvlAboutView();
+    const lvlAboutViewElem = this.lvlAboutView.getHTMLElement();
+
+    if (lvlAboutViewElem && mainWrapper instanceof HTMLElement) mainWrapper.append(lvlAboutViewElem);
+   
+    // добавить все что в lvlinfo 
+    
+    //
+
     if (
       lanternViewElem
       && gameViewElem instanceof HTMLElement
