@@ -29,7 +29,7 @@ export class EditorView {
     const titleHTML = createDiv(['editor__title'], 'HTML Viewer');
     const fileNameHTML = createDiv(['editor__file-name'], 'table.html');
     const lineNumbers = createDiv(['editor__line-numbers'], '');
-    const editorCode = createDiv(['editor__code'], '');
+    // const editorCode = createDiv(['editor__code'], '');
 
     const editorCreator = new CreatorElement(editorParam);
     const cssPaneCreator = new CreatorElement(cssPane).getElement();
@@ -41,10 +41,13 @@ export class EditorView {
     const titleHTMLCreator = new CreatorElement(titleHTML).getElement();
     const fileNameHTMLCreator = new CreatorElement(fileNameHTML).getElement();
     const lineNumCreator = new CreatorElement(lineNumbers).getElement();
-    const codeCreator = new CreatorElement(editorCode).getElement();
+    // const codeCreator = new CreatorElement(editorCode).getElement();
 
-    if (lineNumCreator instanceof Node && codeCreator instanceof Node) {
-      windowCreator?.prepend(lineNumCreator, codeCreator);
+    // if (lineNumCreator instanceof Node && codeCreator instanceof Node) {
+    //   windowCreator?.prepend(lineNumCreator, codeCreator);
+    // }
+    if (lineNumCreator instanceof Node) {
+      windowCreator?.prepend(lineNumCreator);
     }
 
     if (

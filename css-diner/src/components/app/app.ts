@@ -2,6 +2,7 @@ import { FooterView } from "../view/footer/footer";
 import { HeaderView } from "../view/header/header";
 import { ChopsticksView } from "../view/main/game/chopsticks/chopsticks";
 import { EditorView } from "../view/main/game/editor/editor";
+import { EditorCodeView } from "../view/main/game/editor/editorCode/editorCode";
 import { GameView } from "../view/main/game/game";
 import { LanternView } from "../view/main/game/lanterns/lanterns";
 import { GameQuestView } from "../view/main/game/quest/quest";
@@ -36,13 +37,20 @@ export class App {
     const tableContent = tableView?.childNodes[1];
     const chopsticksView = new ChopsticksView().getHTMLElement();
     const editorView = new EditorView().getHTMLElement();
-    // изменяемый параметр:
-    const editorCodeCSS = editorView?.childNodes[1].childNodes[1].childNodes[1];
-    const editorCodeHtml = editorView?.childNodes[0].childNodes[1].childNodes[1];
+    
+    const editorCodeView = new EditorCodeView().getHTMLElement();
 
+    
+    const editorWindowCSS = editorView?.childNodes[0].childNodes[1];
+    const editorWindowHtml = editorView?.childNodes[1].childNodes[1];
 
-    console.log(editorView?.childNodes[1].childNodes[1].childNodes[1]);
+    
+    if (editorCodeView instanceof HTMLElement) editorWindowCSS?.appendChild(editorCodeView)
 
+    // изменяемый параметр ( input ):
+    const editorInputCSS = editorCodeView?.firstChild?.firstChild;
+    // const editorCodeHtml = editorView?.childNodes[1].childNodes[1];
+    console.log(editorCodeView?.firstChild?.firstChild);
     
     if (
       lanternView

@@ -6,6 +6,10 @@ export interface ElementParam {
   innerText: string,
   // innerHTML: string[],
   callback: Callback<Event> | null,
+  attributes?: {
+    type: string,
+    placeholder: string,
+  },
 }
 
 export default class CreatorElement {
@@ -47,7 +51,12 @@ export default class CreatorElement {
     });
 
     this.elem.innerText = param.innerText;
-
+    
+    if (param.attributes) {
+      const { type, placeholder } = param.attributes;
+      this.elem.setAttribute('type', type);
+      this.elem.setAttribute('placeholder', placeholder);
+    }
     // this.elem.innerHTML = param.innerHTML.join('');
   }
   /**
