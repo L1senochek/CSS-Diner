@@ -13,12 +13,12 @@
   },
   {
     "id": 2,
-    "selectorName": "Type Selector",
-    "title": "Select elements by their type",
+    "selectorName": "Type Selector 111111",
+    "title": "Select elements by their type 111111",
     "syntax": "A",
     "levelDescription": "Selects all elements of type <span class='highlight'>A</span>. Type refers to the type of tag, so <span class='highlight tag'>div</span>, <span class='highlight tag'>p</span> and <span class='highlight tag'>ul</span> are all different element types.",
     "examples": "<div class='example'><span class='highlight'>div</span> selects all <span class='highlight'>div</span> elements.</div><div class='example'><span class='highlight'>p</span> selects all <span class='highlight'>p</span> elements.</div>",
-    "quest": "Select the plates",
+    "quest": "Select the plates 111111",
     "markupOnTable": "",
     "answer": "plate",
     "markup": "<span class='items tag'>div class='table'</span><br><span class='item__plate tag'>plate  id='fancy' /</span><br><span class='item__plate tag'>plate /</span><br><span class='item__plate tag'>bento /</span><br><span class='tag'>/div</span>"

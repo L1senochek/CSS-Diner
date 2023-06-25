@@ -3,4 +3,7 @@ import './css/index.css';
 
 
 const app = new App();
-app.createChangeElem(0);
+console.log(app, app.nextLvl, 'nextlvl')
+document.querySelector('.lantern__title')?.addEventListener('click', () => {
+  app.nextLvl()
+});

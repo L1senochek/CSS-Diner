@@ -53,11 +53,11 @@ export class App {
     // изменяемый параметр:
     this.gameQuestView = new GameQuestView();
     const gameQuestViewElem = this.gameQuestView.getHTMLElement();
-    this.changeQuestName(1);
+    this.changeQuestName();
 
     this.tableView = new TableView();
     const tableViewElem = this.tableView.getHTMLElement();
-    this.changeTable(1);
+    this.changeTable();
     // изменяемый параметр:
     // const tableContent = tableViewElem?.childNodes[1];
 
@@ -85,7 +85,7 @@ export class App {
       editorWindowHtml?.appendChild(markupViewHTML)
     }
 
-    this.createChangeElem(1);
+    this.createMarkup();
     
     // изменяемый параметр ( input ):
     const editorInputCSS = editorCodeViewElem?.firstChild?.firstChild;
@@ -113,29 +113,28 @@ export class App {
     if (headerElement) document.body.prepend(headerElement);
   }
 
-  createChangeElem(lvl: number) {
-    console.log(lvl, this.markupView?.getHTMLElement());
+  createMarkup(num = this.lvl) {
+    console.log(num, 'this.markupView?.getHTMLElement()');
 
 
     if (this.markupView) {
       // изменяемый параметр ( markup ):
       const markup = this.markupView.getHTMLElement()?.firstChild?.firstChild;
-      console.log(lvlJSON[this.lvl].markup)
-      if (markup instanceof HTMLElement) markup.innerHTML = `${lvlJSON[1].markup}`;
+      if (markup instanceof HTMLElement) markup.innerHTML = `${lvlJSON[num].markup}`;
     }
   }
 
-  changeQuestName(lvl: number) {
+  changeQuestName(num = this.lvl) {
     // изменяемый параметр ( gameQuest ):
     if (this.gameQuestView) {
       const gameQuestViewElem = this.gameQuestView.getHTMLElement();
       if (gameQuestViewElem instanceof HTMLElement) {
-        gameQuestViewElem.innerText = `${lvlJSON[this.lvl].quest}`;
+        gameQuestViewElem.innerText = `${lvlJSON[num].quest}`;
       }
     }
   }
 
-  changeTable(lvl: number) {
+  changeTable(num = this.lvl) {
     if (this.tableView) {
 
     const tableViewElem = this.tableView.getHTMLElement();
@@ -143,16 +142,39 @@ export class App {
     // изменяемый параметр создается поле игры:
     const tableWrapper = tableViewElem?.childNodes[0];
     if (tableWrapper instanceof HTMLElement){
-      tableWrapper?.classList.add(`lvl${this.lvl}`);
-      console.log('1', tableWrapper?.classList)
+      tableWrapper?.classList.add(`lvl${num}`);
     }
     const tableContent = tableViewElem?.childNodes[1];
-    console.log('2', tableContent, lvlJSON[this.lvl].markupOnTable)
 
     if (tableContent instanceof HTMLElement) {
-      tableContent.innerHTML = `${lvlJSON[this.lvl].markupOnTable}`;
+      tableContent.innerHTML = `${lvlJSON[num].markupOnTable}`;
     }
     }
   }
 
+  nextLvl() {
+    if (this.lvl < 19) {
+      this.lvl += 1;
+
+      this.createMarkup();
+      this.changeQuestName();
+      this.changeTable();
+    }
+  }
+
+  prevLvl() {
+    if (this.lvl > 0) {
+      this.lvl -= 1;
+      this.createMarkup();
+      this.changeQuestName();
+      this.changeTable();
+    }
+  }
+
+  toLvl(num: number) {
+    this.lvl = num;
+    this.createMarkup(num);
+    this.changeQuestName(num);
+    this.changeTable(num);
+  }
 }
