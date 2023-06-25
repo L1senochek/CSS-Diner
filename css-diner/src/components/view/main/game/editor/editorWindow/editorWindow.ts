@@ -1,6 +1,6 @@
 import CreatorElement from "../../../../../creator/creator"
-import lvlJSON from '../../../../../data/levels.json';
-console.log(lvlJSON); // json  lvl file Array
+// import lvlJSON from '../../../../../data/levels.json';
+// console.log(lvlJSON); // json  lvl file Array
 
 const lvlNum = 0;
 
@@ -52,9 +52,9 @@ export class MarkupView {
     const editorCodeCreator = new CreatorElement(editorCode);
     const markupCreator = new CreatorElement(markup).getElement();
     const codeWrapperCreator = new CreatorElement(codeWrapper).getElement();
-    const murkup = lvlJSON[lvlNum].markup;
-    console.log(lvlJSON[lvlNum].markup)
-    if (codeWrapperCreator) codeWrapperCreator.innerHTML = murkup;
+    // const murkup = lvlJSON[lvlNum].markup;
+    // console.log(lvlJSON[lvlNum].markup)
+    if (codeWrapperCreator) codeWrapperCreator.innerHTML = '';
     if (codeWrapperCreator) markupCreator?.appendChild(codeWrapperCreator);
     if (markupCreator) editorCodeCreator.getElement()?.appendChild(markupCreator);
 

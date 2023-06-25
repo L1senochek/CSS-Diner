@@ -9,6 +9,8 @@ import { LanternView } from "../view/main/game/lanterns/lanterns";
 import { GameQuestView } from "../view/main/game/quest/quest";
 import { TableView } from "../view/main/game/table/table";
 import { MainView } from "../view/main/main";
+import lvlJSON from '../data/levels.json';
+console.log(lvlJSON); // json  lvl file Array
 
 export class App {
   lvl: number;
@@ -27,7 +29,7 @@ export class App {
   markupView?: MarkupView;
 
   constructor() {
-    this.lvl = 1;
+    this.lvl = 0;
     this.createView();
   }
 
@@ -118,7 +120,8 @@ export class App {
     if (this.markupView) {
       // изменяемый параметр ( markup ):
       const markup = this.markupView.getHTMLElement()?.firstChild?.firstChild;
-      if (markup instanceof HTMLElement) markup.innerHTML = '555'
+      console.log(lvlJSON[this.lvl].markup)
+      if (markup instanceof HTMLElement) markup.innerHTML = `${lvlJSON[1].markup}`;
     }
   }
 
@@ -126,7 +129,9 @@ export class App {
     // изменяемый параметр ( gameQuest ):
     if (this.gameQuestView) {
       const gameQuestViewElem = this.gameQuestView.getHTMLElement();
-      if (gameQuestViewElem instanceof HTMLElement) gameQuestViewElem.innerText = '3213213';
+      if (gameQuestViewElem instanceof HTMLElement) {
+        gameQuestViewElem.innerText = `${lvlJSON[this.lvl].quest}`;
+      }
     }
   }
 
@@ -136,10 +141,16 @@ export class App {
     const tableViewElem = this.tableView.getHTMLElement();
 
     // изменяемый параметр создается поле игры:
+    const tableWrapper = tableViewElem?.childNodes[0];
+    if (tableWrapper instanceof HTMLElement){
+      tableWrapper?.classList.add(`lvl${this.lvl}`);
+      console.log('1', tableWrapper?.classList)
+    }
     const tableContent = tableViewElem?.childNodes[1];
-    if (tableContent instanceof HTMLElement){
-      tableContent?.classList.add(`lvl${lvl}`);
-      console.log('1', tableContent?.classList)
+    console.log('2', tableContent, lvlJSON[this.lvl].markupOnTable)
+
+    if (tableContent instanceof HTMLElement) {
+      tableContent.innerHTML = `${lvlJSON[this.lvl].markupOnTable}`;
     }
     }
   }
