@@ -1,86 +1,15 @@
 import CreatorElement from "../../../../creator/creator";
 
-const editorParam = {
+const createDiv = (classNames:string[], innerText: string) => ({
   tag: 'div',
-  classNames: ['game__editor', 'editor'],
-  innerText: '',
+  classNames: classNames,
+  innerText: innerText,
   callback: null,
-}
-
-const cssPane = {
-  tag: 'div',
-  classNames: ['editor__pane', 'css-pane'],
-  innerText: '',
-  callback: null,
-}
-
-const htmlPane = {
-  tag: 'div',
-  classNames: ['editor__pane', 'html-pane'],
-  innerText: '',
-  callback: null,
-}
-
-const editorHeader = {
-  tag: 'div',
-  classNames: ['editor__header-input'],
-  innerText: '',
-  callback: null,
-}
-
-const editorWindow = {
-  tag: 'div',
-  classNames: ['editor__window'],
-  innerText: '',
-  callback: null,
-}
-
-const titleCSS = {
-  tag: 'div',
-  classNames: ['editor__title'],
-  innerText: 'CSS Editor',
-  callback: null,
-}
-
-const fileNameCSS = {
-  tag: 'div',
-  classNames: ['editor__file-name'],
-  innerText: 'style.css',
-  callback: null,
-}
-
-const titleHTML = {
-  tag: 'div',
-  classNames: ['editor__title'],
-  innerText: 'HTML Viewer',
-  callback: null,
-}
-
-const fileNameHTML = {
-  tag: 'div',
-  classNames: ['editor__file-name'],
-  innerText: 'table.html',
-  callback: null,
-}
-
-const lineNumbers = {
-  tag: 'div',
-  classNames: ['editor__line-numbers'],
-  innerText: '',
-  callback: null,
-}
-
-const editorCode = {
-  tag: 'div',
-  classNames: ['editor__code'],
-  innerText: '',
-  callback: null,
-}
-
-
+});
 
 export class EditorView {
   editorView: CreatorElement;
+
   constructor() {
     this.editorView = this.createEditor();
   }
@@ -90,22 +19,29 @@ export class EditorView {
   }
 
   createEditor() {
+    const editorParam = createDiv(['game__editor', 'editor'], '');
+    const cssPane = createDiv(['editor__pane', 'css-pane'], '');
+    const htmlPane = createDiv(['editor__pane', 'html-pane'], '');
+    const editorHeader = createDiv(['editor__header-input'], '');
+    const editorWindow = createDiv(['editor__window'], '');
+    const titleCSS = createDiv(['editor__title'], 'CSS Editor');
+    const fileNameCSS = createDiv(['editor__file-name'], 'style.css');
+    const titleHTML = createDiv(['editor__title'], 'HTML Viewer');
+    const fileNameHTML = createDiv(['editor__file-name'], 'table.html');
+    const lineNumbers = createDiv(['editor__line-numbers'], '');
+    const editorCode = createDiv(['editor__code'], '');
+
     const editorCreator = new CreatorElement(editorParam);
     const cssPaneCreator = new CreatorElement(cssPane).getElement();
     const htmlPaneCreator = new CreatorElement(htmlPane).getElement();
     const headerCreator = new CreatorElement(editorHeader).getElement();
     const windowCreator = new CreatorElement(editorWindow).getElement();
-
     const titleCSSCreator = new CreatorElement(titleCSS).getElement();
     const fileNameCSSCreator = new CreatorElement(fileNameCSS).getElement();
     const titleHTMLCreator = new CreatorElement(titleHTML).getElement();
     const fileNameHTMLCreator = new CreatorElement(fileNameHTML).getElement();
-    
     const lineNumCreator = new CreatorElement(lineNumbers).getElement();
     const codeCreator = new CreatorElement(editorCode).getElement();
-    
-
-
 
     if (lineNumCreator instanceof Node && codeCreator instanceof Node) {
       windowCreator?.prepend(lineNumCreator, codeCreator);
@@ -121,13 +57,11 @@ export class EditorView {
       ) {
 
       headerCreator?.prepend(titleCSSCreator, fileNameCSSCreator);
-
       const headerClone = headerCreator.cloneNode(true);
       const windowClone = windowCreator.cloneNode(true);
       cssPaneCreator?.prepend(headerClone, windowClone);
       headerCreator.innerHTML = '';
       headerCreator?.prepend(titleHTMLCreator, fileNameHTMLCreator);
-
       htmlPaneCreator?.prepend(headerCreator, windowCreator);
     }
 
