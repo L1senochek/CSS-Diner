@@ -100,7 +100,6 @@ export class App {
     if (editorCodeViewElem instanceof HTMLElement) editorWindowCSS?.appendChild(editorCodeViewElem)
     
     const markupViewHTML = this.markupView.getHTMLElement()
-    console.log('!!!!', editorViewElem, editorCodeViewElem, markupViewHTML)
 
     if (editorWindowHtml instanceof HTMLElement && markupViewHTML) {
       editorWindowHtml?.appendChild(markupViewHTML)
@@ -118,8 +117,27 @@ export class App {
 
     if (lvlAboutViewElem && mainWrapper instanceof HTMLElement) mainWrapper.append(lvlAboutViewElem);
    
-    // добавить все что в lvlinfo 
+    // добавить все что в lvlinfo:
+
+    // const lvlAboutViewElem = this.lvlAboutView.getHTMLElement();
+    // const lvlTitle = lvlAboutViewElem?.firstChild?.firstChild; // Level 1 of 32
+
+    // const lvlAboutViewElem = this.lvlAboutView.getHTMLElement();
+    // const arrowPrev = lvlAboutViewElem?.children[1].firstChild
+    // const arrowNext = lvlAboutViewElem?.children[1].lastChild
+
+    // const lvlAboutViewElem = this.lvlAboutView.getHTMLElement();
+    // const lvlProgress = lvlAboutViewElem?.children[2].firstChild // lvl__progress
     
+    // const lvlAboutViewElem = this.lvlAboutView.getHTMLElement();
+    const descriptionSelector = lvlAboutViewElem?.lastChild?.firstChild // description__selector-name // Type Selector
+    // const descriptionTitle = lvlAboutViewElem?.children[3].children[1] // description__title // Select elements by their type
+    // const descriptionHint = lvlAboutViewElem?.children[3].children[2] // description__hint 
+    // const descriptionSyntax = lvlAboutViewElem?.children[3].children[3] // description__syntax highlight // A
+    // const lvlExample = lvlAboutViewElem?.children[3].children[5] // lvl__example //
+
+
+    console.log(lvlAboutViewElem, lvlAboutViewElem?.children[3].children[2]) // Level 1 of 32
     //
 
     if (

@@ -21,8 +21,8 @@ export class LvlAboutView {
     const lvlParam = createDiv(['lvl__about'], '');
 
     const lvlWrapper = createDiv(['lvl__wrapper'], '');
-    const lvlTitle = createDiv(['lvl__title'], '');
-    const lvlCheckmark = createDiv(['lvl__checkmark'], 'Level 1 of 32');
+    const lvlTitle = createDiv(['lvl__title'], 'Level 1 of 32');
+    const lvlCheckmark = createDiv(['lvl__checkmark'], '');
 
     const lvlNav = createDiv(['lvl__nav'], '');
     const lvlNavPrev = createDiv(['arrow__prev'], '');
@@ -100,7 +100,7 @@ export class LvlAboutView {
         lvlDescriptionCreator
       );
     }
-    
+
     return lvlCreator;
   }
 }
