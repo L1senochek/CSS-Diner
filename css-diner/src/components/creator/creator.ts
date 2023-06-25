@@ -45,9 +45,7 @@ export default class CreatorElement {
     this.elem = document.createElement(param.tag);
 
     param.classNames.map((cssClass) => {
-      if (this.elem instanceof HTMLElement) {
-        this.elem.classList.add(cssClass);
-      }
+      if (this.elem instanceof HTMLElement) this.elem.classList.add(cssClass);
     });
 
     this.elem.innerText = param.innerText;

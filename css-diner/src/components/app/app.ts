@@ -11,72 +11,137 @@ import { TableView } from "../view/main/game/table/table";
 import { MainView } from "../view/main/main";
 
 export class App {
+  lvl: number;
+
+  private footerView?: FooterView;
+  private headerView?: HeaderView;
+  private mainView?: MainView;
+
+  private gameView?: GameView;
+  private lanternView?: LanternView;
+  gameQuestView?: GameQuestView;
+  tableView?: TableView;
+  private chopsticksView?: ChopsticksView;
+  editorView?: EditorView;
+  editorCodeView?: EditorCodeView;
+  markupView?: MarkupView;
+
   constructor() {
+    this.lvl = 1;
     this.createView();
   }
 
   createView() {
-    const footerView = new FooterView();
-    // document.body.append(footerView.getHTMLElement())
-    const footerElement = footerView.getHTMLElement();
+    this.footerView = new FooterView();
+    const footerElement = this.footerView.getHTMLElement();
     if (footerElement) document.body.prepend(footerElement);
-
-    
-    const mainView = new MainView();
-    const mainElement = mainView.getHTMLElement();
+   
+    this.mainView = new MainView();
+    const mainElement = this.mainView.getHTMLElement();
     const mainWrapper = mainElement?.firstChild;
 
-    const gameView = new GameView().getHTMLElement();
-    if (gameView && mainWrapper instanceof HTMLElement) mainWrapper.prepend(gameView);
-    console.log(gameView);
+    this.gameView = new GameView();
+    const gameViewElem = this.gameView.getHTMLElement();
+    if (gameViewElem && mainWrapper instanceof HTMLElement) mainWrapper.prepend(gameViewElem);
     // сюда добавлять все что в game
-    const lanternView = new LanternView().getHTMLElement();
+    console.log(mainWrapper);
+    this.lanternView = new LanternView();
+    const lanternViewElem = this.lanternView.getHTMLElement();
+
     // изменяемый параметр:
-    const gameQuestView = new GameQuestView().getHTMLElement();
-    const tableView = new TableView().getHTMLElement();
+    this.gameQuestView = new GameQuestView();
+    const gameQuestViewElem = this.gameQuestView.getHTMLElement();
+    this.changeQuestName(1);
+
+    this.tableView = new TableView();
+    const tableViewElem = this.tableView.getHTMLElement();
+    this.changeTable(1);
     // изменяемый параметр:
-    const tableContent = tableView?.childNodes[1];
-    const chopsticksView = new ChopsticksView().getHTMLElement();
-    const editorView = new EditorView().getHTMLElement();
+    // const tableContent = tableViewElem?.childNodes[1];
+
+    this.chopsticksView = new ChopsticksView();
+    const chopsticksElem = this.chopsticksView.getHTMLElement();
     
-    const editorCodeView = new EditorCodeView().getHTMLElement();
-    const markupView = new MarkupView().getHTMLElement();
+    this.editorView = new EditorView();
+    const editorViewElem = this.editorView.getHTMLElement();
 
     
-    const editorWindowCSS = editorView?.childNodes[0].childNodes[1];
-    const editorWindowHtml = editorView?.childNodes[1].childNodes[1];
+    this.editorCodeView = new EditorCodeView();
+    const editorCodeViewElem = this.editorCodeView.getHTMLElement();
 
-    
-    if (editorCodeView instanceof HTMLElement) editorWindowCSS?.appendChild(editorCodeView)
-    if (markupView instanceof HTMLElement) editorWindowHtml?.appendChild(markupView)
+    this.markupView = new MarkupView();
 
-    // изменяемый параметр ( input ):
-    const editorInputCSS = editorCodeView?.firstChild?.firstChild;
-    // const editorCodeHtml = editorView?.childNodes[1].childNodes[1];
-    console.log(editorWindowHtml?.childNodes, markupView);
+    const editorWindowCSS = editorViewElem?.childNodes[0].childNodes[1];
+    const editorWindowHtml = editorViewElem?.childNodes[1].childNodes[1];
+
+    if (editorCodeViewElem instanceof HTMLElement) editorWindowCSS?.appendChild(editorCodeViewElem)
     
-    if (
-      lanternView
-      && gameView instanceof HTMLElement
-      && gameQuestView instanceof HTMLElement
-      && tableView instanceof HTMLElement
-      && chopsticksView instanceof HTMLElement
-      && editorView instanceof HTMLElement
-      ) {
-      gameView.prepend(
-        lanternView,
-        gameQuestView,
-        tableView,
-        chopsticksView,
-        editorView
-      );
+    const markupViewHTML = this.markupView.getHTMLElement()
+    console.log('!!!!', editorViewElem, editorCodeViewElem, markupViewHTML)
+
+    if (editorWindowHtml instanceof HTMLElement && markupViewHTML) {
+      editorWindowHtml?.appendChild(markupViewHTML)
     }
 
+    this.createChangeElem(1);
+    
+    // изменяемый параметр ( input ):
+    const editorInputCSS = editorCodeViewElem?.firstChild?.firstChild;
+    
+    if (
+      lanternViewElem
+      && gameViewElem instanceof HTMLElement
+      && gameQuestViewElem instanceof HTMLElement
+      && tableViewElem instanceof HTMLElement
+      && chopsticksElem instanceof HTMLElement
+      && editorViewElem instanceof HTMLElement
+      ) {
+        gameViewElem.prepend(
+        lanternViewElem,
+        gameQuestViewElem,
+        tableViewElem,
+        chopsticksElem,
+        editorViewElem
+      );
+    }
     if (mainElement) document.body.prepend(mainElement);
     
-    const headerView = new HeaderView();
-    const headerElement = headerView.getHTMLElement();
-    
+    this.headerView = new HeaderView();
+    const headerElement = this.headerView.getHTMLElement();
     if (headerElement) document.body.prepend(headerElement);
   }
+
+  createChangeElem(lvl: number) {
+    console.log(lvl, this.markupView?.getHTMLElement());
+
+
+    if (this.markupView) {
+      // изменяемый параметр ( markup ):
+      const markup = this.markupView.getHTMLElement()?.firstChild?.firstChild;
+      if (markup instanceof HTMLElement) markup.innerHTML = '555'
+    }
+  }
+
+  changeQuestName(lvl: number) {
+    // изменяемый параметр ( gameQuest ):
+    if (this.gameQuestView) {
+      const gameQuestViewElem = this.gameQuestView.getHTMLElement();
+      if (gameQuestViewElem instanceof HTMLElement) gameQuestViewElem.innerText = '3213213';
+    }
+  }
+
+  changeTable(lvl: number) {
+    if (this.tableView) {
+
+    const tableViewElem = this.tableView.getHTMLElement();
+
+    // изменяемый параметр создается поле игры:
+    const tableContent = tableViewElem?.childNodes[1];
+    if (tableContent instanceof HTMLElement){
+      tableContent?.classList.add(`lvl${lvl}`);
+      console.log('1', tableContent?.classList)
+    }
+    }
+  }
+
 }

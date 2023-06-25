@@ -28,9 +28,7 @@ export class EditorView {
     const fileNameCSS = createDiv(['editor__file-name'], 'style.css');
     const titleHTML = createDiv(['editor__title'], 'HTML Viewer');
     const fileNameHTML = createDiv(['editor__file-name'], 'table.html');
-    const lineNumbers = createDiv(['editor__line-numbers'], '');
-    // const editorCode = createDiv(['editor__code'], '');
-
+    const lineNumbers = createDiv(['editor__line-numbers'], ''); 
     const editorCreator = new CreatorElement(editorParam);
     const cssPaneCreator = new CreatorElement(cssPane).getElement();
     const htmlPaneCreator = new CreatorElement(htmlPane).getElement();
@@ -41,14 +39,12 @@ export class EditorView {
     const titleHTMLCreator = new CreatorElement(titleHTML).getElement();
     const fileNameHTMLCreator = new CreatorElement(fileNameHTML).getElement();
     const lineNumCreator = new CreatorElement(lineNumbers).getElement();
-    // const codeCreator = new CreatorElement(editorCode).getElement();
 
-    // if (lineNumCreator instanceof Node && codeCreator instanceof Node) {
-    //   windowCreator?.prepend(lineNumCreator, codeCreator);
-    // }
-    if (lineNumCreator instanceof Node) {
-      windowCreator?.prepend(lineNumCreator);
+    for (let i of Array.from({ length: 20 }, (_, index) => index + 1)) {
+      lineNumbers.innerText += `${i.toString()}\n`;
     }
+
+    if (lineNumCreator instanceof Node) windowCreator?.prepend(lineNumCreator);
 
     if (
       headerCreator instanceof Node

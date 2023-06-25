@@ -33,13 +33,13 @@ const enterBtn = {
 }
 
 const codeFragment = `
-  <pre>
-    <code class="tip">
+  <pre class="input__code">
+    <code class="input__tip">
       {
         /* Styles would go here. */
       }  
     </code>
-    <code class="help">
+    <code class="input__help">
       {
         Type a number to skip to a level.
         Ex → "5" for level 5 

@@ -22,6 +22,10 @@ export class GameView {
     return gameCreator;
   }
 
+  changeCurrentLvl() {
+    // будет хранить currentLvl и переотрисовывать игру в зависимости от переменной currentLvl 
+  }
+  
   changeGame() {
     // получать уровень и перезаписывать состав константы параметров
   }

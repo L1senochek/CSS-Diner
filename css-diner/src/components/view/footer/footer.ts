@@ -43,7 +43,7 @@ export class FooterView {
     const logoRSCreator = new CreatorElement(footerLogoRS).getElement();
     const logoGithubCreator = new CreatorElement(footerLogoGithub).getElement();
 
-    if (logoRSCreator instanceof Node && logoGithubCreator instanceof Node) {
+    if (logoRSCreator && logoGithubCreator) {
       footerCreator.getElement()?.prepend(logoRSCreator, logoGithubCreator);
     }
 

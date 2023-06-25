@@ -4,7 +4,6 @@ console.log(lvlJSON); // json  lvl file Array
 
 const lvlNum = 0;
 
-
 interface LevelData { 
   id: number,
   selectorName: string,
@@ -38,29 +37,27 @@ const codeWrapper = {
   callback: null,
 }
 
-  export class MarkupView {
-    markupView: CreatorElement;
-  
-    constructor() {
-      this.markupView = this.createMarkup();
-    }
-  
-    getHTMLElement() {
-      return this.markupView.getElement();
-    }
-  
-    createMarkup() {
-      
-      const editorCodeCreator = new CreatorElement(editorCode);
-      const markupCreator = new CreatorElement(markup).getElement();
-      const codeWrapperCreator = new CreatorElement(codeWrapper).getElement();
-      const murkup = lvlJSON[lvlNum].markup;
-      console.log(lvlJSON[lvlNum].markup)
-      if (codeWrapperCreator) codeWrapperCreator.innerHTML = murkup;
+export class MarkupView {
+  markupView: CreatorElement;
 
-      if (codeWrapperCreator) markupCreator?.appendChild(codeWrapperCreator);
-      if (markupCreator) editorCodeCreator.getElement()?.appendChild(markupCreator);
-
-      return editorCodeCreator;
-    }
+  constructor() {
+    this.markupView = this.createMarkup(lvlNum);
   }
+
+  getHTMLElement() {
+    return this.markupView.getElement();
+  }
+
+  createMarkup(lvlNum: number) {
+    const editorCodeCreator = new CreatorElement(editorCode);
+    const markupCreator = new CreatorElement(markup).getElement();
+    const codeWrapperCreator = new CreatorElement(codeWrapper).getElement();
+    const murkup = lvlJSON[lvlNum].markup;
+    console.log(lvlJSON[lvlNum].markup)
+    if (codeWrapperCreator) codeWrapperCreator.innerHTML = murkup;
+    if (codeWrapperCreator) markupCreator?.appendChild(codeWrapperCreator);
+    if (markupCreator) editorCodeCreator.getElement()?.appendChild(markupCreator);
+
+    return editorCodeCreator;
+  }
+}

@@ -3,3 +3,4 @@ import './css/index.css';
 
 
 const app = new App();
+app.createChangeElem(0);
