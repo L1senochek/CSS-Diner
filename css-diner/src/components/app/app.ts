@@ -36,8 +36,12 @@ export class App {
     const tableContent = tableView?.childNodes[1];
     const chopsticksView = new ChopsticksView().getHTMLElement();
     const editorView = new EditorView().getHTMLElement();
-    
-    console.log(editorView?.firstChild);
+    // изменяемый параметр:
+    const editorCodeCSS = editorView?.childNodes[1].childNodes[1].childNodes[1];
+    const editorCodeHtml = editorView?.childNodes[0].childNodes[1].childNodes[1];
+
+
+    console.log(editorView?.childNodes[1].childNodes[1].childNodes[1]);
 
     
     if (
