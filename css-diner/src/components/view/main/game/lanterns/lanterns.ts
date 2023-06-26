@@ -46,23 +46,18 @@ export class LanternView {
     const lanternCreatorTwo = new CreatorElement(lantern).getElement();
     const firtsLanternCreator = new CreatorElement(firstLantern).getElement();
     const secondLanternCreator = new CreatorElement(secondLantern).getElement();
-    // const helpCreator = new CreatorElement(headerHelp).getElement();
     
     if (firtsLanternCreator instanceof Node && secondLanternCreator instanceof Node) {
-      lanternCreatorOne?.prepend(firtsLanternCreator);
-      lanternCreatorTwo?.prepend(secondLanternCreator);
+      lanternCreatorOne?.appendChild(firtsLanternCreator);
+      lanternCreatorTwo?.appendChild(secondLanternCreator);
     }
 
-    const lanternCreators = [lanternCreatorOne, lanternCreatorTwo];
-
-    lanternCreators.map(lanternCreator => {
-      if (lanternCreator instanceof Node) {
-        [...Array(2)].map(() => lanternWrapper.getElement()?.prepend(lanternCreator.cloneNode(true)));
-      }
-    });
-
+    if (lanternCreatorOne && lanternCreatorTwo) {
+      lanternWrapper.getElement()?.appendChild(lanternCreatorOne);
+      lanternWrapper.getElement()?.appendChild(lanternCreatorTwo);
+      lanternWrapper.getElement()?.appendChild(lanternCreatorOne.cloneNode(true));
+      lanternWrapper.getElement()?.appendChild(lanternCreatorTwo.cloneNode(true));
+    }
     return lanternWrapper;
   }
-
-
 }

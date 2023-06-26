@@ -40,11 +40,15 @@ export class EditorView {
     const fileNameHTMLCreator = new CreatorElement(fileNameHTML).getElement();
     const lineNumCreator = new CreatorElement(lineNumbers).getElement();
 
-    for (let i of Array.from({ length: 20 }, (_, index) => index + 1)) {
-      lineNumbers.innerText += `${i.toString()}\n`;
-    }
+    
 
-    if (lineNumCreator instanceof Node) windowCreator?.prepend(lineNumCreator);
+    if (lineNumCreator instanceof Node) {
+      for (let i of Array.from({ length: 20 }, (_, index) => index + 1)) {
+        lineNumCreator.innerHTML += `${i.toString()}<br>`;
+      }
+      console.log(lineNumCreator.textContent)
+      windowCreator?.prepend(lineNumCreator);
+    }
 
     if (
       headerCreator instanceof Node

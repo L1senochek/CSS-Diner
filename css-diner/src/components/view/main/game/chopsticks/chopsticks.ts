@@ -7,6 +7,13 @@ const gameChopsticks = {
   callback: null,
 }
 
+const chopstick = {
+  tag: 'div',
+  classNames: ['chopstick'],
+  innerText: '',
+  callback: null,
+}
+
 const chopsticksBack = {
   tag: 'span',
   classNames: ['chopstick__back'],
@@ -40,6 +47,8 @@ export class ChopsticksView {
 
   ChopsticksGame() {
     const chopsticksCreator = new CreatorElement(gameChopsticks);
+    const chopstickCreator = new CreatorElement(chopstick).getElement();
+    
     const backCreator = new CreatorElement(chopsticksBack).getElement();
     const topCreator = new CreatorElement(chopsticksTop).getElement();
     const bottomCreator = new CreatorElement(chopsticksBottom).getElement();
@@ -49,7 +58,12 @@ export class ChopsticksView {
       && topCreator instanceof Node
       && bottomCreator instanceof Node
       ) {
-      chopsticksCreator.getElement()?.prepend(backCreator, topCreator, bottomCreator);
+      chopstickCreator?.prepend(backCreator, topCreator, bottomCreator);
+    }
+
+    if (chopstickCreator ) {
+      chopsticksCreator.getElement()?.append(chopstickCreator);
+      chopsticksCreator.getElement()?.append(chopstickCreator.cloneNode(true));
     }
 
     return chopsticksCreator;

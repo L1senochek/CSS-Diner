@@ -33,19 +33,19 @@ const enterBtn = {
 }
 
 const codeFragment = `
-  <pre class="input__code">
-    <code class="input__tip">
-      {
-        /* Styles would go here. */
-      }  
-    </code>
-    <code class="input__help">
-      {
-        Type a number to skip to a level.
-        Ex → "5" for level 5 
-      }
-    </code>
-  </pre>`
+<pre class="input__code">
+<code class="input__tip">
+  {
+    /* Styles would go here. */
+  }  
+</code>
+<code class="input__help">
+  /*
+    Type a number to skip to a level.
+    Ex → "5" for level 5 
+  */
+</code>
+</pre>`
 
 export class EditorCodeView {
   editorCodeView: CreatorElement;
