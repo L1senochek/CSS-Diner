@@ -21,7 +21,7 @@ export class LvlAboutView {
     const lvlParam = createDiv(['lvl__about'], '');
 
     const lvlWrapper = createDiv(['lvl__wrapper'], '');
-    const lvlTitle = createDiv(['lvl__title'], 'Level 1 of 32');
+    const lvlTitle = createDiv(['lvl__title'], 'Level 1 of 10');
     const lvlCheckmark = createDiv(['lvl__checkmark'], '');
 
     const lvlNav = createDiv(['lvl__nav'], '');
@@ -61,9 +61,13 @@ export class LvlAboutView {
     const lvlExampleCreator = new CreatorElement(lvlExample).getElement();
 
 
-    if (lvlTitleCreator && lvlCheckmarkCreator) lvlWrapperCreator?.prepend(lvlTitleCreator, lvlCheckmarkCreator);
-
+    
     if (lvlNavPrevCreator && lvlNavNextCreator) lvlNavCreator?.prepend(lvlNavPrevCreator, lvlNavNextCreator);
+
+    console.log(lvlWrapperCreator, lvlNavCreator, lvlTitleCreator)
+    if (lvlTitleCreator && lvlCheckmarkCreator && lvlNavCreator) {
+      lvlWrapperCreator?.prepend(lvlTitleCreator, lvlCheckmarkCreator, lvlNavCreator);
+    }
 
     if (lvlProgressCreator) lvlProgressBarCreator?.prepend(lvlProgressCreator);
 
@@ -88,14 +92,12 @@ export class LvlAboutView {
     if (
       lvlCreator
       && lvlWrapperCreator instanceof Node
-      && lvlNavCreator instanceof Node
       && lvlProgressBarCreator instanceof Node
       && lvlDescriptionCreator instanceof Node
       ) {
 
       lvlCreator.getElement()?.prepend(
         lvlWrapperCreator,
-        lvlNavCreator,
         lvlProgressBarCreator,
         lvlDescriptionCreator
       );

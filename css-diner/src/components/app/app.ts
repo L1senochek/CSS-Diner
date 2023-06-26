@@ -130,14 +130,14 @@ export class App {
     // const lvlProgress = lvlAboutViewElem?.children[2].firstChild // lvl__progress
     
     // const lvlAboutViewElem = this.lvlAboutView.getHTMLElement();
-    const descriptionSelector = lvlAboutViewElem?.lastChild?.firstChild // description__selector-name // Type Selector
+    // const descriptionSelector = lvlAboutViewElem?.lastChild?.firstChild // description__selector-name // Type Selector
     // const descriptionTitle = lvlAboutViewElem?.children[3].children[1] // description__title // Select elements by their type
     // const descriptionHint = lvlAboutViewElem?.children[3].children[2] // description__hint 
     // const descriptionSyntax = lvlAboutViewElem?.children[3].children[3] // description__syntax highlight // A
     // const lvlExample = lvlAboutViewElem?.children[3].children[5] // lvl__example //
 
 
-    console.log(lvlAboutViewElem, lvlAboutViewElem?.children[3].children[2]) // Level 1 of 32
+    // console.log(lvlAboutViewElem, lvlAboutViewElem?.children[3].children[2]) // Level 1 of 32
     //
 
     if (
