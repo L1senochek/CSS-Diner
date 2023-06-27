@@ -17,7 +17,7 @@
     "title": "Select elements with an ID",
     "syntax": "#id",
     "levelDescription": "Selects the element with a specific <span class='highlight'>id</span>. You can also combine the ID selector with the type selector.",
-    "examples": "<div class='example'><span class='highlight'>#cool</span> selects any element with <span class='highlight'>id='cool'</span><span class='highlight'>ul#long</span> selects <span class='highlight tag'>ul id='long'</span></div>",
+    "examples": "<div class='example'><span class='highlight'>#cool</span> selects any element with <span class='highlight'>id='cool'</span></div><div class='example'><span class='highlight'>ul#long</span> selects <span class='highlight tag'>ul id='long'</span></div>",
     "quest": "Select the sushicat shrimpcat",
     "markupOnTable": "<div class='table'><shrimpcat id='sushicat'class='active'></shrimpcat><plate></plate><dish></dish></div>",
     "answer": "#sushicat",

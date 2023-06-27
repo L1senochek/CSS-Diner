@@ -91,7 +91,7 @@ export class App {
     
     this.editorCodeView = new EditorCodeView();
     const editorCodeViewElem = this.editorCodeView.getHTMLElement();
-
+    // console.log(editorViewElem);
     this.markupView = new MarkupView();
 
     const editorWindowCSS = editorViewElem?.childNodes[0].childNodes[1];
@@ -118,23 +118,15 @@ export class App {
     if (lvlAboutViewElem && mainWrapper instanceof HTMLElement) mainWrapper.append(lvlAboutViewElem);
    
     // добавить все что в lvlinfo:
-
-    // const lvlAboutViewElem = this.lvlAboutView.getHTMLElement();
-    // const lvlTitle = lvlAboutViewElem?.firstChild?.firstChild; // Level 1 of 32
-
+    this.changeAboutLvl();
+    this.changeProgressBar();
     // const lvlAboutViewElem = this.lvlAboutView.getHTMLElement();
     // const arrowPrev = lvlAboutViewElem?.children[1].firstChild
     // const arrowNext = lvlAboutViewElem?.children[1].lastChild
 
-    // const lvlAboutViewElem = this.lvlAboutView.getHTMLElement();
-    // const lvlProgress = lvlAboutViewElem?.children[2].firstChild // lvl__progress
     
-    // const lvlAboutViewElem = this.lvlAboutView.getHTMLElement();
-    // const descriptionSelector = lvlAboutViewElem?.lastChild?.firstChild // description__selector-name // Type Selector
-    // const descriptionTitle = lvlAboutViewElem?.children[3].children[1] // description__title // Select elements by their type
-    // const descriptionHint = lvlAboutViewElem?.children[3].children[2] // description__hint 
-    // const descriptionSyntax = lvlAboutViewElem?.children[3].children[3] // description__syntax highlight // A
-    // const lvlExample = lvlAboutViewElem?.children[3].children[5] // lvl__example //
+    
+    
 
 
     // console.log(lvlAboutViewElem, lvlAboutViewElem?.children[3].children[2]) // Level 1 of 32
@@ -191,14 +183,50 @@ export class App {
 
     // изменяемый параметр создается поле игры:
     const tableWrapper = tableViewElem?.childNodes[0];
-    if (tableWrapper instanceof HTMLElement){
-      tableWrapper?.classList.add(`lvl${num}`);
-    }
+    // if (tableWrapper instanceof HTMLElement){
+    //   tableWrapper?.classList.add(`lvl${num}`);
+    // }
     const tableContent = tableViewElem?.childNodes[1];
 
     if (tableContent instanceof HTMLElement) {
       tableContent.innerHTML = `${lvlJSON[num].markupOnTable}`;
     }
+    }
+  }
+
+  changeAboutLvl(num = this.lvl) {
+    const lvlAboutViewElem = this.lvlAboutView?.getHTMLElement();
+    const lvlTitle = lvlAboutViewElem?.firstChild?.firstChild; // Level 1 of 32
+    const descriptionSelector = lvlAboutViewElem?.lastChild?.firstChild // description__selector-name // Type Selector
+    const descriptionTitle = lvlAboutViewElem?.children[2].children[1] // description__title // Select elements by their type
+    const descriptionHint = lvlAboutViewElem?.children[2].children[2] // description__hint 
+    const descriptionSyntax = lvlAboutViewElem?.children[2].children[3] // description__syntax highlight // A
+    const lvlExample = lvlAboutViewElem?.children[2].children[5] // lvl__example //
+
+    console.log('4444444444', descriptionSelector,  descriptionTitle, descriptionHint, descriptionSyntax, lvlExample)
+    if (
+      lvlTitle instanceof HTMLElement
+      && descriptionSelector instanceof HTMLElement
+      && descriptionTitle instanceof HTMLElement
+      && descriptionSyntax instanceof HTMLElement
+      && lvlExample instanceof HTMLElement
+      ){
+      lvlTitle.innerText = `Level ${num + 1} of 10`;
+      descriptionSelector.innerText = `${lvlJSON[num].selectorName}`;
+      descriptionTitle.innerText = `${lvlJSON[num].title}`;
+      descriptionSyntax.innerText = `${lvlJSON[num].syntax}`;
+      lvlExample.innerHTML = `${lvlJSON[num].examples}`;
+    }
+    
+
+  }
+
+  changeProgressBar(num = this.lvl) {
+    const lvlAboutViewElem = this.lvlAboutView?.getHTMLElement();
+    const lvlProgress = lvlAboutViewElem?.children[1].firstChild // lvl__progress
+    console.log('lvlAboutViewElem', lvlProgress, num)
+    if (lvlProgress instanceof HTMLElement){
+      lvlProgress.style.width = `${num + 1}0%`;
     }
   }
 
@@ -209,6 +237,8 @@ export class App {
       this.createMarkup();
       this.changeQuestName();
       this.changeTable();
+      this.changeAboutLvl();
+      this.changeProgressBar();
     }
   }
 
@@ -219,6 +249,9 @@ export class App {
       this.createMarkup();
       this.changeQuestName();
       this.changeTable();
+      this.changeAboutLvl();
+      this.changeProgressBar();
+
     }
   }
 
@@ -228,11 +261,16 @@ export class App {
     this.createMarkup(num);
     this.changeQuestName(num);
     this.changeTable(num);
+    this.changeAboutLvl(num);
+    this.changeProgressBar();
+
   }
 
   checkInputValue(value: string) {
     const editorCodeViewElem = this.editorCodeView?.getHTMLElement();
     const editorInputCSS = editorCodeViewElem?.firstChild?.firstChild;
+    const editorViewElem = this.editorView?.getHTMLElement();
+    // editorViewElem?.classList.remove('shake');
 
     if (editorInputCSS instanceof HTMLInputElement) {
       
@@ -242,8 +280,10 @@ export class App {
         // сохранить в массив уровней пройден ли лвл
         LevelsResult[this.lvl] = LvlStatus.status1;
       } else {
-        console.log(2)
-        // добавить метод/класс с анимацией не правильного ввода
+        editorViewElem?.classList.add('shake');
+        setTimeout(() => {
+          editorViewElem?.classList.remove('shake');
+        }, 200);
       }
       
     }

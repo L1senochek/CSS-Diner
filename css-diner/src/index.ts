@@ -5,10 +5,10 @@ import './css/index.css';
 const app = new App();
 
 
-document.querySelector('.lantern__title')?.addEventListener('click', () => {
+document.querySelector('.arrow__next')?.addEventListener('click', () => {
   app.nextLvl()
 });
-document.querySelector('.logo__title')?.addEventListener('click', () => {
+document.querySelector('.arrow__prev')?.addEventListener('click', () => {
   app.prevLvl()
 });
 // app.checkInputValue();
