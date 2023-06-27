@@ -43,7 +43,7 @@ export class EditorView {
     
 
     if (lineNumCreator instanceof Node) {
-      for (let i of Array.from({ length: 15 }, (_, index) => index + 1)) {
+      for (let i of Array.from({ length: 13 }, (_, index) => index + 1)) {
         lineNumCreator.innerHTML += `${i.toString()}<br>`;
       }
       console.log(lineNumCreator.textContent)

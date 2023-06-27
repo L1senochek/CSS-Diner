@@ -28,7 +28,7 @@ body {
 }
 .logo__ico {
   background-color: #ff5100;
-  background-image: url('../assets/img/ninja-cat.jpg');
+  background-image: url('../assets/img/ico-ninja-cat.jpg');
 }
 
 .logo__ico {
@@ -154,22 +154,22 @@ body {
 
 .lantern:nth-child(1) {
   /* left:50px; */
-  left: 5vw;
+  left: 4vw;
 }
 
 .lantern:nth-child(2) {
   /* left:200px; */
-  left: 20vw;
+  left: 14vw;
 }
 
 .lantern:nth-child(3) {
   /* left:380px; */
-  left: 42vw;
+  left: 46vw;
 }
 
 .lantern:nth-child(4) {
   /* left:520px; */
-  left: 57vw;
+  left: 56vw;
 }
 /* /////////////////// */
 
@@ -244,7 +244,7 @@ body {
   box-shadow: 10px 20px 10px rgba(0, 0, 0, 0.2);
   box-shadow: 10px 20px 10px rgb(110 109 109 / 20%);
   width: 55vw;
-  height: 15vw;
+  height: 17vw;
 }
 
 .table__content {
@@ -265,7 +265,7 @@ body {
   flex-direction: column;
   align-items: center;
   position: relative;
-  top: -3vw;
+  top: -5vw;
   /* left: 30px; */
 }
 
@@ -635,5 +635,21 @@ shrimpcat.active{
   .arrow__next:hover {
     cursor: pointer;
     border-color: rgb(232 98 56);
+  }
+
+  .table > plate:hover,
+  .table > dish:hover {
+    box-shadow: 0 1px 5px 5px rgb(232 98 56);
+  }
+  shrimpcat:hover:before {
+    box-shadow: 0 1px 5px 5px rgb(232 98 56);
+
+  }
+  
+  .code__wrapper {
+    cursor: default;
+  }
+  .code__wrapper > span:not(:first-child):not(:last-child):hover {
+    color: rgb(232 98 56);
   }
 }
