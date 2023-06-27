@@ -9,7 +9,7 @@
     "quest": "Select the plates",
     "markupOnTable": "<div class='table'><plate class='active'></plate><plate class='active'></plate></div>",
     "answer": "plate",
-    "markup": "<span class='items tag'>div class='table'</span><span class='item__plate active tag'>plate /</span><span class='item__plate active tag'>plate /</span><span class='tag'>div</span>"
+    "markup": "<span class='items item tag'>div class='table'</span><span class='item__plate item active tag'>plate /</span><span class='item__plate item active tag'>plate /</span><span class='item tag'>div</span>"
   },
   {
     "id": 2,
@@ -21,6 +21,18 @@
     "quest": "Select the sushicat shrimpcat",
     "markupOnTable": "<div class='table'><shrimpcat id='sushicat'class='active'></shrimpcat><plate></plate><dish></dish></div>",
     "answer": "#sushicat",
-    "markup": "<span class='items tag'>div class='table'</span><span class='item__plate active tag'>shrimpcat id='sushicat' /</span><span class='item__plate tag'>plate /</span><span class='item__plate tag'>dish /</span><span class='tag'>/div</span>"
+    "markup": "<span class='items item tag'>div class='table'</span><span class='item__plate item active tag'>shrimpcat id='sushicat' /</span><span class='item__plate item tag'>plate /</span><span class='item__plate item tag'>dish /</span><span class='item tag'>/div</span>"
+  },
+  {
+    "id": 3,
+    "selectorName": "Class Selector",
+    "title": "Select elements by their class",
+    "syntax": ".classname",
+    "levelDescription": "The class selector selects all elements with that class attribute. Elements can only have one ID, but many classes.",
+    "examples": "<div class='example'><span class='highlight'>.cat</span> selects all elements with <span class='highlight'>class='cat'</span></div>",
+    "quest": "Select the smoked tunacat",
+    "markupOnTable": "<div class='table'><tunacat class='active'></tunacat><dish><tunacat class='active'></tunacat></dish><plate></plate></div>",
+    "answer": ".smoked",
+    "markup": "<span class='item items tag'>div class='table'</span><span class='item active tag'>tunacat class='smoked' /</span><span class='item item__plate tag'>dish</span><span class='nested active tag'>tunacat class='smoked' /</span><span class='item item__plate tag'>dish /</span><span class='item tag'>/div</span>"
   }
 ]

@@ -52,7 +52,7 @@ body {
 .help::before {
   content: '?';
   color: #ff5100;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .logo__title {
@@ -155,12 +155,12 @@ body {
 
 .lantern:nth-child(1) {
   /* left:50px; */
-  left: 4vw;
+  left: 3vw;
 }
 
 .lantern:nth-child(2) {
   /* left:200px; */
-  left: 14vw;
+  left: 13vw;
 }
 
 .lantern:nth-child(3) {
@@ -473,14 +473,18 @@ body {
   font-size: .83rem;
 }
 
+.code__wrapper .item:first-child,
+.code__wrapper .item:last-child {
+  padding-left: 0;
+}
 
-.code__wrapper span:not(:first-child):not(:last-child) {
+
+.code__wrapper .item:not(:first-child):not(:last-child) {
   padding-left: 1vw;
 }
 
-.code__wrapper span:first-child,
-.code__wrapper span:last-child {
-  padding-left: 0;
+.code__wrapper .nested {
+  padding-left: 2vw;
 }
 
 .input__code,
@@ -612,12 +616,15 @@ body {
 }
 
 plate.active,
-shrimpcat.active{
-  animation: jumping .6s both .1s ease infinite;
+dish.active,
+shrimpcat.active,
+tunacat.active {
+  animation: identifier .6s both .1s ease infinite;
 }
 
 .table dish {
   display: flex;
+  justify-content: center;
   width: 10vw;
   height: 50%;
   background: radial-gradient(ellipse at center, rgba(255,255,255,.35) 0%, rgba(255,255,255,.35) 32%, rgba(0,0,0,.15) 35%, rgba(0,0,0,.05) 37%, rgba(0,0,0,0) 50%, rgba(0,0,0,0) 100%), linear-gradient(145deg, #f2f2f2 0%, #990000 30%, #990000 64%, rgb(253, 135, 63) 64%, rgb(253, 135, 63) 65%, #990000 65%, #990000 70%, rgb(253, 135, 63) 70%, rgb(253, 135, 63) 71%, #990000 71%, #990000 100%);
@@ -627,7 +634,7 @@ shrimpcat.active{
   box-sizing: border-box;
 }
 
-.table shrimpcat {
+shrimpcat {
   background-image: url('../assets/img/shrimp-cat.png');
   width: 10vw;
   height: 6.65vw;
@@ -635,6 +642,21 @@ shrimpcat.active{
   margin: 0.5vw;
 }
 
+tunacat {
+  background-image: url('../assets/img/tuna-cat-smoked.png');
+  width: 10vw;
+  height: 7.75vw;
+  background-size: cover;
+  margin: 0.5vw;
+}
+
+dish tunacat {
+  position: relative;
+  width: 8vw;
+  height: 6.2vw;
+  margin: 0.5vw;
+  top: -1vw;
+}
 .shake {
   animation: shake .1s 4;
 }
@@ -653,16 +675,34 @@ shrimpcat.active{
     transform: translate(0,0);
   }
   25% {
-  	transform: translate(0,-5px);
+  	transform: translate(0,-2px);
   }
   50% {
   	transform: translate(0,0);
   }
   75% {
-  	transform: translate(0,-5px);
+  	transform: translate(0,-2px);
   }
   100% {
   	transform: translate(0,0);
+  }
+}
+
+@keyframes identifier {
+  0% {
+    transform: skew(2deg,0deg) scaleX(1);
+  }
+  10% {
+    transform: skew(1deg,0deg) scaleY(.9);
+  }
+  50% {
+    transform: skew(-2deg,0deg) scaleX(1);
+  }
+  60% {
+    transform: skew(-1deg,0deg) scaleY(.9);
+  }
+  100% {
+    transform: skew(2deg,0deg) scaleX(1);
   }
 }
 

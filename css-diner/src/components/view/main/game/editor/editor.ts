@@ -38,7 +38,6 @@ export class EditorView {
       for (let i of Array.from({ length: 10 }, (_, index) => index + 1)) {
         lineNumCreator.innerHTML += `${i.toString()}<br>`;
       }
-      console.log(lineNumCreator.textContent)
       windowCreator?.prepend(lineNumCreator);
     }
 
