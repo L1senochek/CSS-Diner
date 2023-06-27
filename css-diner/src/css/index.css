@@ -619,7 +619,7 @@ plate.active,
 dish.active,
 shrimpcat.active,
 tunacat.active {
-  animation: identifier .6s both .1s ease infinite;
+  animation: identifier 1s both .1s ease infinite;
 }
 
 .table dish {
@@ -655,7 +655,7 @@ dish tunacat {
   width: 8vw;
   height: 6.2vw;
   margin: 0.5vw;
-  top: -1vw;
+  top: -2vw;
 }
 .shake {
   animation: shake .1s 4;
