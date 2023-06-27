@@ -1,11 +1,5 @@
 import CreatorElement from "../../../creator/creator";
-
-const gameParam = {
-  tag: 'div',
-  classNames: ['game'],
-  innerText: '',
-  callback: null,
-}
+import { ElementFilled } from "../../../creator/fillDiv";
 
 export class GameView {
   gameView: CreatorElement;
@@ -18,6 +12,8 @@ export class GameView {
   }
 
   createGame() {
+    const creator = new ElementFilled();
+    const gameParam = creator.createDiv('div', ['game']);
     const gameCreator = new CreatorElement(gameParam);
     return gameCreator;
   }
@@ -29,5 +25,4 @@ export class GameView {
   changeGame() {
     // получать уровень и перезаписывать состав константы параметров
   }
-
 }

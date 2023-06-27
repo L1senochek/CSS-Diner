@@ -1,19 +1,5 @@
 import CreatorElement from "../../creator/creator";
-
-const mainParam = {
-  tag: 'main',
-  classNames: ['main'],
-  innerText: '',
-  // innerHTML : ['<div class="wrapper">', '</div>'],
-  callback: null,
-}
-
-const mainWrapper = {
-  tag: 'div',
-  classNames: ['wrapper'],
-  innerText: '',
-  callback: null,
-}
+import { ElementFilled } from "../../creator/fillDiv";
 
 export class MainView {
   mainView: CreatorElement;
@@ -26,13 +12,12 @@ export class MainView {
   }
 
   createMain() {
+    const creator = new ElementFilled();
+    const mainParam = creator.createDiv('main', ['main']);
+    const mainWrapper = creator.createDiv('div', ['wrapper']);
     const mainCreator = new CreatorElement(mainParam);
     const wrapperCreator = new CreatorElement(mainWrapper).getElement();
-    
-    if (wrapperCreator instanceof Node) {
-      mainCreator.getElement()?.prepend(wrapperCreator);
-    }
-
+    if (wrapperCreator) mainCreator.getElement()?.prepend(wrapperCreator);
     return mainCreator;
   }
 }

@@ -1,63 +1,27 @@
 import CreatorElement from "../../../../../creator/creator"
-// import lvlJSON from '../../../../../data/levels.json';
-// console.log(lvlJSON); // json  lvl file Array
-
-const lvlNum = 0;
-
-interface LevelData { 
-  id: number,
-  selectorName: string,
-  title: string,
-  syntax: string,
-  levelDescription: string,
-  examples: string[],
-  quest: string,
-  answer: string,
-  markup: string[],
-}
-
-const editorCode = {
-  tag: 'div',
-  classNames: ['editor__code'],
-  innerText: '',
-  callback: null,
-}
-
-const markup = {
-  tag: 'pre',
-  classNames: ['markup'],
-  innerText: '',
-  callback: null,
-}
-
-const codeWrapper = {
-  tag: 'code',
-  classNames: ['code__wrapper'],
-  innerText: '',
-  callback: null,
-}
+import { ElementFilled } from "../../../../../creator/fillDiv";
 
 export class MarkupView {
   markupView: CreatorElement;
-
   constructor() {
-    this.markupView = this.createMarkup(lvlNum);
+    this.markupView = this.createMarkup();
   }
 
   getHTMLElement() {
     return this.markupView.getElement();
   }
 
-  createMarkup(lvlNum: number) {
+  createMarkup() {
+    const creator = new ElementFilled();
+    const editorCode = creator.createDiv('div', ['editor__code']);
+    const markup = creator.createDiv('pre', ['markup']);
+    const codeWrapper = creator.createDiv('code', ['code__wrapper']);
     const editorCodeCreator = new CreatorElement(editorCode);
     const markupCreator = new CreatorElement(markup).getElement();
     const codeWrapperCreator = new CreatorElement(codeWrapper).getElement();
-    // const murkup = lvlJSON[lvlNum].markup;
-    // console.log(lvlJSON[lvlNum].markup)
     if (codeWrapperCreator) codeWrapperCreator.innerHTML = '';
     if (codeWrapperCreator) markupCreator?.appendChild(codeWrapperCreator);
     if (markupCreator) editorCodeCreator.getElement()?.appendChild(markupCreator);
-
     return editorCodeCreator;
   }
 }

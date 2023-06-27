@@ -1,25 +1,5 @@
 import CreatorElement from "../../../../creator/creator";
-
-const gameTable = {
-  tag: 'div',
-  classNames: ['game__table', 'table__wrapper'],
-  innerText: '',
-  callback: null,
-}
-
-const tableSurface = {
-  tag: 'div',
-  classNames: ['table__surface'],
-  innerText: '',
-  callback: null,
-}
-
-const tableContent = {
-  tag: 'div',
-  classNames: ['table__content'],
-  innerText: '',
-  callback: null,
-}
+import { ElementFilled } from "../../../../creator/fillDiv";
 
 export class TableView {
   tableView: CreatorElement;
@@ -32,10 +12,13 @@ export class TableView {
   }
 
   createTable() {
+    const creator = new ElementFilled();
+    const gameTable = creator.createDiv('div', ['game__table', 'table__wrapper']);
+    const tableSurface = creator.createDiv('div', ['table__surface']);
+    const tableContent = creator.createDiv('div', ['table__content']);
     const tableCreator = new CreatorElement(gameTable);
     const surfaceCreator = new CreatorElement(tableSurface).getElement();
     const contentCreator = new CreatorElement(tableContent).getElement();
-
     if (surfaceCreator instanceof Node && contentCreator instanceof Node) {
       tableCreator.getElement()?.prepend(surfaceCreator, contentCreator);
     }

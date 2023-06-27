@@ -1,39 +1,5 @@
 import CreatorElement from "../../creator/creator";
-
-const headerParam = {
-  tag: 'header',
-  classNames: ['header'],
-  innerText: '',
-  callback: null,
-}
-
-const headerLogo = {
-  tag: 'div',
-  classNames: ['logo'],
-  innerText: '',
-  callback: null,
-}
-
-const headerLogoIco = {
-  tag: 'div',
-  classNames: ['logo__ico'],
-  innerText: '',
-  callback: null,
-}
-
-const headerLogoTitle = {
-  tag: 'div',
-  classNames: ['logo__title'],
-  innerText: 'CSS Diner',
-  callback: null,
-}
-
-const headerHelp = {
-  tag: 'div',
-  classNames: ['help'],
-  innerText: '',
-  callback: null,
-}
+import { ElementFilled } from "../../creator/fillDiv";
 
 export class HeaderView {
   headerView: CreatorElement;
@@ -46,17 +12,23 @@ export class HeaderView {
   }
 
   createHeader() {
+    const creator = new ElementFilled();
+    const headerParam = creator.createDiv('header', ['header']);
+    const headerLogo = creator.createDiv('div', ['logo']);
+    const headerLogoIco = creator.createDiv('div', ['logo__ico']);
+    const headerLogoTitle = creator.createDiv('div', ['logo__title'], 'CSS Diner');
+    const headerHelp = creator.createDiv('div', ['help']);
     const headerCreator = new CreatorElement(headerParam);
     const logoCreator = new CreatorElement(headerLogo).getElement();
     const logoIcoCreator = new CreatorElement(headerLogoIco).getElement();
     const logoTitleCreator = new CreatorElement(headerLogoTitle).getElement();
     const helpCreator = new CreatorElement(headerHelp).getElement();
     
-    if (logoIcoCreator instanceof Node && logoTitleCreator instanceof Node) {
+    if (logoIcoCreator && logoTitleCreator) {
       logoCreator?.prepend(logoIcoCreator, logoTitleCreator);
     }
 
-    if (logoCreator instanceof Node && helpCreator instanceof Node) {
+    if (logoCreator && helpCreator) {
       headerCreator.getElement()?.prepend(logoCreator, helpCreator);
     }
     

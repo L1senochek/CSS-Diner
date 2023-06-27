@@ -1,36 +1,5 @@
 import CreatorElement from "../../../../../creator/creator"
-
-const editorCode = {
-  tag: 'div',
-  classNames: ['editor__code'],
-  innerText: '',
-  callback: null,
-}
-
-const inputWrapper = {
-  tag: 'div',
-  classNames: ['input__wrapper'],
-  innerText: '',
-  callback: null,
-}
-
-const inputField = {
-  tag: 'input',
-  classNames: ['input__field'],
-  innerText: '',
-  callback: null,
-  attributes: {
-    type: 'text',
-    placeholder: 'Type in a CSS selector',
-  },
-};
-
-const enterBtn = {
-  tag: 'button',
-  classNames: ['input__enter'],
-  innerText: 'enter',
-  callback: null,
-}
+import { ElementFilled } from "../../../../../creator/fillDiv";
 
 const codeFragment = `
 <pre class="input__code">
@@ -58,22 +27,25 @@ export class EditorCodeView {
   }
 
   createEditorCode() {
-    
+    const creator = new ElementFilled();
+    const editorCode = creator.createDiv('div', ['editor__code']);
+    const inputWrapper = creator.createDiv('div', ['input__wrapper']);
+    const inputField = creator.createDiv('input', ['input__field'], '', null, {
+      type: 'text',
+      placeholder: 'Type in a CSS selector',
+    });
+    const enterBtn = creator.createDiv('button', ['input__enter'], 'enter');
     const editorCodeCreator = new CreatorElement(editorCode);
     const inputWrapperCreator = new CreatorElement(inputWrapper).getElement();
     const inputFieldCreator = new CreatorElement(inputField).getElement();
     const enterBtnCreator = new CreatorElement(enterBtn).getElement();
     const editorCodeElement = editorCodeCreator.getElement();
     
-    if (inputFieldCreator instanceof Node && enterBtnCreator instanceof Node) {
+    if (inputFieldCreator && enterBtnCreator && inputWrapperCreator && editorCodeElement) {
       inputWrapperCreator?.prepend(inputFieldCreator, enterBtnCreator);
-    }
-
-    if (editorCodeElement && inputWrapperCreator instanceof Node) {
       editorCodeElement.innerHTML = `${inputWrapperCreator.outerHTML}${codeFragment}`;
     }
 
-    
     return editorCodeCreator;
   }
 

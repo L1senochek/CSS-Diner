@@ -1,15 +1,8 @@
 import CreatorElement from "../../../../creator/creator";
-
-const createDiv = (classNames:string[], innerText: string) => ({
-  tag: 'div',
-  classNames: classNames,
-  innerText: innerText,
-  callback: null,
-});
+import { ElementFilled } from "../../../../creator/fillDiv";
 
 export class EditorView {
   editorView: CreatorElement;
-
   constructor() {
     this.editorView = this.createEditor();
   }
@@ -19,16 +12,17 @@ export class EditorView {
   }
 
   createEditor() {
-    const editorParam = createDiv(['game__editor', 'editor'], '');
-    const cssPane = createDiv(['editor__pane', 'css-pane'], '');
-    const htmlPane = createDiv(['editor__pane', 'html-pane'], '');
-    const editorHeader = createDiv(['editor__header-input'], '');
-    const editorWindow = createDiv(['editor__window'], '');
-    const titleCSS = createDiv(['editor__title'], 'CSS Editor');
-    const fileNameCSS = createDiv(['editor__file-name'], 'style.css');
-    const titleHTML = createDiv(['editor__title'], 'HTML Viewer');
-    const fileNameHTML = createDiv(['editor__file-name'], 'table.html');
-    const lineNumbers = createDiv(['editor__line-numbers'], ''); 
+    const creator = new ElementFilled();
+    const editorParam = creator.createDiv('div', ['game__editor', 'editor'], '');
+    const cssPane = creator.createDiv('div', ['editor__pane', 'css-pane'], '');
+    const htmlPane = creator.createDiv('div', ['editor__pane', 'html-pane'], '');
+    const editorHeader = creator.createDiv('div', ['editor__header-input'], '');
+    const editorWindow = creator.createDiv('div', ['editor__window'], '');
+    const titleCSS = creator.createDiv('div', ['editor__title'], 'CSS Editor');
+    const fileNameCSS = creator.createDiv('div', ['editor__file-name'], 'style.css');
+    const titleHTML = creator.createDiv('div', ['editor__title'], 'HTML Viewer');
+    const fileNameHTML = creator.createDiv('div', ['editor__file-name'], 'table.html');
+    const lineNumbers = creator.createDiv('div', ['editor__line-numbers'], ''); 
     const editorCreator = new CreatorElement(editorParam);
     const cssPaneCreator = new CreatorElement(cssPane).getElement();
     const htmlPaneCreator = new CreatorElement(htmlPane).getElement();
@@ -39,8 +33,6 @@ export class EditorView {
     const titleHTMLCreator = new CreatorElement(titleHTML).getElement();
     const fileNameHTMLCreator = new CreatorElement(fileNameHTML).getElement();
     const lineNumCreator = new CreatorElement(lineNumbers).getElement();
-
-    
 
     if (lineNumCreator instanceof Node) {
       for (let i of Array.from({ length: 10 }, (_, index) => index + 1)) {
@@ -58,7 +50,6 @@ export class EditorView {
       && titleHTMLCreator instanceof Node
       && fileNameHTMLCreator instanceof Node
       ) {
-
       headerCreator?.prepend(titleCSSCreator, fileNameCSSCreator);
       const headerClone = headerCreator.cloneNode(true);
       const windowClone = windowCreator.cloneNode(true);

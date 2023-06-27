@@ -13,6 +13,19 @@ import lvlJSON from '../data/levels.json';
 import { LvlAboutView } from "../view/main/lvl/lvl";
 console.log(lvlJSON); // json  lvl file Array
 
+
+interface LevelData { 
+  id: number,
+  selectorName: string,
+  title: string,
+  syntax: string,
+  levelDescription: string,
+  examples: string[],
+  quest: string,
+  answer: string,
+  markup: string[],
+}
+
 export enum LvlStatus {
   status1 = 'completed',
   status2 = 'not completed',
@@ -23,6 +36,7 @@ export enum LvlStatus {
 //   lvl: LvlStatus
 // }
 
+// const LevelsResult: LvlStatus[] = Array(lvlJSON.length).fill(LvlStatus.NotCompleted);
 const LevelsResult = [
   LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2,
   LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2,

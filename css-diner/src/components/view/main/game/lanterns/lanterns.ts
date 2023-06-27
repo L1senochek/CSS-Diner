@@ -1,34 +1,5 @@
 import CreatorElement from "../../../../creator/creator";
-
-const lanternParam = {
-  tag: 'div',
-  classNames: ['game__lanterns'],
-  innerText: '',
-  callback: null,
-}
-
-const lantern = {
-  tag: 'span',
-  classNames: ['lantern'],
-  innerText: '',
-  callback: null,
-}
-
-const firstLantern = {
-  tag: 'span',
-  classNames: ['lantern__title'],
-  innerText: '壽司',
-  callback: null,
-}
-
-const secondLantern = {
-  tag: 'span',
-  classNames: ['lantern__title'],
-  innerText: '貓',
-  callback: null,
-}
-
-
+import { ElementFilled } from "../../../../creator/fillDiv";
 
 export class LanternView {
   lanternView: CreatorElement;
@@ -41,6 +12,11 @@ export class LanternView {
   }
 
   createLanterns() {
+    const creator = new ElementFilled();
+    const lanternParam = creator.createDiv('div', ['game__lanterns']);
+    const lantern = creator.createDiv('span', ['lantern']);
+    const firstLantern = creator.createDiv('span', ['lantern__title'], '壽司');
+    const secondLantern = creator.createDiv('span', ['lantern__title'], '貓');
     const lanternWrapper = new CreatorElement(lanternParam);
     const lanternCreatorOne = new CreatorElement(lantern).getElement();
     const lanternCreatorTwo = new CreatorElement(lantern).getElement();

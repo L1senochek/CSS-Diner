@@ -1,10 +1,6 @@
 import CreatorElement from "../../../../creator/creator";
-const gameQuest = {
-  tag: 'p2',
-  classNames: ['game__quest'],
-  innerText: 'Select the fancy plate',
-  callback: null,
-}
+import { ElementFilled } from "../../../../creator/fillDiv";
+
 export class GameQuestView {
   gameQuestView: CreatorElement;
   constructor() {
@@ -13,8 +9,9 @@ export class GameQuestView {
   getHTMLElement() {
     return this.gameQuestView.getElement();
   }
-
   createGame() {
+    const creator = new ElementFilled();
+    const gameQuest = creator.createDiv('p2', ['game__quest']);
     const gameCreator = new CreatorElement(gameQuest);
     return gameCreator;
   }
