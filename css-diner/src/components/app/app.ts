@@ -211,7 +211,7 @@ export class App {
       && descriptionSyntax instanceof HTMLElement
       && lvlExample instanceof HTMLElement
       ){
-      lvlTitle.innerText = `Level ${num + 1} of 10`;
+      lvlTitle.innerText = `Level ${num + 1} of ${lvlJSON.length}`;
       descriptionSelector.innerText = `${lvlJSON[num].selectorName}`;
       descriptionTitle.innerText = `${lvlJSON[num].title}`;
       descriptionSyntax.innerText = `${lvlJSON[num].syntax}`;
@@ -226,12 +226,13 @@ export class App {
     const lvlProgress = lvlAboutViewElem?.children[1].firstChild // lvl__progress
     console.log('lvlAboutViewElem', lvlProgress, num)
     if (lvlProgress instanceof HTMLElement){
-      lvlProgress.style.width = `${num + 1}0%`;
+      lvlProgress.style.width = `${(num + 1)/lvlJSON.length * 100}%`;
     }
   }
 
   nextLvl() {
-    if (this.lvl < 19) {
+    console.log(this.lvl, lvlJSON.length)
+    if (this.lvl < (lvlJSON.length - 1)) {
       this.lvl += 1;
       console.log(this.lvl);
       this.createMarkup();
@@ -239,6 +240,8 @@ export class App {
       this.changeTable();
       this.changeAboutLvl();
       this.changeProgressBar();
+      this.removeWinClass();
+
     }
   }
 
@@ -251,6 +254,7 @@ export class App {
       this.changeTable();
       this.changeAboutLvl();
       this.changeProgressBar();
+      this.removeWinClass();
 
     }
   }
@@ -262,19 +266,56 @@ export class App {
     this.changeQuestName(num);
     this.changeTable(num);
     this.changeAboutLvl(num);
-    this.changeProgressBar();
-
+    this.changeProgressBar(num);
+    this.removeWinClass();
   }
 
+  removeWinClass(){
+    const tableViewElem = this.tableView?.getHTMLElement();
+    const tableWrapper = tableViewElem?.childNodes[0];
+    const tableContent = tableViewElem?.childNodes[1];
+    const table = tableViewElem?.childNodes[1].firstChild;
+    const chopsticks = this.chopsticksView?.getHTMLElement();
+    if (
+      tableWrapper instanceof HTMLElement
+      && tableContent instanceof HTMLElement
+      && table instanceof HTMLElement
+      && chopsticks instanceof HTMLElement
+      ) {
+      // gameQuestViewElem.innerText = 'YOU WIN!';
+      tableWrapper?.classList.remove('win');
+      tableContent.classList.remove('win');
+      table.classList.remove('win');
+      chopsticks.classList.remove('win');
+    }
+  }
   checkInputValue(value: string) {
     const editorCodeViewElem = this.editorCodeView?.getHTMLElement();
     const editorInputCSS = editorCodeViewElem?.firstChild?.firstChild;
     const editorViewElem = this.editorView?.getHTMLElement();
-    // editorViewElem?.classList.remove('shake');
+    const gameQuestViewElem = this.gameQuestView?.getHTMLElement();
+    const tableViewElem = this.tableView?.getHTMLElement();
+    const tableWrapper = tableViewElem?.childNodes[0];
+    const tableContent = tableViewElem?.childNodes[1];
+    const table = tableViewElem?.childNodes[1].firstChild;
+    const chopsticks = this.chopsticksView?.getHTMLElement();
 
     if (editorInputCSS instanceof HTMLInputElement) {
-      
-      if (value === lvlJSON[this.lvl].answer) {
+      if (value === lvlJSON[this.lvl].answer && this.lvl === (lvlJSON.length - 1)) {  
+        if (
+          gameQuestViewElem instanceof HTMLElement
+          && tableWrapper instanceof HTMLElement
+          && tableContent instanceof HTMLElement
+          && table instanceof HTMLElement
+          && chopsticks instanceof HTMLElement
+          ) {
+          gameQuestViewElem.innerText = 'YOU WIN!';
+          tableWrapper?.classList.add('win');
+          tableContent.classList.add('win');
+          table.classList.add('win');
+          chopsticks.classList.add('win');
+        }
+      } else if (value === lvlJSON[this.lvl].answer) {
         console.log(editorInputCSS.value, 'input11')
         this.nextLvl();
         // сохранить в массив уровней пройден ли лвл
