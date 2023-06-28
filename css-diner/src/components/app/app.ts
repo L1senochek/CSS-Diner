@@ -216,6 +216,9 @@ export class App {
   }
 
   toLvl(num: number) {
+    const editorCodeViewElem = this.editorCodeView?.getHTMLElement();
+    const editorInputCSS = editorCodeViewElem?.firstChild?.firstChild;
+    if (editorInputCSS instanceof HTMLInputElement) editorInputCSS.value = '';
     // переход на нужный лвл
     this.lvl = num;
     this.createMarkup(num);
@@ -224,6 +227,8 @@ export class App {
     this.changeAboutLvl(num);
     this.changeProgressBar(num);
     this.removeWinClass();
+    
+
   }
 
   removeWinClass(){
@@ -256,6 +261,7 @@ export class App {
     const table = tableViewElem?.childNodes[1].firstChild;
     const chopsticks = this.chopsticksView?.getHTMLElement();
 
+    console.log(editorInputCSS, 1111)
     if (editorInputCSS instanceof HTMLInputElement) {
       if (value === lvlJSON[this.lvl].answer && this.lvl === (lvlJSON.length - 1)) {  
         if (
@@ -272,6 +278,7 @@ export class App {
           chopsticks.classList.add('win');
         }
       } else if (value === lvlJSON[this.lvl].answer) {
+        editorInputCSS.value = '';
         this.nextLvl();
         // сохранить в массив уровней пройден ли лвл
         LevelsResult[this.lvl] = LvlStatus.status1;
@@ -289,13 +296,29 @@ export class App {
     // if (lvlAboutViewElem instanceof HTMLElement) {
     const prevArr = lvlAboutViewElem?.firstChild?.lastChild?.firstChild;
     const nextArr = lvlAboutViewElem?.firstChild?.lastChild?.lastChild;
+    const editorCodeViewElem = this.editorCodeView?.getHTMLElement();
+    const editorInput = editorCodeViewElem?.firstChild?.firstChild;
+    const editorEnterBtn = editorCodeViewElem?.firstChild?.lastChild;
     // }
-    console.log('lvlAboutViewElem', prevArr, nextArr);
+    // console.log('lvlAboutViewElem', editorInputCSS, editorEnterBtn);
     prevArr?.addEventListener('click', () => {
       this.prevLvl();
     });
     nextArr?.addEventListener('click', () => {
       this.nextLvl();
+    });
+
+    editorEnterBtn?.addEventListener('click', () => {
+      if (editorInput instanceof HTMLInputElement) {
+        this.checkInputValue(editorInput?.value)
+      }
+    });
+
+    editorInput?.addEventListener('keydown', (e: Event) => {
+      if (e instanceof KeyboardEvent && e.key === 'Enter') {
+        e.preventDefault();
+        if (editorInput instanceof HTMLInputElement) this.checkInputValue(editorInput?.value)
+      }
     });
   }
 }
