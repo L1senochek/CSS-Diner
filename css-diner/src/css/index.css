@@ -584,6 +584,8 @@ body {
 }
 
 .example {
+  display: flex;
+  align-items: center;
   margin: 1vw 0;
   line-height: 180%;
 }
@@ -618,7 +620,8 @@ body {
 plate.active,
 dish.active,
 shrimpcat.active,
-tunacat.active {
+tunacat.active,
+salmoncat.active {
   animation: identifier 1s both .1s ease infinite;
 }
 
@@ -648,6 +651,30 @@ tunacat {
   height: 7.75vw;
   background-size: cover;
   margin: 0.5vw;
+}
+
+salmoncat {
+  background-image: url('../assets/img/salmon-cat.png');
+  width: 10vw;
+  height: 7.84vw;
+  background-size: cover;
+  margin: 0.5vw;
+}
+
+redcaviarcat {
+  background-image: url('../assets/img/red-caviar-cat.png');
+  width: 10vw;
+  height: 9.22vw;
+  background-size: cover;
+  margin: 0.5vw;
+}
+
+plate redcaviarcat {
+  position: relative;
+  width: 8vw;
+  height: 7.376vw;
+  margin: 0.5vw;
+  top: -2vw;
 }
 
 dish tunacat {
