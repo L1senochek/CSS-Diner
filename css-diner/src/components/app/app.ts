@@ -36,11 +36,8 @@ export enum LvlStatus {
 // }
 
 const LevelsResult = [
-  LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2,
-  LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2,
-  LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2,
-  LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2,
-  LvlStatus.status2, LvlStatus.status2
+  LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2,
+  LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2,
 ];
 
 export class App {
@@ -82,6 +79,7 @@ export class App {
   private readonly nextArr = this.lvlAboutViewElem?.firstChild?.lastChild?.lastChild;
   private readonly lvlProgress = this.lvlAboutViewElem?.children[1].firstChild;
   private readonly lvlTitle = this.lvlAboutViewElem?.firstChild?.firstChild; // Level 1 of 32
+  private readonly checkmark = this.lvlAboutViewElem?.firstChild?.childNodes[1]; // checkmark
   private readonly descriptionSelector = this.lvlAboutViewElem?.lastChild?.firstChild; // description__selector-name // Type Selector
   private readonly descriptionTitle = this.lvlAboutViewElem?.children[2].children[1]; // description__title // Select elements by their type
   private readonly descriptionHint = this.lvlAboutViewElem?.children[2].children[2]; // description__hint 
@@ -131,7 +129,6 @@ export class App {
   }
 
   createMarkup(num = this.lvl) {
-    
     if (this.markup instanceof HTMLElement) this.markup.innerHTML = `${lvlJSON[num].markup}`;
   }
 
@@ -148,14 +145,26 @@ export class App {
   }
 
   changeAboutLvl(num = this.lvl) {
+    console.log( this.checkmark, 'checkmark', LevelsResult[this.lvl], LvlStatus.status1)
   if (
     this.lvlTitle instanceof HTMLElement
+    && this.checkmark instanceof HTMLElement
     && this.descriptionSelector instanceof HTMLElement
     && this.descriptionTitle instanceof HTMLElement
     && this.descriptionSyntax instanceof HTMLElement
     && this.lvlExample instanceof HTMLElement
     ) {
       this.lvlTitle.innerText = `Level ${num + 1} of ${lvlJSON.length}`;
+      // добавить галочку(изменение) в зависимости от массива уровней
+      // completed
+      
+      if (LevelsResult[this.lvl] === LvlStatus.status1) {
+        this.checkmark?.classList.add('completed')
+      } else if (LevelsResult[this.lvl] === LvlStatus.status2) {
+        this.checkmark?.classList.remove('completed')
+      } else {
+        // status3 = 'completed with hint'
+      }
       this.descriptionSelector.innerText = `${lvlJSON[num].selectorName}`;
       this.descriptionTitle.innerText = `${lvlJSON[num].title}`;
       this.descriptionSyntax.innerText = `${lvlJSON[num].syntax}`;
@@ -236,12 +245,15 @@ export class App {
           this.tableContent.classList.add('win');
           table?.classList.add('win');
           this.chopsticksElem.classList.add('win');
+          LevelsResult[this.lvl] = LvlStatus.status1;
         }
       } else if (value === lvlJSON[this.lvl].answer) {
         this.editorInputCSS.value = '';
+        
+        LevelsResult[this.lvl] = LvlStatus.status1;
         this.nextLvl();
         // сохранить в массив уровней пройден ли лвл
-        LevelsResult[this.lvl] = LvlStatus.status1;
+        // изменить статус уровня, если он пройден
       } else {
         this.editorViewElem?.classList.add('shake');
         setTimeout(() => {

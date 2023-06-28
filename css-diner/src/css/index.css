@@ -526,8 +526,8 @@ body {
   transform: rotate(40deg);
 }
 
-.lvl__checkmark .completed {
-  border: solid 3px rgb(232 98 56);
+.lvl__checkmark.completed {
+  border-color: rgb(232 98 56);
 }
 
 .lvl__nav {
