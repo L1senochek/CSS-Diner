@@ -113,6 +113,7 @@ export class App {
     // добавить все что в lvlinfo:
     this.changeAboutLvl();
     this.changeProgressBar();
+    this.setEvents();
     if (
       lanternViewElem
       && gameViewElem instanceof HTMLElement
@@ -281,5 +282,20 @@ export class App {
         }, 200);
       }
     }
+  }
+
+  setEvents() {
+    const lvlAboutViewElem = this.lvlAboutView?.getHTMLElement();
+    // if (lvlAboutViewElem instanceof HTMLElement) {
+    const prevArr = lvlAboutViewElem?.firstChild?.lastChild?.firstChild;
+    const nextArr = lvlAboutViewElem?.firstChild?.lastChild?.lastChild;
+    // }
+    console.log('lvlAboutViewElem', prevArr, nextArr);
+    prevArr?.addEventListener('click', () => {
+      this.prevLvl();
+    });
+    nextArr?.addEventListener('click', () => {
+      this.nextLvl();
+    });
   }
 }

@@ -5,12 +5,7 @@ import './css/index.css';
 const app = new App();
 
 
-document.querySelector('.arrow__next')?.addEventListener('click', () => {
-  app.nextLvl()
-});
-document.querySelector('.arrow__prev')?.addEventListener('click', () => {
-  app.prevLvl()
-});
+
 // app.checkInputValue();
 
 const button = document.querySelector('.input__enter');
