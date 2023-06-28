@@ -13,7 +13,6 @@ import lvlJSON from '../data/levels.json';
 import { LvlAboutView } from "../view/main/lvl/lvl";
 console.log(lvlJSON); // json  lvl file Array
 
-
 interface LevelData { 
   id: number,
   selectorName: string,
@@ -36,7 +35,6 @@ export enum LvlStatus {
 //   lvl: LvlStatus
 // }
 
-// const LevelsResult: LvlStatus[] = Array(lvlJSON.length).fill(LvlStatus.NotCompleted);
 const LevelsResult = [
   LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2,
   LvlStatus.status2, LvlStatus.status2, LvlStatus.status2, LvlStatus.status2,
@@ -47,178 +45,156 @@ const LevelsResult = [
 
 export class App {
   lvl: number;
-  private footerView?: FooterView;
-  private headerView?: HeaderView;
-  private mainView?: MainView;
-  private gameView?: GameView;
-  private lanternView?: LanternView;
-  gameQuestView?: GameQuestView;
-  tableView?: TableView;
-  private chopsticksView?: ChopsticksView;
-  editorView?: EditorView;
-  editorCodeView?: EditorCodeView;
-  markupView?: MarkupView;
-  lvlAboutView?: LvlAboutView;
-
+  private footerView? = new FooterView;
+  private headerView? = new HeaderView;
+  private mainView? = new MainView;
+  private gameView? = new GameView;
+  private lanternView? = new LanternView;
+  gameQuestView? = new GameQuestView;
+  tableView? = new TableView;
+  private chopsticksView? = new ChopsticksView;
+  editorView? = new EditorView;
+  editorCodeView? = new EditorCodeView;
+  markupView? = new MarkupView;
+  lvlAboutView? = new LvlAboutView;
+  //  /////
+  private readonly footerElement = this.footerView?.getHTMLElement();
+  private readonly mainElement = this.mainView?.getHTMLElement();
+  private readonly mainWrapper = this.mainElement?.firstChild;
+  private readonly gameViewElem = this.gameView?.getHTMLElement();
+// сюда добавлять все что в game
+  private readonly lanternViewElem = this.lanternView?.getHTMLElement();
+  private readonly gameQuestViewElem = this.gameQuestView?.getHTMLElement();
+  private readonly tableViewElem = this.tableView?.getHTMLElement();
+  private readonly tableContent = this.tableViewElem?.childNodes[1];
+  private readonly tableWrapper = this.tableViewElem?.childNodes[0];
+  private readonly table = this.tableViewElem?.childNodes[1].firstChild;
+  private readonly chopsticksElem = this.chopsticksView?.getHTMLElement();
+  private readonly editorViewElem = this.editorView?.getHTMLElement();
+  private readonly editorCodeViewElem = this.editorCodeView?.getHTMLElement();
+  private readonly editorInputCSS = this.editorCodeViewElem?.firstChild?.firstChild;
+  private readonly editorEnterBtn = this.editorCodeViewElem?.firstChild?.lastChild;
+  private readonly editorWindowCSS = this.editorViewElem?.childNodes[0].childNodes[1];
+  private readonly editorWindowHtml = this.editorViewElem?.childNodes[1].childNodes[1];
+  private readonly markupViewHTML = this.markupView?.getHTMLElement()
+  private readonly lvlAboutViewElem = this.lvlAboutView?.getHTMLElement();
+  private readonly prevArr = this.lvlAboutViewElem?.firstChild?.lastChild?.firstChild;
+  private readonly nextArr = this.lvlAboutViewElem?.firstChild?.lastChild?.lastChild;
+  private readonly lvlProgress = this.lvlAboutViewElem?.children[1].firstChild;
+  private readonly lvlTitle = this.lvlAboutViewElem?.firstChild?.firstChild; // Level 1 of 32
+  private readonly descriptionSelector = this.lvlAboutViewElem?.lastChild?.firstChild; // description__selector-name // Type Selector
+  private readonly descriptionTitle = this.lvlAboutViewElem?.children[2].children[1]; // description__title // Select elements by their type
+  private readonly descriptionHint = this.lvlAboutViewElem?.children[2].children[2]; // description__hint 
+  private readonly descriptionSyntax = this.lvlAboutViewElem?.children[2].children[3]; // description__syntax highlight // A
+  private readonly lvlExample = this.lvlAboutViewElem?.children[2].children[5]; 
+  private readonly headerElement = this.headerView?.getHTMLElement();
+  private readonly markup = this.markupView?.getHTMLElement()?.firstChild?.firstChild;
+  
   constructor() {
     this.lvl = 0;
     this.createView();
   }
-
+  
   createView() {
-    this.footerView = new FooterView();
-    this.mainView = new MainView();
-    this.gameView = new GameView();
-    this.lanternView = new LanternView();
-    this.gameQuestView = new GameQuestView();
-    this.tableView = new TableView();
-    this.chopsticksView = new ChopsticksView();
-    this.editorView = new EditorView();
-    this.editorCodeView = new EditorCodeView();
-    this.markupView = new MarkupView();
-    this.lvlAboutView = new LvlAboutView();
-    this.headerView = new HeaderView();
-
-    const footerElement = this.footerView.getHTMLElement();
-    const mainElement = this.mainView.getHTMLElement();
-    const mainWrapper = mainElement?.firstChild;
-    const gameViewElem = this.gameView.getHTMLElement();
-    // сюда добавлять все что в game
-    console.log(mainWrapper);
-    const lanternViewElem = this.lanternView.getHTMLElement();
-    const gameQuestViewElem = this.gameQuestView.getHTMLElement();
-    const tableViewElem = this.tableView.getHTMLElement();
-    const chopsticksElem = this.chopsticksView.getHTMLElement();
-    const editorViewElem = this.editorView.getHTMLElement();
-    const editorCodeViewElem = this.editorCodeView.getHTMLElement();
-    const editorWindowCSS = editorViewElem?.childNodes[0].childNodes[1];
-    const editorWindowHtml = editorViewElem?.childNodes[1].childNodes[1];
-    const markupViewHTML = this.markupView.getHTMLElement()
-    // изменяемый параметр ( input ):
-    // const editorCodeViewElem = this.editorCodeView.getHTMLElement();
-    // const editorInputCSS = editorCodeViewElem?.firstChild?.firstChild;
-    const lvlAboutViewElem = this.lvlAboutView.getHTMLElement();
-    const headerElement = this.headerView.getHTMLElement();
-
-    if (footerElement) document.body.prepend(footerElement);
-    if (gameViewElem && mainWrapper instanceof HTMLElement) mainWrapper.prepend(gameViewElem);
+    if (this.footerElement) document.body.prepend(this.footerElement);
+    if (this.gameViewElem && this.mainWrapper instanceof HTMLElement) this.mainWrapper.prepend(this.gameViewElem);
     this.changeQuestName();
     this.changeTable();
-    if (editorCodeViewElem instanceof HTMLElement) editorWindowCSS?.appendChild(editorCodeViewElem);
-    if (editorWindowHtml instanceof HTMLElement && markupViewHTML) {
-      editorWindowHtml?.appendChild(markupViewHTML)
+    if (this.editorCodeViewElem instanceof HTMLElement) this.editorWindowCSS?.appendChild(this.editorCodeViewElem);
+    if (this.editorWindowHtml instanceof HTMLElement && this.markupViewHTML) {
+      this.editorWindowHtml?.appendChild(this.markupViewHTML)
     }
     this.createMarkup();
-    if (lvlAboutViewElem && mainWrapper instanceof HTMLElement) mainWrapper.append(lvlAboutViewElem);
+    if (this.lvlAboutViewElem && this.mainWrapper instanceof HTMLElement) this.mainWrapper.append(this.lvlAboutViewElem);
     // добавить все что в lvlinfo:
     this.changeAboutLvl();
     this.changeProgressBar();
     this.setEvents();
     if (
-      lanternViewElem
-      && gameViewElem instanceof HTMLElement
-      && gameQuestViewElem instanceof HTMLElement
-      && tableViewElem instanceof HTMLElement
-      && chopsticksElem instanceof HTMLElement
-      && editorViewElem instanceof HTMLElement
-      ) {
-        gameViewElem.prepend(
-        lanternViewElem,
-        gameQuestViewElem,
-        tableViewElem,
-        chopsticksElem,
-        editorViewElem
+    this.lanternViewElem
+    && this.gameViewElem instanceof HTMLElement
+    && this.gameQuestViewElem instanceof HTMLElement
+    && this.tableViewElem instanceof HTMLElement
+    && this.chopsticksElem instanceof HTMLElement
+    && this.editorViewElem instanceof HTMLElement
+    ) {
+      this.gameViewElem.prepend(
+        this.lanternViewElem,
+        this.gameQuestViewElem,
+        this.tableViewElem,
+        this.chopsticksElem,
+        this.editorViewElem
       );
     }
-    if (mainElement) document.body.prepend(mainElement);
-    if (headerElement) document.body.prepend(headerElement);
+    if (this.mainElement) document.body.prepend(this.mainElement);
+    if (this.headerElement) document.body.prepend(this.headerElement);
   }
 
   createMarkup(num = this.lvl) {
-    const markup = this.markupView?.getHTMLElement()?.firstChild?.firstChild;
-    if (markup instanceof HTMLElement) markup.innerHTML = `${lvlJSON[num].markup}`;
+    
+    if (this.markup instanceof HTMLElement) this.markup.innerHTML = `${lvlJSON[num].markup}`;
   }
 
   changeQuestName(num = this.lvl) {
-    const gameQuestViewElem = this.gameQuestView?.getHTMLElement();
-    if (gameQuestViewElem instanceof HTMLElement) {
-      gameQuestViewElem.innerText = `${lvlJSON[num].quest}`;
+    if (this.gameQuestViewElem instanceof HTMLElement) {
+      this.gameQuestViewElem.innerText = `${lvlJSON[num].quest}`;
     }
   }
 
   changeTable(num = this.lvl) {
-    const tableViewElem = this.tableView?.getHTMLElement();
-    const tableContent = tableViewElem?.childNodes[1];
-    if (tableContent instanceof HTMLElement) {
-      tableContent.innerHTML = `${lvlJSON[num].markupOnTable}`;
+    if (this.tableContent instanceof HTMLElement) {
+      this.tableContent.innerHTML = `${lvlJSON[num].markupOnTable}`;
     }
   }
 
   changeAboutLvl(num = this.lvl) {
-    const lvlAboutViewElem = this.lvlAboutView?.getHTMLElement();
-    const lvlTitle = lvlAboutViewElem?.firstChild?.firstChild; // Level 1 of 32
-    const descriptionSelector = lvlAboutViewElem?.lastChild?.firstChild; // description__selector-name // Type Selector
-    const descriptionTitle = lvlAboutViewElem?.children[2].children[1]; // description__title // Select elements by their type
-    const descriptionHint = lvlAboutViewElem?.children[2].children[2]; // description__hint 
-    const descriptionSyntax = lvlAboutViewElem?.children[2].children[3]; // description__syntax highlight // A
-    const lvlExample = lvlAboutViewElem?.children[2].children[5]; // lvl__example //
-
-    if (
-      lvlTitle instanceof HTMLElement
-      && descriptionSelector instanceof HTMLElement
-      && descriptionTitle instanceof HTMLElement
-      && descriptionSyntax instanceof HTMLElement
-      && lvlExample instanceof HTMLElement
-      ){
-      lvlTitle.innerText = `Level ${num + 1} of ${lvlJSON.length}`;
-      descriptionSelector.innerText = `${lvlJSON[num].selectorName}`;
-      descriptionTitle.innerText = `${lvlJSON[num].title}`;
-      descriptionSyntax.innerText = `${lvlJSON[num].syntax}`;
-      lvlExample.innerHTML = `${lvlJSON[num].examples}`;
+  if (
+    this.lvlTitle instanceof HTMLElement
+    && this.descriptionSelector instanceof HTMLElement
+    && this.descriptionTitle instanceof HTMLElement
+    && this.descriptionSyntax instanceof HTMLElement
+    && this.lvlExample instanceof HTMLElement
+    ) {
+      this.lvlTitle.innerText = `Level ${num + 1} of ${lvlJSON.length}`;
+      this.descriptionSelector.innerText = `${lvlJSON[num].selectorName}`;
+      this.descriptionTitle.innerText = `${lvlJSON[num].title}`;
+      this.descriptionSyntax.innerText = `${lvlJSON[num].syntax}`;
+      this.lvlExample.innerHTML = `${lvlJSON[num].examples}`;
     }
   }
 
   changeProgressBar(num = this.lvl) {
-    const lvlAboutViewElem = this.lvlAboutView?.getHTMLElement();
-    const lvlProgress = lvlAboutViewElem?.children[1].firstChild;
-    if (lvlProgress instanceof HTMLElement){
-      lvlProgress.style.width = `${(num + 1)/lvlJSON.length * 100}%`;
+    if (this.lvlProgress instanceof HTMLElement){
+      this.lvlProgress.style.width = `${(num + 1)/lvlJSON.length * 100}%`;
     }
   }
 
   nextLvl() {
-    console.log(this.lvl, lvlJSON.length)
     if (this.lvl < (lvlJSON.length - 1)) {
       this.lvl += 1;
-      console.log(this.lvl);
       this.createMarkup();
       this.changeQuestName();
       this.changeTable();
       this.changeAboutLvl();
       this.changeProgressBar();
       this.removeWinClass();
-
     }
   }
 
   prevLvl() {
     if (this.lvl > 0) {
       this.lvl -= 1;
-      console.log(this.lvl);
       this.createMarkup();
       this.changeQuestName();
       this.changeTable();
       this.changeAboutLvl();
       this.changeProgressBar();
       this.removeWinClass();
-
     }
   }
 
   toLvl(num: number) {
-    const editorCodeViewElem = this.editorCodeView?.getHTMLElement();
-    const editorInputCSS = editorCodeViewElem?.firstChild?.firstChild;
-    if (editorInputCSS instanceof HTMLInputElement) editorInputCSS.value = '';
+    if (this.editorInputCSS instanceof HTMLInputElement) this.editorInputCSS.value = '';
     // переход на нужный лвл
     this.lvl = num;
     this.createMarkup(num);
@@ -227,97 +203,72 @@ export class App {
     this.changeAboutLvl(num);
     this.changeProgressBar(num);
     this.removeWinClass();
-    
 
   }
 
   removeWinClass(){
-    const tableViewElem = this.tableView?.getHTMLElement();
-    const tableWrapper = tableViewElem?.childNodes[0];
-    const tableContent = tableViewElem?.childNodes[1];
-    const table = tableViewElem?.childNodes[1].firstChild;
-    const chopsticks = this.chopsticksView?.getHTMLElement();
     if (
-      tableWrapper instanceof HTMLElement
-      && tableContent instanceof HTMLElement
-      && table instanceof HTMLElement
-      && chopsticks instanceof HTMLElement
+      this.tableWrapper instanceof HTMLElement
+      && this.tableContent instanceof HTMLElement
+      && this.table instanceof HTMLElement
+      && this.chopsticksElem instanceof HTMLElement
       ) {
-      tableWrapper?.classList.remove('win');
-      tableContent.classList.remove('win');
-      table.classList.remove('win');
-      chopsticks.classList.remove('win');
-    }
+        this.tableWrapper?.classList.remove('win');
+        this.tableContent.classList.remove('win');
+        this.table.classList.remove('win');
+        this.chopsticksElem.classList.remove('win');
+      }
   }
 
   checkInputValue(value: string) {
-    const editorCodeViewElem = this.editorCodeView?.getHTMLElement();
-    const editorInputCSS = editorCodeViewElem?.firstChild?.firstChild;
-    const editorViewElem = this.editorView?.getHTMLElement();
-    const gameQuestViewElem = this.gameQuestView?.getHTMLElement();
-    const tableViewElem = this.tableView?.getHTMLElement();
-    const tableWrapper = tableViewElem?.childNodes[0];
-    const tableContent = tableViewElem?.childNodes[1];
-    const table = tableViewElem?.childNodes[1].firstChild;
-    const chopsticks = this.chopsticksView?.getHTMLElement();
-
-    console.log(editorInputCSS, 1111)
-    if (editorInputCSS instanceof HTMLInputElement) {
+    const table = this.tableViewElem?.childNodes[1].firstChild;
+    if (this.editorInputCSS instanceof HTMLInputElement) {
       if (value === lvlJSON[this.lvl].answer && this.lvl === (lvlJSON.length - 1)) {  
         if (
-          gameQuestViewElem instanceof HTMLElement
-          && tableWrapper instanceof HTMLElement
-          && tableContent instanceof HTMLElement
+          this.gameQuestViewElem instanceof HTMLElement
+          && this.tableWrapper instanceof HTMLElement
+          && this.tableContent instanceof HTMLElement
           && table instanceof HTMLElement
-          && chopsticks instanceof HTMLElement
+          && this.chopsticksElem instanceof HTMLElement
           ) {
-          gameQuestViewElem.innerText = 'YOU WIN!';
-          tableWrapper?.classList.add('win');
-          tableContent.classList.add('win');
-          table.classList.add('win');
-          chopsticks.classList.add('win');
+          this.gameQuestViewElem.innerText = 'YOU WIN!';
+          this.tableWrapper?.classList.add('win');
+          this.tableContent.classList.add('win');
+          table?.classList.add('win');
+          this.chopsticksElem.classList.add('win');
         }
       } else if (value === lvlJSON[this.lvl].answer) {
-        editorInputCSS.value = '';
+        this.editorInputCSS.value = '';
         this.nextLvl();
         // сохранить в массив уровней пройден ли лвл
         LevelsResult[this.lvl] = LvlStatus.status1;
       } else {
-        editorViewElem?.classList.add('shake');
+        this.editorViewElem?.classList.add('shake');
         setTimeout(() => {
-          editorViewElem?.classList.remove('shake');
+          this.editorViewElem?.classList.remove('shake');
         }, 200);
       }
     }
   }
 
   setEvents() {
-    const lvlAboutViewElem = this.lvlAboutView?.getHTMLElement();
-    // if (lvlAboutViewElem instanceof HTMLElement) {
-    const prevArr = lvlAboutViewElem?.firstChild?.lastChild?.firstChild;
-    const nextArr = lvlAboutViewElem?.firstChild?.lastChild?.lastChild;
-    const editorCodeViewElem = this.editorCodeView?.getHTMLElement();
-    const editorInput = editorCodeViewElem?.firstChild?.firstChild;
-    const editorEnterBtn = editorCodeViewElem?.firstChild?.lastChild;
-    // }
-    // console.log('lvlAboutViewElem', editorInputCSS, editorEnterBtn);
-    prevArr?.addEventListener('click', () => {
+    this.prevArr?.addEventListener('click', () => {
       this.prevLvl();
     });
-    nextArr?.addEventListener('click', () => {
+    this.nextArr?.addEventListener('click', () => {
       this.nextLvl();
     });
 
-    editorEnterBtn?.addEventListener('click', () => {
-      if (editorInput instanceof HTMLInputElement) {
-        this.checkInputValue(editorInput?.value)
+    this.editorEnterBtn?.addEventListener('click', () => {
+      if (this.editorInputCSS instanceof HTMLInputElement) {
+        this.checkInputValue(this.editorInputCSS?.value)
       }
     });
 
-    editorInput?.addEventListener('keydown', (e: Event) => {
+    this.editorInputCSS?.addEventListener('keydown', (e: Event) => {
       if (e instanceof KeyboardEvent && e.key === 'Enter') {
         e.preventDefault();
-        if (editorInput instanceof HTMLInputElement) this.checkInputValue(editorInput?.value)
+        if (this.editorInputCSS instanceof HTMLInputElement) this.checkInputValue(this.editorInputCSS?.value)
       }
     });
   }
