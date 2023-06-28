@@ -28,7 +28,8 @@ interface LevelData {
 export enum LvlStatus {
   status1 = 'completed',
   status2 = 'not completed',
-  status3 = 'completed with hint'
+  status3 = 'completed with hint',
+  status4 = 'hint used'
 }
 
 // export type LevelRes = {
@@ -86,6 +87,7 @@ export class App {
   private readonly descriptionSyntax = this.lvlAboutViewElem?.children[2].children[3]; // description__syntax highlight // A
   private readonly lvlExample = this.lvlAboutViewElem?.children[2].children[5]; 
   private readonly headerElement = this.headerView?.getHTMLElement();
+  private readonly help = this.headerElement?.lastChild;
   private readonly markup = this.markupView?.getHTMLElement()?.firstChild?.firstChild;
   
   constructor() {
@@ -145,7 +147,7 @@ export class App {
   }
 
   changeAboutLvl(num = this.lvl) {
-    console.log( this.checkmark, 'checkmark', LevelsResult[this.lvl], LvlStatus.status1)
+    // console.log( this.checkmark, 'checkmark', LevelsResult[this.lvl], LvlStatus.status1)
   if (
     this.lvlTitle instanceof HTMLElement
     && this.checkmark instanceof HTMLElement
@@ -282,6 +284,13 @@ export class App {
         e.preventDefault();
         if (this.editorInputCSS instanceof HTMLInputElement) this.checkInputValue(this.editorInputCSS?.value)
       }
+    });
+
+    this.help?.addEventListener('click', () => {
+      // сделать видимый блок hint 
+      // добавлять класс видимого блока и убирать при переходе на слудующий
+      LevelsResult[this.lvl] = LvlStatus.status4;
+
     });
   }
 }
