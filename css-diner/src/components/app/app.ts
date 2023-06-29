@@ -167,9 +167,9 @@ export class App {
       } else if (LevelsResult[this.lvl] === LvlStatus.status2) {
         this.checkmark?.classList.remove('completed')
         this.checkmark?.classList.remove('with-hint')
-      } else if (LevelsResult[this.lvl] === LvlStatus.status3) {
-        
+      } else if (LevelsResult[this.lvl] === LvlStatus.status3) {    
         // status3 = 'completed with hint' .with-hint 
+        this.checkmark?.classList.remove('completed')
         this.checkmark?.classList.add('with-hint')
       }
       this.descriptionSelector.innerText = `${lvlJSON[num].selectorName}`;
