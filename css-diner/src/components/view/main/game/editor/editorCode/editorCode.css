@@ -25,6 +25,7 @@
   color: rgb(255 164 108);
   border: none;
   background: #ffe8ca4f;
+  animation: input .7s infinite;
   -webkit-animation: input .7s infinite;
   -moz-animation: input .5s infinite;
 }
@@ -38,6 +39,11 @@
   outline: none;
 }
 
+@keyframes input {
+  50% {
+    background: none;
+  }
+}
 
 @-webkit-keyframes input {
   50% {
