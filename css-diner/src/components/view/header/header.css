@@ -1,0 +1,50 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0vw 2vw;
+  border-bottom: 1px #808080 solid;
+}
+
+.logo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+.logo__ico {
+  background-color: #ff5100;
+  background-image: url('../../../assets/img/ico-ninja-cat.jpg');
+}
+
+.logo__ico {
+  width: 3vw;
+  height: 3vw;
+  background-size: cover;
+}
+
+.help {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  width: 2vw;
+  height: 2vw;
+  margin-top: 0.5vw;
+  border-radius: 50px;
+  border: 1px rgb(235, 97, 54) solid;
+}
+
+.help::before {
+  content: '?';
+  color: #ff5100;
+  font-size: 1.5rem;
+}
+
+.logo__title {
+  color: rgb(226, 43, 217);
+  color: #FFE8CA;
+  font-size: 1.5rem;
+  font-weight: 400;
+  text-align: center;
+  padding: 0vw 1vw;
+}

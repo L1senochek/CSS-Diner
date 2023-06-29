@@ -1,5 +1,6 @@
 import CreatorElement from "../../creator/creator";
 import { ElementFilled } from "../../creator/fillDiv";
+import './main.css'
 
 export class MainView {
   mainView: CreatorElement;

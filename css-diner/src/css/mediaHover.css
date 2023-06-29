@@ -1,0 +1,24 @@
+@media(hover: hover) {
+  .lantern:hover {
+    box-shadow: 0 1px 5px 5px #ffe8ca69;
+    user-select: none;
+  }
+
+  .input__enter:hover {
+    box-shadow: 0 1px 2px 2px #ffe8ca69;
+    user-select: none;
+  }
+
+  .arrow__prev:hover,
+  .arrow__next:hover {
+    cursor: pointer;
+    border-color: rgb(232 98 56);
+  }
+
+  .code__wrapper {
+    cursor: default;
+  }
+
+  
+}
+

@@ -173,7 +173,6 @@ body {
   left: 56vw;
 }
 /* /////////////////// */
-
 .tag::before {
   content: "<";
 }
@@ -190,7 +189,6 @@ body {
   width: fit-content;
   border-radius: 5px;
 }
-
 /* /////////////////////// */
 
 .game__quest {
@@ -491,7 +489,6 @@ body {
 .markup {
   opacity: 0.5;
 }
-
 
 
 /* //////////////////////////////// LVL */
@@ -828,8 +825,6 @@ dish tunacat {
     border-color: rgb(232 98 56);
   }
 
-  
-  
   .code__wrapper {
     cursor: default;
   }

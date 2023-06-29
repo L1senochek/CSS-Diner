@@ -1,5 +1,6 @@
 import CreatorElement from "../../creator/creator";
 import { ElementFilled } from "../../creator/fillDiv";
+import './header.css';
 
 export class HeaderView {
   headerView: CreatorElement;

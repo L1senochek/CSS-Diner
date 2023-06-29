@@ -1,0 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+body {
+  background-color: #131210;
+  color: #FFE8CA;
+  font-size: 1rem;
+  /* background-color: #616161; */
+}

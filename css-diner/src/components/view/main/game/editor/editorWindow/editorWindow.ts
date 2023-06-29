@@ -1,5 +1,6 @@
 import CreatorElement from "../../../../../creator/creator"
 import { ElementFilled } from "../../../../../creator/fillDiv";
+import './editorWindow.css'
 
 export class MarkupView {
   markupView: CreatorElement;

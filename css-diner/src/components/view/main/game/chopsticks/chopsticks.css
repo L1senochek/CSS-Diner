@@ -1,0 +1,57 @@
+
+.game__chopsticks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  top: -5vw;
+  /* left: 30px; */
+}
+
+.chopstick {
+  height: 20px;
+  width: 650px;
+}
+
+.chopstick__back {
+  height: 18px;
+  background: red;
+  width: 10px;
+  background-image: url('../../../../../assets/img/45-degree-dark.png');
+  display: inline-block;
+  top: 7px;
+  left: 3px;
+  position: relative;
+  -webkit-clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+.chopstick__top {
+  background: #000;
+  height: 10px;
+  width: 600px;
+  position: relative;
+  left: -1px;
+  background-image: url('../../../../../assets/img/45-degree-dark.png');
+  display: inline-block;
+  -webkit-clip-path: polygon(30% 0, 100% 50%, 100% 100%, 0% 100%, 0% 30%, 0% 0%);
+  clip-path: polygon(30% 0, 100% 70%, 100% 100%, .5% 100%, 0 30%, 0% 0%);
+}
+
+.chopstick__bottom {
+  background: #241e18;
+  height: 10px;
+  width: 600px;
+  top: -11px;
+  left: 9px;
+  background-image: url('../../../../../assets/img/45-degree-dark.png');
+  position: relative;
+  display: inline-block;
+  -webkit-clip-path: polygon(100% 0, 100% 100%, 100% 30%, 0% 100%, 0% 100%, .5% 0%);
+  clip-path: polygon(50% 0, 100% 0, 100% 30%, 30% 100%, 0% 100%, .5% 0%);
+  box-shadow: 5px 5px 5px 5px #353535;
+}
+
+.game__chopsticks.win {
+  display: none;
+}

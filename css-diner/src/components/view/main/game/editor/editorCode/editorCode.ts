@@ -1,5 +1,6 @@
 import CreatorElement from "../../../../../creator/creator"
 import { ElementFilled } from "../../../../../creator/fillDiv";
+import './editorCode.css'
 
 const codeFragment = `
 <pre class="input__code">

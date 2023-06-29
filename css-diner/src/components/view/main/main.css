@@ -1,0 +1,12 @@
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.wrapper {
+  display: flex;
+  flex-grow: 1;
+  align-items: flex-start;
+  justify-content: space-around;
+}

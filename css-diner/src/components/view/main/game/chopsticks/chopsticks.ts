@@ -1,5 +1,6 @@
 import CreatorElement from "../../../../creator/creator";
 import { ElementFilled } from "../../../../creator/fillDiv";
+import './chopsticks.css'
 
 export class ChopsticksView {
   chopsticksView: CreatorElement;
