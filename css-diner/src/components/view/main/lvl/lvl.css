@@ -22,6 +22,7 @@
 }
 
 .lvl__checkmark {
+  display: flex;
   width: 1vw;
   height: 1.7vw;
   border: solid 3px rgb(255, 191, 152);
@@ -66,6 +67,9 @@
   flex-direction: column;
   align-items: center;
   width: 2vw;
+  height: 2vw;
+  cursor: pointer;
+  z-index: 4;
 }
 
 .burger__line {
@@ -90,11 +94,11 @@
 }
 
 .burger__line::before {
-  top: 5.4vw;
+  top: 6vw;
 }
 
 .burger__line::after {
-  top: 6.8vw;
+  top: 7vw;
 }
 
 .burger.active>.burger__line {
@@ -109,6 +113,30 @@
 .burger.active>.burger__line::after {
   transform: rotate(-45deg);
   top: 6vw;
+}
+
+.lvl__curtain-burger {
+  display: none;
+  position: absolute;
+  width: 26.9vw;
+  height: calc(100vh - 3vw - 1px);
+  background-color: #131210;
+  right: auto;
+  top: 3.1vw;
+}
+
+.lvl__curtain-burger.active {
+  display: flex;
+  right: auto;
+  flex-direction: column;
+  padding: 4vw;
+}
+
+.curtain-burger__item {
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+  align-items: center;
 }
 
 /* /////////// */

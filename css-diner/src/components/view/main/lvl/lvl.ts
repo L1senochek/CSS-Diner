@@ -38,6 +38,8 @@ export class LvlAboutView {
     const hintWrapper = creator.createDiv('div', ['hint__wrapper'], '');
     const hintCat = creator.createDiv('div', ['hint__cat'], ' > ω < ');
     const hintContent = creator.createDiv('div', ['hint__content'], '');
+    const curtain = creator.createDiv('div', ['lvl__curtain-burger'], '');
+
     const lvlCreator = new CreatorElement(lvlParam);
     const lvlWrapperCreator = new CreatorElement(lvlWrapper).getElement();
     const lvlTitleCreator = new CreatorElement(lvlTitle).getElement();
@@ -62,6 +64,7 @@ export class LvlAboutView {
     const hintContentCreator = new CreatorElement(hintContent).getElement();
     const descriptionExamplesCreator = new CreatorElement(descriptionExamples).getElement();
     const lvlExampleCreator = new CreatorElement(lvlExample).getElement();
+    const lvlcurtainCreator = new CreatorElement(curtain).getElement();
   
     if (lvlNavPrevCreator && lvlNavNextCreator) lvlNavCreator?.prepend(lvlNavPrevCreator, lvlNavNextCreator);
     if (burgerLineCreator) burgerCreator?.prepend(burgerLineCreator);
@@ -101,11 +104,13 @@ export class LvlAboutView {
       && lvlWrapperCreator instanceof Node
       && lvlProgressBarCreator instanceof Node
       && lvlDescriptionCreator instanceof Node
+      && lvlcurtainCreator
       ) {
       lvlCreator.getElement()?.prepend(
         lvlWrapperCreator,
         lvlProgressBarCreator,
-        lvlDescriptionCreator
+        lvlDescriptionCreator,
+        lvlcurtainCreator
       );
     }
     return lvlCreator;

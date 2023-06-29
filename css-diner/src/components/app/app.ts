@@ -79,9 +79,11 @@ export class App {
   private readonly prevArr = this.lvlAboutViewElem?.firstChild?.childNodes[2]?.firstChild;
   private readonly nextArr = this.lvlAboutViewElem?.firstChild?.childNodes[2]?.lastChild;
   private readonly lvlProgress = this.lvlAboutViewElem?.children[1].firstChild;
-  private readonly lvlTitle = this.lvlAboutViewElem?.firstChild?.firstChild; // Level 1 of 32
+  private readonly lvlTitle = this.lvlAboutViewElem?.firstChild?.childNodes[0]; // Level 1 of 32
   private readonly checkmark = this.lvlAboutViewElem?.firstChild?.childNodes[1]; // checkmark
-  private readonly descriptionSelector = this.lvlAboutViewElem?.lastChild?.firstChild; // description__selector-name // Type Selector
+  private readonly burger = this.lvlAboutViewElem?.firstChild?.lastChild; // burger
+  private readonly curtainBurger = this.lvlAboutViewElem?.lastChild; // curtain-burger
+  private readonly descriptionSelector = this.lvlAboutViewElem?.childNodes[2]?.firstChild; // description__selector-name // Type Selector
   private readonly descriptionSyntax = this.lvlAboutViewElem?.children[2].children[2]; // description__syntax highlight // A
   private readonly descriptionTitle = this.lvlAboutViewElem?.children[2].children[1]; // description__title // Select elements by their type
   private readonly lvlExample = this.lvlAboutViewElem?.children[2].children[4];
@@ -148,7 +150,6 @@ export class App {
   }
 
   changeAboutLvl(num = this.lvl) {
-    // console.log( this.checkmark, 'checkmark', LevelsResult[this.lvl], LvlStatus.status1)
   if (
     this.lvlTitle instanceof HTMLElement
     && this.checkmark instanceof HTMLElement
@@ -158,6 +159,7 @@ export class App {
     && this.lvlExample instanceof HTMLElement
     && this.lvlhint instanceof HTMLElement
     ) {
+
       this.lvlTitle.innerText = `Level ${num + 1} of ${lvlJSON.length}`;
       // добавить галочку(изменение) в зависимости от массива уровней
       // completed
@@ -229,16 +231,13 @@ export class App {
   }
 
   removeWinClass(){
-    console.log(this.table, this.table instanceof HTMLElement)
     const table = this.tableViewElem?.childNodes[1].firstChild;
-
     if (
       this.tableWrapper instanceof HTMLElement
       && this.tableContent instanceof HTMLElement
       && table instanceof HTMLElement
       && this.chopsticksElem instanceof HTMLElement
       ) {
-        console.log('00000000')
         this.tableWrapper?.classList.remove('win');
         this.tableContent.classList.remove('win');
         table.classList.remove('win');
@@ -267,15 +266,11 @@ export class App {
         }
       } else if (value === lvlJSON[this.lvl].answer) {
         this.editorInputCSS.value = '';
-        
         if (LevelsResult[this.lvl] === LvlStatus.status4) {
-          console.log(222)
           LevelsResult[this.lvl] = LvlStatus.status3;
         } else {
           LevelsResult[this.lvl] = LvlStatus.status1;
         }
-        
-
         this.nextLvl();
         // сохранить в массив уровней пройден ли лвл
         // изменить статус уровня, если он пройден
@@ -313,8 +308,24 @@ export class App {
       // сделать видимый блок hint 
       // добавлять класс видимого блока и убирать при переходе на слудующий
       LevelsResult[this.lvl] = LvlStatus.status4;
-      console.log(this.hintWrapper, this.hintWrapper instanceof HTMLElement)
       if (this.hintWrapper instanceof HTMLElement) this.hintWrapper?.classList.add('active');
     });
+
+    this.burger?.addEventListener('click', () => {
+      
+      if (this.burger instanceof HTMLElement) this.burger?.classList.toggle('active');
+      if (this.curtainBurger instanceof HTMLElement) this.curtainBurger?.classList.toggle('active');
+      console.log(this.curtainBurger, lvlJSON, lvlJSON[this.lvl].syntax, lvlJSON.length)
+
+      // const listItem = document.createElement('li');
+      // listItem.classList.add('curtain-burger__item');
+      // const checkmarkSpan = document.createElement('span');
+      // checkmarkSpan.classList.add('lvl__checkmark');
+      // listItem.appendChild(checkmarkSpan);
+      // const titleSpan = document.createElement('span');
+      // titleSpan.classList.add('lvl__title');
+      // listItem.appendChild(titleSpan);
+      // this.curtainBurger?.appendChild(listItem);
+    })
   }
 }
