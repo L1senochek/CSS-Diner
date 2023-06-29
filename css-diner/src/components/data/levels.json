@@ -9,7 +9,8 @@
     "quest": "Select the plates",
     "markupOnTable": "<div class='table'><plate class='active'></plate><plate class='active'></plate></div>",
     "answer": "plate",
-    "markup": "<span class='items item tag'>div class='table'</span><span class='item__plate item active tag'>plate /</span><span class='item__plate item active tag'>plate /</span><span class='item tag'>div</span>"
+    "markup": "<span class='items item tag'>div class='table'</span><span class='item__plate item active tag'>plate /</span><span class='item__plate item active tag'>plate /</span><span class='item tag'>div</span>",
+    "hint": "loremfdggggggggggggdgfdg"
   },
   {
     "id": 2,
@@ -21,7 +22,8 @@
     "quest": "Select the sushicat shrimpcat",
     "markupOnTable": "<div class='table'><shrimpcat id='sushicat'class='active'></shrimpcat><plate></plate><dish></dish></div>",
     "answer": "#sushicat",
-    "markup": "<span class='items item tag'>div class='table'</span><span class='item__plate item active tag'>shrimpcat id='sushicat' /</span><span class='item__plate item tag'>plate /</span><span class='item__plate item tag'>dish /</span><span class='item tag'>/div</span>"
+    "markup": "<span class='items item tag'>div class='table'</span><span class='item__plate item active tag'>shrimpcat id='sushicat' /</span><span class='item__plate item tag'>plate /</span><span class='item__plate item tag'>dish /</span><span class='item tag'>/div</span>",
+    "hint": "loremfdggggggggggggdgfdg"
   },
   {
     "id": 3,
@@ -33,7 +35,8 @@
     "quest": "Select the smoked tunacat",
     "markupOnTable": "<div class='table'><tunacat class='active'></tunacat><dish><tunacat class='active'></tunacat></dish><plate></plate></div>",
     "answer": ".smoked",
-    "markup": "<span class='item items tag'>div class='table'</span><span class='item active tag'>tunacat class='smoked' /</span><span class='item item__plate tag'>dish</span><span class='nested active tag'>tunacat class='smoked' /</span><span class='item item__plate tag'>dish /</span><span class='item tag'>/div</span>"
+    "markup": "<span class='item items tag'>div class='table'</span><span class='item active tag'>tunacat class='smoked' /</span><span class='item item__plate tag'>dish</span><span class='nested active tag'>tunacat class='smoked' /</span><span class='item item__plate tag'>dish /</span><span class='item tag'>/div</span>",
+    "hint": "loremfdggggggggggggdgfdg"
   },
   {
     "id": 4,
@@ -45,6 +48,7 @@
     "quest": "Select all!",
     "markupOnTable": "<div class='table'><salmoncat class='active'></salmoncat><dish class='active'><tunacat class='active'></tunacat></dish><plate class='active'><redcaviarcat class='active'></redcaviarcat></plate><shrimpcat class='active'></shrimpcat></div>",
     "answer": "*",
-    "markup": "<span class='item items tag'>div class='table'</span><span class='item active tag'>salmoncat class='smoked' /</span><span class='item item__plate tag'>dish</span><span class='nested active tag'>tunacat class='smoked' /</span><span class='item item__plate tag'>dish /</span><span class='item item__plate tag'>plate</span><span class='nested active tag'>redcaviarcat /</span><span class='item item__plate tag'>plate /</span><span class='item active tag'>shrimpcat /</span><span class='item tag'>/div</span>"
+    "markup": "<span class='item items tag'>div class='table'</span><span class='item active tag'>salmoncat class='smoked' /</span><span class='item item__plate tag'>dish</span><span class='nested active tag'>tunacat class='smoked' /</span><span class='item item__plate tag'>dish /</span><span class='item item__plate tag'>plate</span><span class='nested active tag'>redcaviarcat /</span><span class='item item__plate tag'>plate /</span><span class='item active tag'>shrimpcat /</span><span class='item tag'>/div</span>",
+    "hint": "loremfdggggggggggggdgfdg"
   }
 ]

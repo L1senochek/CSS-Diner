@@ -26,9 +26,15 @@ export class LvlAboutView {
     const descriptionSelector = creator.createDiv('h3', ['description__selector-name'], 'Type Selector');
     const descriptionTitle = creator.createDiv('h3', ['description__title'], 'Select elements by their type');
     const descriptionSyntax = creator.createDiv('h2', ['description__syntax', 'highlight'], 'A');
-    const descriptionHint = creator.createDiv('div', ['description__hint'], '');
     const descriptionExamples = creator.createDiv('h3', ['lvl__examples'], 'Examples');
     const lvlExample = creator.createDiv('div', ['lvl__example'], '');
+    const descriptionHint = creator.createDiv('div', ['description__hint'], '');
+    const earWrapper = creator.createDiv('span', ['hint__ear_wrapper'], '');
+    const hintLeftEar = creator.createDiv('span', ['hint__left-ear'], '');
+    const hintRightEar = creator.createDiv('span', ['hint__right-ear'], '');
+    const hintWrapper = creator.createDiv('div', ['hint__wrapper'], '');
+    const hintCat = creator.createDiv('div', ['hint__cat'], ' = ω = ');
+    const hintContent = creator.createDiv('div', ['hint__content'], '');
     const lvlCreator = new CreatorElement(lvlParam);
     const lvlWrapperCreator = new CreatorElement(lvlWrapper).getElement();
     const lvlTitleCreator = new CreatorElement(lvlTitle).getElement();
@@ -43,6 +49,12 @@ export class LvlAboutView {
     const descriptionTitleCreator = new CreatorElement(descriptionTitle).getElement();
     const descriptionSyntaxCreator = new CreatorElement(descriptionSyntax).getElement();
     const descriptionHintCreator = new CreatorElement(descriptionHint).getElement();
+    const earWrapperCreator = new CreatorElement(earWrapper).getElement();
+    const hintLeftEarCreator = new CreatorElement(hintLeftEar).getElement();
+    const hintRightEarCreator = new CreatorElement(hintRightEar).getElement();
+    const hintWrapperCreator = new CreatorElement(hintWrapper).getElement();
+    const hintCatCreator = new CreatorElement(hintCat).getElement();
+    const hintContentCreator = new CreatorElement(hintContent).getElement();
     const descriptionExamplesCreator = new CreatorElement(descriptionExamples).getElement();
     const lvlExampleCreator = new CreatorElement(lvlExample).getElement();
   
@@ -50,22 +62,32 @@ export class LvlAboutView {
     if (lvlTitleCreator && lvlCheckmarkCreator && lvlNavCreator) {
       lvlWrapperCreator?.prepend(lvlTitleCreator, lvlCheckmarkCreator, lvlNavCreator);
     }
+    if (hintLeftEarCreator && hintRightEarCreator ) {
+      earWrapperCreator?.prepend(hintLeftEarCreator, hintRightEarCreator);
+    }
+    
+    if (hintWrapperCreator && hintCatCreator && hintContentCreator) {
+      hintWrapperCreator?.prepend(hintCatCreator, hintContentCreator);
+    }
+    if (earWrapperCreator && hintWrapperCreator) {
+      descriptionHintCreator?.prepend(earWrapperCreator, hintWrapperCreator);
+    }
     if (lvlProgressCreator) lvlProgressBarCreator?.prepend(lvlProgressCreator);
     if (
       descriptionSelectorCreator
       && descriptionTitleCreator
-      && descriptionHintCreator
       && descriptionSyntaxCreator
       && descriptionExamplesCreator
       && lvlExampleCreator
+      && descriptionHintCreator
       ) {
       lvlDescriptionCreator?.prepend(
         descriptionSelectorCreator,
         descriptionTitleCreator,
-        descriptionHintCreator,
         descriptionSyntaxCreator,
         descriptionExamplesCreator,
-        lvlExampleCreator
+        lvlExampleCreator,
+        descriptionHintCreator
       );
     }
     if (

@@ -82,10 +82,11 @@ export class App {
   private readonly lvlTitle = this.lvlAboutViewElem?.firstChild?.firstChild; // Level 1 of 32
   private readonly checkmark = this.lvlAboutViewElem?.firstChild?.childNodes[1]; // checkmark
   private readonly descriptionSelector = this.lvlAboutViewElem?.lastChild?.firstChild; // description__selector-name // Type Selector
+  private readonly descriptionSyntax = this.lvlAboutViewElem?.children[2].children[2]; // description__syntax highlight // A
   private readonly descriptionTitle = this.lvlAboutViewElem?.children[2].children[1]; // description__title // Select elements by their type
-  private readonly descriptionHint = this.lvlAboutViewElem?.children[2].children[2]; // description__hint 
-  private readonly descriptionSyntax = this.lvlAboutViewElem?.children[2].children[3]; // description__syntax highlight // A
-  private readonly lvlExample = this.lvlAboutViewElem?.children[2].children[5]; 
+  private readonly lvlExample = this.lvlAboutViewElem?.children[2].children[4];
+  private readonly hintWrapper = this.lvlAboutViewElem?.children[2].children[5];
+  private readonly lvlhint = this.lvlAboutViewElem?.children[2].children[5].lastChild?.lastChild;
   private readonly headerElement = this.headerView?.getHTMLElement();
   private readonly help = this.headerElement?.lastChild;
   private readonly markup = this.markupView?.getHTMLElement()?.firstChild?.firstChild;
@@ -155,22 +156,27 @@ export class App {
     && this.descriptionTitle instanceof HTMLElement
     && this.descriptionSyntax instanceof HTMLElement
     && this.lvlExample instanceof HTMLElement
+    && this.lvlhint instanceof HTMLElement
     ) {
       this.lvlTitle.innerText = `Level ${num + 1} of ${lvlJSON.length}`;
       // добавить галочку(изменение) в зависимости от массива уровней
       // completed
-      
       if (LevelsResult[this.lvl] === LvlStatus.status1) {
         this.checkmark?.classList.add('completed')
+        this.checkmark?.classList.remove('with-hint')
       } else if (LevelsResult[this.lvl] === LvlStatus.status2) {
         this.checkmark?.classList.remove('completed')
-      } else {
-        // status3 = 'completed with hint'
+        this.checkmark?.classList.remove('with-hint')
+      } else if (LevelsResult[this.lvl] === LvlStatus.status3) {
+        
+        // status3 = 'completed with hint' .with-hint 
+        this.checkmark?.classList.add('with-hint')
       }
       this.descriptionSelector.innerText = `${lvlJSON[num].selectorName}`;
       this.descriptionTitle.innerText = `${lvlJSON[num].title}`;
       this.descriptionSyntax.innerText = `${lvlJSON[num].syntax}`;
       this.lvlExample.innerHTML = `${lvlJSON[num].examples}`;
+      this.lvlhint.innerText = `${lvlJSON[num].hint}`;
     }
   }
 
@@ -189,6 +195,8 @@ export class App {
       this.changeAboutLvl();
       this.changeProgressBar();
       this.removeWinClass();
+      
+      if (this.hintWrapper instanceof HTMLElement) this.hintWrapper?.classList.remove('active');
     }
   }
 
@@ -201,6 +209,8 @@ export class App {
       this.changeAboutLvl();
       this.changeProgressBar();
       this.removeWinClass();
+      
+      if (this.hintWrapper instanceof HTMLElement) this.hintWrapper?.classList.remove('active');
     }
   }
 
@@ -215,6 +225,7 @@ export class App {
     this.changeProgressBar(num);
     this.removeWinClass();
 
+    if (this.hintWrapper instanceof HTMLElement) this.hintWrapper?.classList.remove('active');
   }
 
   removeWinClass(){
@@ -252,7 +263,14 @@ export class App {
       } else if (value === lvlJSON[this.lvl].answer) {
         this.editorInputCSS.value = '';
         
-        LevelsResult[this.lvl] = LvlStatus.status1;
+        if (LevelsResult[this.lvl] === LvlStatus.status4) {
+          console.log(222)
+          LevelsResult[this.lvl] = LvlStatus.status3;
+        } else {
+          LevelsResult[this.lvl] = LvlStatus.status1;
+        }
+        
+
         this.nextLvl();
         // сохранить в массив уровней пройден ли лвл
         // изменить статус уровня, если он пройден
@@ -290,7 +308,8 @@ export class App {
       // сделать видимый блок hint 
       // добавлять класс видимого блока и убирать при переходе на слудующий
       LevelsResult[this.lvl] = LvlStatus.status4;
-
+      console.log(this.hintWrapper, this.hintWrapper instanceof HTMLElement)
+      if (this.hintWrapper instanceof HTMLElement) this.hintWrapper?.classList.add('active');
     });
   }
 }
