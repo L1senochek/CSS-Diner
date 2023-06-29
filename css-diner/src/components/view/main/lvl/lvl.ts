@@ -21,6 +21,8 @@ export class LvlAboutView {
     const lvlNav = creator.createDiv('div', ['lvl__nav'], '');
     const lvlNavPrev = creator.createDiv('span', ['arrow__prev'], '');
     const lvlNavNext = creator.createDiv('span', ['arrow__next'], '');
+    const burger = creator.createDiv('div', ['burger'], '');
+    const burgerLine = creator.createDiv('div', ['burger__line'], '');
     const lvlProgressBar = creator.createDiv('div', ['lvl__progress-bar'], '');
     const lvlProgress = creator.createDiv('div', ['lvl__progress'], '');
     const lvlDescription = creator.createDiv('div', ['lvl__description', 'description'], '');
@@ -43,6 +45,8 @@ export class LvlAboutView {
     const lvlNavCreator = new CreatorElement(lvlNav).getElement();
     const lvlNavPrevCreator = new CreatorElement(lvlNavPrev).getElement();
     const lvlNavNextCreator = new CreatorElement(lvlNavNext).getElement();
+    const burgerCreator = new CreatorElement(burger).getElement();
+    const burgerLineCreator = new CreatorElement(burgerLine).getElement();
     const lvlProgressBarCreator = new CreatorElement(lvlProgressBar).getElement();
     const lvlProgressCreator = new CreatorElement(lvlProgress).getElement();
     const lvlDescriptionCreator = new CreatorElement(lvlDescription).getElement();
@@ -60,8 +64,9 @@ export class LvlAboutView {
     const lvlExampleCreator = new CreatorElement(lvlExample).getElement();
   
     if (lvlNavPrevCreator && lvlNavNextCreator) lvlNavCreator?.prepend(lvlNavPrevCreator, lvlNavNextCreator);
-    if (lvlTitleCreator && lvlCheckmarkCreator && lvlNavCreator) {
-      lvlWrapperCreator?.prepend(lvlTitleCreator, lvlCheckmarkCreator, lvlNavCreator);
+    if (burgerLineCreator) burgerCreator?.prepend(burgerLineCreator);
+    if (lvlTitleCreator && lvlCheckmarkCreator && lvlNavCreator && burgerCreator) {
+      lvlWrapperCreator?.prepend(lvlTitleCreator, lvlCheckmarkCreator, lvlNavCreator, burgerCreator);
     }
     if (hintLeftEarCreator && hintRightEarCreator ) {
       earWrapperCreator?.prepend(hintLeftEarCreator, hintRightEarCreator);

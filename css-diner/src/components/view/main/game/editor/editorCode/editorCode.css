@@ -27,7 +27,7 @@
   background: #ffe8ca4f;
   animation: input .7s infinite;
   -webkit-animation: input .7s infinite;
-  -moz-animation: input .5s infinite;
+  -moz-animation: input .7s infinite;
 }
 
 .input__field::placeholder {

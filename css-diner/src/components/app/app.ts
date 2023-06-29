@@ -76,8 +76,8 @@ export class App {
   private readonly editorWindowHtml = this.editorViewElem?.childNodes[1].childNodes[1];
   private readonly markupViewHTML = this.markupView?.getHTMLElement()
   private readonly lvlAboutViewElem = this.lvlAboutView?.getHTMLElement();
-  private readonly prevArr = this.lvlAboutViewElem?.firstChild?.lastChild?.firstChild;
-  private readonly nextArr = this.lvlAboutViewElem?.firstChild?.lastChild?.lastChild;
+  private readonly prevArr = this.lvlAboutViewElem?.firstChild?.childNodes[2]?.firstChild;
+  private readonly nextArr = this.lvlAboutViewElem?.firstChild?.childNodes[2]?.lastChild;
   private readonly lvlProgress = this.lvlAboutViewElem?.children[1].firstChild;
   private readonly lvlTitle = this.lvlAboutViewElem?.firstChild?.firstChild; // Level 1 of 32
   private readonly checkmark = this.lvlAboutViewElem?.firstChild?.childNodes[1]; // checkmark
