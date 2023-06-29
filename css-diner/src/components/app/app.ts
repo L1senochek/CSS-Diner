@@ -229,15 +229,19 @@ export class App {
   }
 
   removeWinClass(){
+    console.log(this.table, this.table instanceof HTMLElement)
+    const table = this.tableViewElem?.childNodes[1].firstChild;
+
     if (
       this.tableWrapper instanceof HTMLElement
       && this.tableContent instanceof HTMLElement
-      && this.table instanceof HTMLElement
+      && table instanceof HTMLElement
       && this.chopsticksElem instanceof HTMLElement
       ) {
+        console.log('00000000')
         this.tableWrapper?.classList.remove('win');
         this.tableContent.classList.remove('win');
-        this.table.classList.remove('win');
+        table.classList.remove('win');
         this.chopsticksElem.classList.remove('win');
       }
   }
@@ -253,6 +257,7 @@ export class App {
           && table instanceof HTMLElement
           && this.chopsticksElem instanceof HTMLElement
           ) {
+          this.editorInputCSS.value = '';
           this.gameQuestViewElem.innerText = 'YOU WIN!';
           this.tableWrapper?.classList.add('win');
           this.tableContent.classList.add('win');

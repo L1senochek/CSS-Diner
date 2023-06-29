@@ -155,6 +155,8 @@
   flex-shrink: 1;
   width: 100%;
   border-radius: 50px;
+  box-shadow: 0 1px 5px 5px #ffe8ca69;
+  user-select: none;
 }
 
 .hint__cat {

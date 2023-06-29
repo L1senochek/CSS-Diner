@@ -34,7 +34,7 @@ export class LvlAboutView {
     const hintLeftEar = creator.createDiv('span', ['hint__left-ear'], '');
     const hintRightEar = creator.createDiv('span', ['hint__right-ear'], '');
     const hintWrapper = creator.createDiv('div', ['hint__wrapper'], '');
-    const hintCat = creator.createDiv('div', ['hint__cat'], ' = ω = ');
+    const hintCat = creator.createDiv('div', ['hint__cat'], ' > ω < ');
     const hintContent = creator.createDiv('div', ['hint__content'], '');
     const lvlCreator = new CreatorElement(lvlParam);
     const lvlWrapperCreator = new CreatorElement(lvlWrapper).getElement();
