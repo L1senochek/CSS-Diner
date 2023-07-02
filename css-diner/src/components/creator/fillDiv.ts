@@ -1,4 +1,4 @@
-import { Callback, ElementParam } from "./creator";
+import { Callback, ElementParam } from './creator';
 
 export class ElementFilled {
   createDiv(
@@ -7,9 +7,9 @@ export class ElementFilled {
     innerText?: string,
     callback?: Callback<Event> | null,
     attributes?: {
-      type: string,
-      placeholder: string,
-    },
+      type: string;
+      placeholder: string;
+    }
   ): ElementParam {
     return {
       tag: tag,

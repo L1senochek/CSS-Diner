@@ -1,6 +1,6 @@
-import CreatorElement from "../../../../../creator/creator"
-import { ElementFilled } from "../../../../../creator/fillDiv";
-import './editorCode.css'
+import CreatorElement from '../../../../../creator/creator';
+import { ElementFilled } from '../../../../../creator/fillDiv';
+import './editorCode.css';
 
 const codeFragment = `
 <pre class="input__code">
@@ -9,13 +9,7 @@ const codeFragment = `
     /* Styles would go here. */
   }  
 </code>
-<code class="input__help">
-  /*
-    Type a number to skip to a level.
-    Ex → "5" for level 5 
-  */
-</code>
-</pre>`
+</pre>`;
 
 export class EditorCodeView {
   editorCodeView: CreatorElement;
@@ -41,7 +35,7 @@ export class EditorCodeView {
     const inputFieldCreator = new CreatorElement(inputField).getElement();
     const enterBtnCreator = new CreatorElement(enterBtn).getElement();
     const editorCodeElement = editorCodeCreator.getElement();
-    
+
     if (inputFieldCreator && enterBtnCreator && inputWrapperCreator && editorCodeElement) {
       inputWrapperCreator?.prepend(inputFieldCreator, enterBtnCreator);
       editorCodeElement.innerHTML = `${inputWrapperCreator.outerHTML}${codeFragment}`;
@@ -49,6 +43,4 @@ export class EditorCodeView {
 
     return editorCodeCreator;
   }
-
-  createInnerStructure() {}
 }

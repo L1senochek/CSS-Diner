@@ -1,8 +1,7 @@
 .game__editor {
   display: flex;
   justify-content: center;
-  align-items: flex-start;  
-  /* text-align: left; */
+  align-items: flex-start;
   margin: 0 auto;
   border: solid 0.5vw rgb(0 0 0 / 45%);
   border-radius: 5px;
@@ -48,6 +47,7 @@
   background-color: #53525263;
   line-height: 150%;
 }
+
 .css-pane>.editor__window>.editor__line-numbers {
   background-color: #a5a2a28a;
 }
@@ -57,8 +57,35 @@
 }
 
 @keyframes shake {
-  0%   { transform: translateX(0); }
-  25% {  transform: translateX(-5px); }
-  50% {  transform: translateX(0); }
-  75% {  transform: translateX(5px); }
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+@media (max-width: 1200px) {
+  .game__editor {
+    flex-direction: column;
+    align-items: center;
+    margin: 3vw 0;
+  }
+
+  .editor__pane {
+    width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .game__editor {
+    margin: 2vw auto;
+  }
+
 }

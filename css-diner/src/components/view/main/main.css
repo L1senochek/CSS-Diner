@@ -10,3 +10,9 @@
   align-items: flex-start;
   justify-content: space-around;
 }
+
+@media (max-width: 900px) {
+  .wrapper {
+    justify-content: center;
+  }
+}
