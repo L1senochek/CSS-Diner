@@ -73,6 +73,7 @@
   box-shadow: 0 0 0 2px rgb(235, 97, 54) inset, 0 2px 3px 0 rgba(36, 14, 0, 0.3);
   border-radius: 50% 50%;
   box-sizing: border-box;
+  margin: 0.5vw;
   /* background: radial-gradient(ellipse at center, rgb(255 255 255 / 35%) 0%, rgba(255,255,255,.35) 32%, rgba(0,0,0,.15) 35%, rgba(0,0,0,.05) 37%, rgba(0,0,0,0) 50%, rgba(0,0,0,0) 100%), linear-gradient(to right, #80fffb 0%, #415e5b 60%); */
   /* border: solid 1px #000; */
   /* box-shadow: 0 0 0 2px rgb(54 235 223) inset, 0 2px 3px 0 rgb(0 36 32 / 30%); */
@@ -99,6 +100,7 @@ tamagocat.active {
   box-shadow: 0 0 0 1px rgb(255 61 0) inset, 0 2px 3px 0 rgb(255 0 0 / 26%);
   border-radius: 50% 50%;
   box-sizing: border-box;
+  margin: 0.5vw;
 }
 
 dish.emerald {
@@ -113,6 +115,7 @@ shrimpcat {
   height: 6.65vw;
   background-size: cover;
   margin: 0.5vw;
+  z-index: 11;
 }
 
 tunacat {
@@ -141,8 +144,8 @@ redcaviarcat {
 
 makicat {
   background-image: url('../../../../../assets/img/maki-cat.png');
-  width: 10vw;
-  height: 9.58vw;
+  width: 9vw;
+  height: 8.58vw;
   background-size: cover;
   margin: 0.5vw;
 }
@@ -187,17 +190,35 @@ dish tunacat {
   top: -2vw;
 }
 
+dish redcaviarcat {
+  position: relative;
+  width: 8vw;
+  height: 7.22vw;
+  margin: 0.5vw;
+  top: -2vw;
+}
+
+dish makicat {
+  top: -4vw;
+}
+
 .emerald>.two {
   top: -3vw;
   left: -1vw;
   z-index: 9;
 }
 
-tunacat tamagocat {
+tamagocat tunacat {
   position: absolute;
-  top: 2vw;
+  top: 1vw;
   left: 2vw;
   z-index: 10;
+}
+
+shrimpcat salmoncat {
+  top: 0vw;
+  left: 4vw;
+  z-index: 5;
 }
 
 tunacat.hovered {
@@ -257,14 +278,15 @@ tamagocat.hovered {
   white-space: nowrap;
 }
 
-/* .tooltip:hover::before {
-  opacity: 1;
-  visibility: visible;
-} */
-
 .tooltip.hovered::before {
   opacity: 1;
   visibility: visible;
+}
+
+shrimpcat.two {
+  z-index: 12;
+  top: -3vw;
+  left: -2vw;
 }
 
 @keyframes vibro {

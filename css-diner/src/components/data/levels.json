@@ -59,10 +59,10 @@
     "syntax": "#id .classname",
     "levelDescription": "Combine what you learned in the last few levels to solve this one!",
     "examples": "",
-    "quest": "Select the smoked sushicats on the dish",
-    "markupOnTable": "<div class='table'><dish class='emerald tooltip' data-light='dish1' data-title='<dish id=`emerald`></dish>'><tunacat class='two tooltip' data-light='tunacat1' data-title='<tunacat></tunacat>'><tamagocat class='active tooltip' data-light='tamagocat' data-title='<tamagocat class=`smoked`></tamagocat>'></tamagocat class='active'></tunacat></dish><dish class='emerald tooltip' data-light='dish2' data-title='<dish id=`emerald`></dish>'><tunacat class='active tooltip' data-light='tunacat2' data-title='<tunacat class=`smoked`></tunacat>'></tunacat></dish></div>",
+    "quest": "Select the smoked tunacat on the dish",
+    "markupOnTable": "<div class='table'> <dish class='emerald tooltip' data-light='dish1' data-title='<dish id=`emerald`></dish>'><tamagocat class='tooltip two' data-light='tamagocat' data-title='<tamagocat></tamagocat>'><tunacat class='active tooltip' data-light='tunacat1' data-title='<tunacat class=`smoked`></tunacat>'></tunacat></tamagocat></dish><dish class='tooltip' data-light='dish2' data-title='<dish></dish>'><tunacat class='tooltip' data-light='tunacat2' data-title='<tunacat class=`smoked`></tunacat>'></tunacat></dish></div>",
     "answer": "#emerald .smoked",
-    "markup": "<span class='item tag'>div class='table'</span><span class='item tag' data-light='dish1'>dish id='emerald'</span><span class='nested tag' data-light='tunacat1'>tunacat /</span><span class='nested tag' data-light='tamagocat'>tamagocat class='smoked'/</span><span class='item tag' data-light='dish1'>/dish</span><span class='item tag' data-light='dish2'>dish id='emerald'</span><span class='nested tag' data-light='tunacat2'>tunacat class='smoked' /</span><span class='item tag' data-light='dish2'>/dish</span><span class='item tag'>/div</span>",
+    "markup": "<span class='item tag'>div class='table'</span><span class='item tag' data-light='dish1'>dish id='emerald'</span><span class='nested tag' data-light='tamagocat'>tamagocat /</span><span class='nested tag' data-light='tunacat1'>tunacat class='smoked' /</span><span class='item tag' data-light='dish1'>dish /</span><span class='item tag' data-light='dish2'>dish</span><span class='nested tag' data-light='tunacat2'>tunacat class='smoked' /</span><span class='item tag' data-light='dish2'>dish /</span><span class='item tag'>/div</span>",
     "hint": "You need to use: #emerald .smoked"
   },
   {
@@ -72,7 +72,7 @@
     "syntax": "A > B",
     "levelDescription": "You can select elements that are direct children of other elements. A child element is any element that is nested directly in another element. Elements that are nested deeper than that are called descendant elements.",
     "examples": "<div class='example'><span class='highlight'>A > B</span> selects all <span class='highlight'>B</span> that are a direct children <span class='highlight'>A</span></div>",
-    "quest": "Select the smoked sushicats on the dish",
+    "quest": "Select the redcaviarcat on the dish",
     "markupOnTable": "<div class='table'><dish class='emerald tooltip' data-light='dish1' data-title='<dish></dish>'><redcaviarcat class='active tooltip' data-light='redcaviarcat1' data-title='<redcaviarcat></redcaviarcat>'></redcaviarcat></dish><redcaviarcat class='tooltip' data-light='redcaviarcat2' data-title='<redcaviarcat></redcaviarcat>'></redcaviarcat><dish class='emerald tooltip' data-light='dish2' data-title='<dish></dish>'></dish></div>",
     "answer": "#emerald .smoked",
     "markup": "<span class='item tag'>div class='table'</span><span class='item tag' data-light='dish1'>dish</span><span class='nested tag' data-light='redcaviarcat1'>redcaviarcat /</span><span class='item tag' data-light='dish1'>/dish</span><span class='item tag' data-light='redcaviarcat2'>redcaviarcat /</span><span class='item tag' data-light='dish2'>dish /</span><span class='item tag'>/div</span>",
@@ -86,10 +86,36 @@
     "levelDescription": "Selects elements that don't have any other elements inside of them.",
     "examples": "<div class='example'><span class='highlight'>div:empty</span> selects all empty <span class='highlight tag'>div</span> elements.",
     "quest": "Select the empty dishes",
-    "markupOnTable": "<div class='table'><dish class='tooltip' data-light='dish1' data-title='<dish></dish>'></dish><plate class='tooltip' data-light='plate' data-title='<plate></plate>'><makicat class='tooltip' data-light='makicat' data-title='<makicat></makicat>'></makicat></plate><dish class='emerald' data-light='dish'><tamagocat class='active' data-light='tamagocat2'></tamagocat></dish><dish class='tooltip' data-light='dish2' data-title='<dish></dish>'></dish></div>",
-    "answer": "#emerald .smoked",
-    "markup": "<span class='item tag'>div class='table'</span><span class='item tag' data-light='dish1'>dish</span><span class='nested tag' data-light='redcaviarcat1'>redcaviarcat /</span><span class='item tag' data-light='dish1'>/dish</span><span class='item tag' data-light='redcaviarcat2'>redcaviarcat /</span><span class='item tag' data-light='dish2'>dish /</span><span class='item tag'>/div</span>",
-    "hint": "You need to use: #emerald .smoked"
+    "markupOnTable": "<div class='table'> <dish class='tooltip active' data-light='dish1' data-title='<dish></dish>'></dish><plate class='tooltip' data-light='plate' data-title='<plate></plate>'><makicat class='tooltip' data-light='makicat' data-title='<makicat></makicat>'></makicat></plate><dish class='tooltip emerald' data-light='dish2' data-title='<dish></dish>'><tamagocat class='tooltip' data-light='tamagocat' data-title='<tamagocat></tamagocat>'></tamagocat></dish><dish class='tooltip active' data-light='dish3' data-title='<dish></dish>'></dish></div>",
+    "answer": "dish:empty",
+    "markup": "<span class='item tag'>div class='table'</span><span class='item tag' data-light='dish1'>dish /</span><span class='item tag' data-light='plate'>plate</span><span class='nested tag' data-light='makicat'>makicat /</span><span class='item tag' data-light='plate'>/plate</span><span class='item tag' data-light='dish2'>dish</span><span class='nested tag' data-light='tamagocat'>tamagocat /</span><span class='item tag' data-light='dish2'>/dish</span><span class='item tag' data-light='dish3'>dish /</span><span class='item tag'>/div</span>",
+    "hint": "You need to use: dish:empty"
+  },
+  {
+    "id": 8,
+    "selectorName": "Last Child Pseudo-selector",
+    "title": "Select the last element inside of another element",
+    "syntax": ":last-child",
+    "levelDescription": "Combine what you learned in the last few levels to solve this one!",
+    "examples": "<div class='example'><span class='highlight'>:last-child</span> selects all last-child elements.</div>",
+    "quest": "Select salmoncat on the dish",
+    "markupOnTable": "<div class='table'> <dish class='tooltip' data-light='dish1' data-title='<dish></dish>'><shrimpcat class='tooltip two' data-light='shrimpcat' data-title='<shrimpcat class=`sushicat`></shrimpcat>'><salmoncat class='active tooltip' data-light='salmoncat' data-title='<salmoncat class=`sushicat`></salmoncat>'></salmoncat></shrimpcat></dish><makicat class='tooltip' data-light='makicat' data-title='<makicat class=`sushicat`></makicat>'></makicat><plate class='tooltip' data-light='plate' data-title='<plate></plate>'></plate></div>",
+    "answer": "dish:last-child",
+    "markup": "<span class='item tag'>div class='table'</span><span class='item tag' data-light='dish1'>dish</span><span class='nested tag' data-light='shrimpcat'>shrimpcat class='sushicat' /</span><span class='nested tag' data-light='salmoncat'>salmoncat class='sushicat' /</span><span class='item tag' data-light='dish1'>/dish</span><span class='item tag' data-light='makicat'>makicat class='sushicat' /</span><span class='item tag' data-light='plate'>plate /</span><span class='item tag'>/div</span>",
+    "hint": "You need to use: dish:last-child"
+  },
+  {
+    "id": 9,
+    "selectorName": "Attribute Value Selector",
+    "title": "Select all elements that have a specific attribute value",
+    "syntax": "[attribute='value']",
+    "levelDescription": "Attribute selectors are case sensitive, each character must match exactly.",
+    "examples": "<div class='example'><span class='highlight'>input[type='checkbox']</span> selects all checkbox input elements.</div>",
+    "quest": "Select dish with sushicat type maki",
+    "markupOnTable": "<div class='table'> <dish class='emerald tooltip' data-light='dish1' data-title='<dish type=`classic sushi`></dish>'><redcaviarcat class='tooltip' data-light='redcaviarcat' data-title='<redcaviarcat></redcaviarcat>'></redcaviarcat></dish><dish class='tooltip' data-light='dish2' data-title='<dish type=`maki`></dish>'><makicat class='active tooltip' data-light='makicat' data-title='<makicat></makicat>'></makicat></dish><tamagocat class='tooltip' data-light='tamagocat' data-title='<tamagocat></tamagocat>'></tamagocat></div>",
+    "answer": "dish[type='maki']",
+    "markup": "<span class='item tag'>div class='table'</span><span class='item tag' data-light='dish1'>dish type='classic sushi'</span><span class='nested tag' data-light='redcaviarcat'>redcaviarcat /</span><span class='item tag' data-light='dish1'>/dish</span><span class='item tag' data-light='dish2'>dish type='maki'</span><span class='nested tag' data-light='makicat'>makicat /</span><span class='item tag' data-light='dish2'>/dish</span><span class='item tag' data-light='tamagocat'>tamagocat /</span><span class='item tag'>/div</span>",
+    "hint": "You need to use: dish[type='maki']"
   },
   {
     "id": 10,

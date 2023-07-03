@@ -81,9 +81,11 @@
 <!-- 5          /////////////////////////////////// -->
 <div class='table'> 
   <dish class='emerald tooltip' data-light='dish1' data-title='<dish id=`emerald`></dish>'>
-    <tunacat class='active two tooltip' data-light='tunacat1' data-title='<tunacat class=`smoked`></tunacat>'><tamagocat class='tooltip' data-light='tamagocat' data-title='<tamagocat class=`smoked`></tamagocat>'></tamagocat class='active'></tunacat>
+    <tamagocat class='tooltip two' data-light='tamagocat' data-title='<tamagocat></tamagocat>'>
+      <tunacat class='active tooltip' data-light='tunacat1' data-title='<tunacat class=`smoked`></tunacat>'></tunacat>
+    </tamagocat>
   </dish>
-  <dish class='emerald tooltip' data-light='dish2' data-title='<dish id=`emerald`></dish>'>
+  <dish class='tooltip' data-light='dish2' data-title='<dish></dish>'>
     <tunacat class='active tooltip' data-light='tunacat2' data-title='<tunacat class=`smoked`></tunacat>'></tunacat>
   </dish>
 </div>
@@ -91,10 +93,10 @@
 <!-- ///////////////////// -->
 <span class='item tag'>div class='table'</span>
   <span class='item tag' data-light='dish1'>dish id='emerald'</span>
+  <span class='nested tag' data-light='tamagocat'>tamagocat /</span>
   <span class='nested tag' data-light='tunacat1'>tunacat class='smoked' /</span>
-  <span class='nested tag' data-light='tamagocat'>tamagocat class='smoked'/</span>
   <span class='item tag' data-light='dish1'>dish /</span>
-  <span class='item tag' data-light='dish2'>dish id='emerald'</span>
+  <span class='item tag' data-light='dish2'>dish</span>
     <span class='nested tag' data-light='tunacat2'>tunacat class='smoked' /</span>
   <span class='item tag' data-light='dish2'>dish /</span>
 <span class='item tag'>/div</span>
@@ -127,22 +129,68 @@ data-title='<redcaviarcat></redcaviarcat>'
   <plate class='tooltip' data-light='plate' data-title='<plate></plate>'>
     <makicat class='tooltip' data-light='makicat' data-title='<makicat></makicat>'></makicat>
   </plate>
-  <dish class='emerald' data-light='dish'>
-    <tamagocat class='active' data-light='tamagocat2'></tamagocat>
+  <dish class='tooltip emerald' data-light='dish2' data-title='<dish></dish>'>
+    <tamagocat class='tooltip active' data-light='tamagocat' data-title='<tamagocat></tamagocat>'></tamagocat>
   </dish>
-  <dish class='tooltip' data-light='dish2' data-title='<dish></dish>'></dish>
+  <dish class='tooltip' data-light='dish3' data-title='<dish></dish>'></dish>
 </div>
 
 <!-- //////////// -->
+<span class='item tag'>div class='table'</span>
+  <span class='item tag' data-light='dish1'>dish /</span>
+  <span class='item tag' data-light='plate'>plate</span>
+    <span class='nested tag' data-light='makicat'>makicat /</span>
+  <span class='item tag' data-light='plate'>/plate</span>
+  <span class='item tag' data-light='dish2'>dish</span>
+    <span class='nested tag' data-light='tamagocat'>tamagocat /</span>
+  <span class='item tag' data-light='dish2'>/dish</span>
+  <span class='item tag' data-light='dish3'>dish /</span>
+<span class='item tag'>/div</span>
 
 <!-- 8          /////////////////////////////////// -->
 
+<div class='table'> 
+  <dish class='tooltip' data-light='dish1' data-title='<dish></dish>'>
+    <shrimpcat class='tooltip two' data-light='shrimpcat' data-title='<shrimpcat class=`sushicat`></shrimpcat>'>
+      <salmoncat class='active tooltip' data-light='salmoncat' data-title='<salmoncat class=`sushicat`></salmoncat>'></salmoncat>
+    </shrimpcat>
+  </dish>
+  <makicat class='tooltip' data-light='makicat' data-title='<makicat class=`sushicat`></makicat>'></makicat>
+  <plate class='tooltip' data-light='plate' data-title='<plate></plate>'></plate>
+</div>
+
+<!-- ///////////////////// -->
+<span class='item tag'>div class='table'</span>
+  <span class='item tag' data-light='dish1'>dish</span>
+  <span class='nested tag' data-light='shrimpcat'>shrimpcat class='sushicat' /</span>
+  <span class='nested tag' data-light='salmoncat'>salmoncat class='sushicat' /</span>
+  <span class='item tag' data-light='dish1'>/dish</span>
+  <span class='item tag' data-light='makicat'>makicat class='sushicat' /</span>
+  <span class='item tag' data-light='plate'>plate /</span>
+<span class='item tag'>/div</span>
 <!-- //////////// -->
 
 <!-- 9          /////////////////////////////////// -->
+<div class='table'> 
+  <dish class='emerald tooltip' data-light='dish1' data-title='<dish type=`classic sushi`></dish>'>
+    <redcaviarcat class='active tooltip' data-light='redcaviarcat' data-title='<redcaviarcat></redcaviarcat>'></redcaviarcat>
+  </dish>
+  <dish class='tooltip' data-light='dish2' data-title='<dish type=`maki`></dish>'>
+    <makicat class='active tooltip' data-light='makicat' data-title='<makicat></makicat>'></makicat>
+  </dish>
+  <tamagocat class='tooltip' data-light='tamagocat' data-title='<tamagocat></tamagocat>'></tamagocat>
+</div>
 
 <!-- //////////// -->
-
+<span class='item tag'>div class='table'</span>
+  <span class='item tag' data-light='dish1'>dish type='classic sushi'</span>
+    <span class='nested tag' data-light='redcaviarcat'>redcaviarcat /</span>
+  <span class='item tag' data-light='dish1'>/dish</span>
+  <span class='item tag' data-light='dish2'>dish type='maki'</span>
+    <span class='nested tag' data-light='makicat'>makicat /</span>
+  <span class='item tag' data-light='dish2'>/dish</span>
+  <span class='item tag' data-light='tamagocat'>tamagocat /</span>
+<span class='item tag'>/div</span>
 <!-- 10          /////////////////////////////////// -->
 <div class='table'>
   <salmoncat class='active tooltip' data-light='salmoncat' data-title='<salmoncat></salmoncat>'></salmoncat>
