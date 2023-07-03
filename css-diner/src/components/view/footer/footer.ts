@@ -1,5 +1,5 @@
-import CreatorElement from "../../creator/creator";
-import { ElementFilled } from "../../creator/fillDiv";
+import CreatorElement from '../../creator/creator';
+import { ElementFilled } from '../../creator/fillDiv';
 
 export class FooterView {
   footerView: CreatorElement;

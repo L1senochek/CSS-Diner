@@ -1,6 +1,6 @@
-import CreatorElement from "../../../../creator/creator";
-import { ElementFilled } from "../../../../creator/fillDiv";
-import './lanterns.css'
+import CreatorElement from '../../../../creator/creator';
+import { ElementFilled } from '../../../../creator/fillDiv';
+import './lanterns.css';
 
 export class LanternView {
   lanternView: CreatorElement;
@@ -23,7 +23,7 @@ export class LanternView {
     const lanternCreatorTwo = new CreatorElement(lantern).getElement();
     const firtsLanternCreator = new CreatorElement(firstLantern).getElement();
     const secondLanternCreator = new CreatorElement(secondLantern).getElement();
-    
+
     if (firtsLanternCreator instanceof Node && secondLanternCreator instanceof Node) {
       lanternCreatorOne?.appendChild(firtsLanternCreator);
       lanternCreatorTwo?.appendChild(secondLanternCreator);

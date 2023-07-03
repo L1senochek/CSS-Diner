@@ -9,17 +9,37 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-}
-.logo__ico {
-  background-color: #ff5100;
-  background-image: url('../../../assets/img/ico-ninja-cat.jpg');
 }
 
 .logo__ico {
+  background-image: url('../../../assets/img/ico-ninja-cat.png');
   width: 3vw;
   height: 3vw;
   background-size: cover;
+}
+
+.logo__title {
+  color: #FFE8CA;
+  font-size: 1.5rem;
+  font-weight: 400;
+  text-align: center;
+  padding: 0vw 1vw;
+}
+
+.btn__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 5vw;
+}
+
+.reload {
+  background-image: url('../../../assets/svg/reload_arrow.svg');
+  background-size: cover;
+  width: 2vw;
+  height: 2vw;
+  cursor: pointer;
+  transition: all 1.5s ease 0s;
 }
 
 .help {
@@ -29,7 +49,6 @@
   cursor: pointer;
   width: 2vw;
   height: 2vw;
-  margin-top: 0.5vw;
   border-radius: 50px;
   border: 1px rgb(235, 97, 54) solid;
 }
@@ -40,11 +59,27 @@
   font-size: 1.5rem;
 }
 
-.logo__title {
-  color: rgb(226, 43, 217);
-  color: #FFE8CA;
-  font-size: 1.5rem;
-  font-weight: 400;
-  text-align: center;
-  padding: 0vw 1vw;
+@media (max-width: 1200px) {
+  .help::before {
+    font-size: 1rem;
+  }
+  
+}
+
+@media (max-width: 900px) {
+  .header {
+    padding: 1vw 2vw;
+  }
+  
+  .btn__wrapper {
+    width: 7vw;
+  }
+  
+  .help,
+  .reload {
+    width: 3vw;
+    height: 3vw;
+  }
+
+
 }

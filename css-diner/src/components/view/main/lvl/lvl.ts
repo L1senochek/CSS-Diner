@@ -1,6 +1,6 @@
-import CreatorElement from "../../../creator/creator";
-import { ElementFilled } from "../../../creator/fillDiv";
-import './lvl.css'
+import CreatorElement from '../../../creator/creator';
+import { ElementFilled } from '../../../creator/fillDiv';
+import './lvl.css';
 
 export class LvlAboutView {
   lvlAboutView: CreatorElement;
@@ -65,16 +65,16 @@ export class LvlAboutView {
     const descriptionExamplesCreator = new CreatorElement(descriptionExamples).getElement();
     const lvlExampleCreator = new CreatorElement(lvlExample).getElement();
     const lvlcurtainCreator = new CreatorElement(curtain).getElement();
-  
+
     if (lvlNavPrevCreator && lvlNavNextCreator) lvlNavCreator?.prepend(lvlNavPrevCreator, lvlNavNextCreator);
     if (burgerLineCreator) burgerCreator?.prepend(burgerLineCreator);
     if (lvlTitleCreator && lvlCheckmarkCreator && lvlNavCreator && burgerCreator) {
       lvlWrapperCreator?.prepend(lvlTitleCreator, lvlCheckmarkCreator, lvlNavCreator, burgerCreator);
     }
-    if (hintLeftEarCreator && hintRightEarCreator ) {
+    if (hintLeftEarCreator && hintRightEarCreator) {
       earWrapperCreator?.prepend(hintLeftEarCreator, hintRightEarCreator);
     }
-    
+
     if (hintWrapperCreator && hintCatCreator && hintContentCreator) {
       hintWrapperCreator?.prepend(hintCatCreator, hintContentCreator);
     }
@@ -83,13 +83,13 @@ export class LvlAboutView {
     }
     if (lvlProgressCreator) lvlProgressBarCreator?.prepend(lvlProgressCreator);
     if (
-      descriptionSelectorCreator
-      && descriptionTitleCreator
-      && descriptionSyntaxCreator
-      && descriptionExamplesCreator
-      && lvlExampleCreator
-      && descriptionHintCreator
-      ) {
+      descriptionSelectorCreator &&
+      descriptionTitleCreator &&
+      descriptionSyntaxCreator &&
+      descriptionExamplesCreator &&
+      lvlExampleCreator &&
+      descriptionHintCreator
+    ) {
       lvlDescriptionCreator?.prepend(
         descriptionSelectorCreator,
         descriptionTitleCreator,
@@ -100,18 +100,15 @@ export class LvlAboutView {
       );
     }
     if (
+      lvlCreator &&
+      lvlWrapperCreator instanceof Node &&
+      lvlProgressBarCreator instanceof Node &&
+      lvlDescriptionCreator instanceof Node &&
+      lvlcurtainCreator
+    ) {
       lvlCreator
-      && lvlWrapperCreator instanceof Node
-      && lvlProgressBarCreator instanceof Node
-      && lvlDescriptionCreator instanceof Node
-      && lvlcurtainCreator
-      ) {
-      lvlCreator.getElement()?.prepend(
-        lvlWrapperCreator,
-        lvlProgressBarCreator,
-        lvlDescriptionCreator,
-        lvlcurtainCreator
-      );
+        .getElement()
+        ?.prepend(lvlWrapperCreator, lvlProgressBarCreator, lvlDescriptionCreator, lvlcurtainCreator);
     }
     return lvlCreator;
   }

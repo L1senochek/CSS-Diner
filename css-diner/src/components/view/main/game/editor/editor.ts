@@ -1,6 +1,6 @@
-import CreatorElement from "../../../../creator/creator";
-import { ElementFilled } from "../../../../creator/fillDiv";
-import './editor.css'
+import CreatorElement from '../../../../creator/creator';
+import { ElementFilled } from '../../../../creator/fillDiv';
+import './editor.css';
 
 export class EditorView {
   editorView: CreatorElement;
@@ -23,7 +23,7 @@ export class EditorView {
     const fileNameCSS = creator.createDiv('div', ['editor__file-name'], 'style.css');
     const titleHTML = creator.createDiv('div', ['editor__title'], 'HTML Viewer');
     const fileNameHTML = creator.createDiv('div', ['editor__file-name'], 'table.html');
-    const lineNumbers = creator.createDiv('div', ['editor__line-numbers'], ''); 
+    const lineNumbers = creator.createDiv('div', ['editor__line-numbers'], '');
     const editorCreator = new CreatorElement(editorParam);
     const cssPaneCreator = new CreatorElement(cssPane).getElement();
     const htmlPaneCreator = new CreatorElement(htmlPane).getElement();
@@ -36,20 +36,20 @@ export class EditorView {
     const lineNumCreator = new CreatorElement(lineNumbers).getElement();
 
     if (lineNumCreator instanceof Node) {
-      for (let i of Array.from({ length: 10 }, (_, index) => index + 1)) {
+      for (const i of Array.from({ length: 10 }, (_, index) => index + 1)) {
         lineNumCreator.innerHTML += `${i.toString()}<br>`;
       }
       windowCreator?.prepend(lineNumCreator);
     }
 
     if (
-      headerCreator instanceof Node
-      && windowCreator instanceof Node
-      && titleCSSCreator instanceof Node
-      && fileNameCSSCreator instanceof Node
-      && titleHTMLCreator instanceof Node
-      && fileNameHTMLCreator instanceof Node
-      ) {
+      headerCreator instanceof Node &&
+      windowCreator instanceof Node &&
+      titleCSSCreator instanceof Node &&
+      fileNameCSSCreator instanceof Node &&
+      titleHTMLCreator instanceof Node &&
+      fileNameHTMLCreator instanceof Node
+    ) {
       headerCreator?.prepend(titleCSSCreator, fileNameCSSCreator);
       const headerClone = headerCreator.cloneNode(true);
       const windowClone = windowCreator.cloneNode(true);

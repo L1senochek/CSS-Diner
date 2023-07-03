@@ -1,13 +1,13 @@
 .code__wrapper {
   display: flex;
   flex-direction: column;
-  font-size: 0.9rem;
+  font-size: 1.2rem;
+  user-select: none;
 }
 
 .code__wrapper .item_light {
   color: rgb(255 164 108);
 }
-
 
 .input__code>.input__tip,
 .input__code>.input__help {
@@ -18,7 +18,6 @@
 .code__wrapper .item:last-child {
   padding-left: 0;
 }
-
 
 .code__wrapper .item:not(:first-child):not(:last-child) {
   padding-left: 1vw;
@@ -39,4 +38,10 @@
 
 .tag::after {
   content: ">";
+}
+
+@media (max-width: 1200px) {
+  .input__code>.input__tip {
+    line-height: 180%;
+  }
 }

@@ -5,12 +5,12 @@
   align-items: center;
   position: relative;
   top: -5vw;
-  /* left: 30px; */
+  width: 70%;
 }
 
 .chopstick {
   height: 20px;
-  width: 650px;
+  width: 80%;
 }
 
 .chopstick__back {
@@ -29,7 +29,8 @@
 .chopstick__top {
   background: #000;
   height: 10px;
-  width: 600px;
+  /* width: 600px; */
+  width: 95%;
   position: relative;
   left: -1px;
   background-image: url('../../../../../assets/img/45-degree-dark.png');
@@ -41,7 +42,8 @@
 .chopstick__bottom {
   background: #241e18;
   height: 10px;
-  width: 600px;
+  /* width: 600px; */
+  width: 95%;
   top: -11px;
   left: 9px;
   background-image: url('../../../../../assets/img/45-degree-dark.png');
@@ -54,4 +56,36 @@
 
 .game__chopsticks.win {
   display: none;
+}
+
+@media (max-width: 1200px) {
+  .game__chopsticks {
+    width: 90%;
+  }
+}
+
+@media (max-width: 1000px) {
+  .chopstick {
+    height: 17px;
+  }
+
+  .chopstick__top,
+  .chopstick__bottom {
+    height: 6px;
+  }
+
+  .chopstick__back {
+    height: 13px;
+    top: 6px;
+  }
+
+  .chopstick__bottom {
+    top: -13px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .game__chopsticks {
+    display: none;
+  }
 }

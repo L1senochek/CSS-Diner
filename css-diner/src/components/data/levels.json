@@ -7,10 +7,11 @@
     "levelDescription": "Selects all elements of type <span class='highlight'>A</span>. Type refers to the type of tag, so <span class='highlight tag'>div</span>, <span class='highlight tag'>p</span> and <span class='highlight tag'>ul</span> are all different element types.",
     "examples": "<div class='example'><span class='highlight'>div</span> selects all <span class='highlight'>div</span> elements.</div><div class='example'><span class='highlight'>p</span> selects all <span class='highlight'>p</span> elements.</div>",
     "quest": "Select the plates",
-    "markupOnTable": "<div class='table'><plate class='active'></plate><plate class='active'></plate></div>",
+    "markupOnTable": "<div class='table'><plate class='active tooltip' data-light='plate1' data-title='<plate></plate>'></plate><plate class='active tooltip' data-light='plate2' data-title='<plate></plate>'></plate></div>",
     "answer": "plate",
-    "markup": "<span class='items item tag'>div class='table'</span><span class='item__plate item active tag'>plate /</span><span class='item__plate item active tag'>plate /</span><span class='item tag'>div</span>",
-    "hint": "loremfdggggggggggggdgfdg"
+    "markup": "<span class='items item tag'>div class='table'</span><span class='item__plate item tag' data-light='plate1'>plate /</span><span class='item__plate item tag' data-light='plate2'>plate /</span><span class='item tag'>div</span>",
+    "tag": "<plate class='active' ></plate>",
+    "hint": "You need to use: plate"
   },
   {
     "id": 2,
@@ -20,10 +21,10 @@
     "levelDescription": "Selects the element with a specific <span class='highlight'>id</span>. You can also combine the ID selector with the type selector.",
     "examples": "<div class='example'><span class='highlight'>#cool</span> selects any element with <span class='highlight'>id='cool'</span></div><div class='example'><span class='highlight'>ul#long</span> selects <span class='highlight tag'>ul id='long'</span></div>",
     "quest": "Select the sushicat shrimpcat",
-    "markupOnTable": "<div class='table'><shrimpcat id='sushicat'class='active'></shrimpcat><plate></plate><dish></dish></div>",
+    "markupOnTable": "<div class='table'><shrimpcat id='sushicat'class='active' data-light='shrimpcat'></shrimpcat><plate data-light='plate'></plate><dish data-light='dish'></dish></div>",
     "answer": "#sushicat",
-    "markup": "<span class='items item tag'>div class='table'</span><span class='item__plate item active tag'>shrimpcat id='sushicat' /</span><span class='item__plate item tag'>plate /</span><span class='item__plate item tag'>dish /</span><span class='item tag'>/div</span>",
-    "hint": "loremfdggggggggggggdgfdg"
+    "markup": "<span class='items item tag'>div class='table'</span><span class='item__plate item tag' data-light='shrimpcat'>shrimpcat id='sushicat' /</span><span class='item__plate item tag' data-light='plate'>plate /</span><span class='item__plate item tag' data-light='dish'>dish /</span><span class='item tag'>/div</span>",
+    "hint": "You need to use: #sushicat"
   },
   {
     "id": 3,
@@ -33,22 +34,48 @@
     "levelDescription": "The class selector selects all elements with that class attribute. Elements can only have one ID, but many classes.",
     "examples": "<div class='example'><span class='highlight'>.cat</span> selects all elements with <span class='highlight'>class='cat'</span></div>",
     "quest": "Select the smoked tunacat",
-    "markupOnTable": "<div class='table'><tunacat class='active'></tunacat><dish><tunacat class='active'></tunacat></dish><plate></plate></div>",
+    "markupOnTable": "<div class='table'><tunacat class='active' data-light='tunacat1'></tunacat><dish data-light='dish'><tunacat class='active' data-light='tunacat2'></tunacat></dish><plate data-light='plate'></plate></div>",
     "answer": ".smoked",
-    "markup": "<span class='item items tag'>div class='table'</span><span class='item active tag'>tunacat class='smoked' /</span><span class='item item__plate tag'>dish</span><span class='nested active tag'>tunacat class='smoked' /</span><span class='item item__plate tag'>dish /</span><span class='item tag'>/div</span>",
-    "hint": "loremfdggggggggggggdgfdg"
+    "markup": "<span class='item tag'>div class='table'</span><span class='item tag' data-light='tunacat1'>tunacat class='smoked' /</span><span class='item tag' data-light='dish'>dish</span><span class='nested tag' data-light='tunacat2'>tunacat class='smoked' /</span><span class='item tag' data-light='dish'>dish /</span><span class='item tag' data-light='plate'>plate /</span><span class='item tag'>/div</span>",
+    "hint": ""
   },
   {
     "id": 4,
+    "selectorName": "Combine the Descendant & ID Selectors",
+    "title": "Select the tamagocat on the dish",
+    "syntax": "#id A",
+    "levelDescription": "You can combine any selector with the descendent selector.",
+    "examples": "<div class='example'><span class='highlight'>#cool span</span> selects all <span class='highlight tag'>span</span>elements that are inside of elements with <span class='highlight'>id='cool'</span></div>",
+    "quest": "Select the element in element with an ID",
+    "markupOnTable": "<div class='table'><tamagocat data-light='tamagocat1'></tamagocat><plate data-light='plate'><makicat data-light='makicat'></makicat></plate><dish class='emerald' data-light='dish'><tamagocat class='active' data-light='tamagocat2'></tamagocat></dish></div>",
+    "answer": "#emerald tamagocat",
+    "markup": "<span class='item tag'>div class='table'</span><span class='item tag' data-light='tamagocat1'>tamagocat /</span><span class='item tag' data-light='plate'>plate</span><span class='nested tag' data-light='makicat'>makicat /</span><span class='item tag' data-light='plate'>plate /</span><span class='item tag' data-light='dish'>dish id='emerald'</span><span class='nested tag' data-light='tamagocat2'>tamagocat /</span><span class='item tag' data-light='dish'>dish /</span><span class='item tag'>/div</span>",
+    "hint": "loremfdggggggggggggdgfdg"
+  },
+  {
+    "id": 5,
+    "selectorName": "You can do it...",
+    "title": "Select the item on the dish",
+    "syntax": "Put your back into it!",
+    "levelDescription": "Combine what you learned in the last few levels to solve this one!",
+    "examples": "",
+    "quest": "Select the smoked tunacat on the dish",
+    "markupOnTable": "<div class='table'><dish class='emerald' data-light='dish1'><tunacat class='active two' data-light='tunacat1'><tamagocat class='active two' data-light='tamagocat'></tamagocat></tunacat></dish><dish class='emerald' data-light='dish2'><tunacat class='active' data-light='tunacat2'></tunacat></dish></div>",
+    "answer": "#emerald .smoked",
+    "markup": "<span class='item tag'>div class='table'</span><span class='item tag' data-light='dish1'>dish id='emerald'</span><span class='nested tag' data-light='tunacat1'>tunacat class='smoked' /</span><span class='nested tag' data-light='tamagocat'>tamagocat class='smoked'/</span><span class='item tag' data-light='dish1'>dish /</span><span class='item tag' data-light='dish2'>dish id='emerald'</span><span class='nested tag' data-light='tunacat2'>tunacat class='smoked' /</span><span class='item tag' data-light='dish2'>dish /</span><span class='item tag'>/div</span>",
+    "hint": "loremfdggggggggggggdgfdg"
+  },
+  {
+    "id": 6,
     "selectorName": "The Universal Selector",
     "title": "You can select everything!",
     "syntax": "*",
     "levelDescription": "You can select all elements with the universal selector!",
     "examples": "<div class='example'><span class='highlight'>p *</span> selects any element inside all <span class='highlight tag'>p</span> elements.</div>",
     "quest": "Select all!",
-    "markupOnTable": "<div class='table'><salmoncat class='active'></salmoncat><dish class='active'><tunacat class='active'></tunacat></dish><plate class='active'><redcaviarcat class='active'></redcaviarcat></plate><shrimpcat class='active'></shrimpcat></div>",
+    "markupOnTable": "<div class='table'><salmoncat class='active' data-light='salmoncat'></salmoncat><dish class='active' data-light='dish'><tunacat class='active' data-light='tunacat'></tunacat></dish><plate class='active' data-light='plate'><redcaviarcat class='active' data-light='redcaviarcat'></redcaviarcat></plate><shrimpcat class='active' data-light='shrimpcat'></shrimpcat></div>",
     "answer": "*",
-    "markup": "<span class='item items tag'>div class='table'</span><span class='item active tag'>salmoncat class='smoked' /</span><span class='item item__plate tag'>dish</span><span class='nested active tag'>tunacat class='smoked' /</span><span class='item item__plate tag'>dish /</span><span class='item item__plate tag'>plate</span><span class='nested active tag'>redcaviarcat /</span><span class='item item__plate tag'>plate /</span><span class='item active tag'>shrimpcat /</span><span class='item tag'>/div</span>",
-    "hint": "loremfdggggggggggggdgfdg"
+    "markup": "<span class='item tag'>div class='table'</span><span class='item tag' data-light='salmoncat'>salmoncat /</span><span class='item tag' data-light='dish'>dish</span><span class='nested tag' data-light='tunacat'>tunacat class='smoked' /</span><span class='item tag' data-light='dish'>dish /</span><span class='item tag' data-light='plate'>plate</span><span class='nested tag' data-light='redcaviarcat'>redcaviarcat /</span><span class='item tag' data-light='plate'>plate /</span><span class='item tag' data-light='shrimpcat'>shrimpcat /</span><span class='item tag'>/div</span>",
+    "hint": ""
   }
 ]

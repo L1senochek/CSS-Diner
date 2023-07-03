@@ -19,6 +19,13 @@
     cursor: default;
   }
 
-  
-}
+  .curtain-burger__item:hover {
+    box-shadow: 0 1px 5px 5px rgb(255 164 108);
+    border-radius: 5px;
+    cursor: pointer;
+  }
 
+  .curtain-burger__item.active:hover {
+    box-shadow: 0 1px 5px 5px rgb(255 164 108);
+  }
+}
