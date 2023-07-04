@@ -17,8 +17,12 @@ export default class CreatorElement {
     this.createElem(param);
   }
 
-  getElement() {
-    return this.elem;
+  getElement(): HTMLElement {
+    if (this.elem) {
+      return this.elem;
+    } else {
+      throw new Error;
+    }
   }
 
   createElem(param: ElementParam) {

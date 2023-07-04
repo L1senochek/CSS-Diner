@@ -1,57 +1,88 @@
 import './header.css';
-import CreatorElement from '../../creator/creator';
-import { ElementFilled } from '../../creator/fillDiv';
+import CreatorElement, { ElementParam } from '../../creator/creator';
+import { View } from '../../creator/view';
 
-export class HeaderView {
-  headerView: CreatorElement;
+class btnWrapperCreatorView extends View {
+  constructor(param: ElementParam) {
+    super(param) 
+  }
+}
+
+class logoCreatorView extends View {
+  constructor(param: ElementParam) {
+    super(param) 
+  }
+}
+
+export class HeaderView extends View {
+  // private headerView: CreatorElement;
+  // view - от родителя
   reloadCreator: HTMLElement | null = null;
   helpCreator: HTMLElement | null = null;
-  constructor() {
-    this.headerView = this.createHeader();
-    
+
+  constructor(param: ElementParam) {
+    super(param)
+    // this.headerView = this.createCreate(); 
+    this.changeView() ;
   }
 
   getHTMLElement() {
-    return this.headerView.getElement();
+    return this.view.getElement();
   }
 
-  createHeader() {
-    const creator = new ElementFilled();
-    const headerParam = creator.createDiv('header', ['header']);
-    const headerLogo = creator.createDiv('div', ['logo']);
-    const headerLogoIco = creator.createDiv('div', ['logo__ico']);
-    const headerLogoTitle = creator.createDiv('div', ['logo__title'], 'CSS Diner');
-    const headerBtnWrapper = creator.createDiv('div', ['btn__wrapper']);
-    const headerReload = creator.createDiv('div', ['reload']);
-    const headerHelp = creator.createDiv('div', ['help']);
-    const headerCreator = new CreatorElement(headerParam);
-    const logoCreator = new CreatorElement(headerLogo).getElement();
-    const logoIcoCreator = new CreatorElement(headerLogoIco).getElement();
-    const logoTitleCreator = new CreatorElement(headerLogoTitle).getElement();
-    const btnWrapperCreator = new CreatorElement(headerBtnWrapper).getElement();
-    this.reloadCreator = new CreatorElement(headerReload).getElement();
-    this.helpCreator = new CreatorElement(headerHelp).getElement();
+  // ChangeView или наполни вью
+  changeView() {
+    // const creator = new ElementFilled();
+    // const headerParam = creator.createDiv('header', ['header']);
+    // const headerLogo = creator.createDiv('div', ['logo']);
+    // const headerLogoIco = creator.createDiv('div', ['logo__ico']);
+    // const headerLogoTitle = creator.createDiv('div', ['logo__title'], 'CSS Diner');
+    // const headerBtnWrapper = creator.createDiv('div', ['btn__wrapper']);
+    // const headerReload = creator.createDiv('div', ['reload']);
+    // const headerHelp = creator.createDiv('div', ['help']);
 
-    if (this.reloadCreator && this.helpCreator) {
-      btnWrapperCreator?.prepend(this.reloadCreator, this.helpCreator);
-    }
+    // Хедер креэйтор это this.view
+    // const headerCreator = new CreatorElement({tag: 'header', classNames: ['header']});
 
-    if (logoIcoCreator && logoTitleCreator) {
-      logoCreator?.prepend(logoIcoCreator,logoTitleCreator);
-    }
+
+    // const logoCreator = new CreatorElement({tag: 'div', classNames: ['logo']}).getElement();
+    // const logoIcoCreator = new CreatorElement({tag: 'div', classNames: ['logo__ico']}).getElement();
+    // const logoTitleCreator = new CreatorElement({tag: 'div', classNames: ['logo__title'], innerText: 'CSS Diner'}).getElement();
+    // const btnWrapperCreator = new CreatorElement({tag: 'div', classNames: ['btn__wrapper']}).getElement();
+    this.reloadCreator = new CreatorElement({tag: 'div', classNames: ['reload']}).getElement();
+    this.helpCreator = new CreatorElement({tag: 'div', classNames: ['help']}).getElement();
+  
+    const logoCreator = new logoCreatorView({tag: 'div', classNames: ['logo']});
+    logoCreator.appendElems([{tag: 'div', classNames: ['logo__ico']}, {tag: 'div', classNames: ['logo__title'], innerText: 'CSS Diner'}])
+
+    const btnWrapperCreator = new btnWrapperCreatorView({tag: 'div', classNames: ['btn__wrapper']});
+    btnWrapperCreator.appendElems([{tag: 'div', classNames: ['reload']}, {tag: 'div', classNames: ['help']}]);
+
+    
+    
+    // this.добавь в начало ({tag: 'div', classNames: ['help']})
+    // this.добавь в начало ({tag: 'div', classNames: ['help']})
+    // this.добавь в конец ({tag: 'div', classNames: ['help']})
+    // this.добавь в конец ({tag: 'div', classNames: ['help']})
+    // if (this.reloadCreator && this.helpCreator) {
+    //   btnWrapperCreator?.prepend(this.reloadCreator, this.helpCreator);
+    // }
+
+    // if (logoIcoCreator && logoTitleCreator) {
+    //   logoCreator?.prepend(logoIcoCreator,logoTitleCreator);
+    // }
 
     if (logoCreator && btnWrapperCreator) {
-      headerCreator.getElement()?.prepend(logoCreator, btnWrapperCreator);
+      this.view.getElement()?.prepend(logoCreator.getHTMLElement(), btnWrapperCreator.getHTMLElement());
     }
+    console.log(this.view.getElement())
+    //возвращать не надо
+    // return headerCreator;
 
-    return headerCreator;
-  }
-
-  getPropertyElem(param: HTMLElement | null): HTMLElement {
-    if (param instanceof HTMLElement) {
-      return param
-    } else {
-      throw new Error;
-    }
+    // добавь в начало родителя елем (параметр) {
+     // const елем = new CreatorElem(параметр).getElement();
+     // this.view.prepend(елем)
+    // } 
+    
   }
 }

@@ -25,7 +25,7 @@ let LevelsResult = Array(lvlJSON.length).fill(LvlStatus.status2);
 export class App {
   lvl: number;
   currentDeg = 0;
-  private headerView = new HeaderView();
+  private headerView = new HeaderView({tag: 'header', classNames: ['header']});
   private footerView? = new FooterView();
   private mainView? = new MainView();
   private gameView? = new GameView();
@@ -41,7 +41,7 @@ export class App {
   // private readonly headerElement = this.headerView?.getHTMLElement();
   // private readonly reload = this.headerElement?.lastChild?.firstChild;
   // private readonly reload = this.headerView?.reloadCreator;
-  private readonly help = this.headerView?.helpCreator;
+  // private readonly help = this.headerView?.helpCreator;
 
   private readonly mainElement = this.mainView?.getHTMLElement();
   private readonly mainWrapper = this.mainElement?.firstChild;
@@ -85,8 +85,9 @@ export class App {
 
   createView() {
     
-    console.log(this.headerView.getPropertyElem(this.headerView.reloadCreator), 77777777777);
-    const headerElement = this.headerView.getHTMLElement();
+    console.log(this.headerView, 77777777777);
+
+    // const headerElement = this.headerView.getHTMLElement();
     const mainElement = this.mainView?.getHTMLElement();
     // const mainWrapper = this.mainView?.wrapperCreator;
     const gameViewElem = this.gameView?.getHTMLElement();
@@ -117,7 +118,7 @@ export class App {
     }
     if (gameViewElem && this.mainWrapper instanceof HTMLElement) this.mainWrapper.prepend(gameViewElem);
     if (mainElement) document.body.prepend(mainElement);
-    if (headerElement) document.body.prepend(headerElement);
+    document.body.prepend(this.headerView.getHTMLElement());
     this.renderLvl();
     this.setEvents();
   }
@@ -308,6 +309,7 @@ export class App {
   }
 
   reloadGameAnim(e: Event | null): void {
+    console.log(this.headerView.getPropertyElem(this.headerView.reloadCreator), 111111)
     if (e?.target === this.headerView.getPropertyElem(this.headerView.reloadCreator)) {
       this.currentDeg -= 180;
       if (this.headerView.getPropertyElem(this.headerView.reloadCreator) instanceof HTMLElement) this.headerView.getPropertyElem(this.headerView.reloadCreator).style.transform = `rotate(${this.currentDeg}deg)`;
@@ -422,12 +424,14 @@ export class App {
       }
     });
 
+    console.log(this.headerView.reloadCreator, this.headerView.getPropertyElem(this.headerView.reloadCreator) instanceof HTMLElement, 222)
     this.headerView.getPropertyElem(this.headerView.reloadCreator).addEventListener('click', (e: Event) => {
+      console.log('1!!!!!!!!!');
       this.reloadGame();
       this.reloadGameAnim(e);
     });
 
-    this.help?.addEventListener('click', () => {
+    this.headerView.getPropertyElem(this.headerView.helpCreator).addEventListener('click', () => {
       LevelsResult[this.lvl] = LvlStatus.status4;
       this.changeHintClass('add');
       this.clearInput();

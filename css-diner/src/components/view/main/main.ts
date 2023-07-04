@@ -4,6 +4,7 @@ import './main.css';
 
 export class MainView {
   mainView: CreatorElement;
+  
   constructor() {
     this.mainView = this.createMain();
   }
