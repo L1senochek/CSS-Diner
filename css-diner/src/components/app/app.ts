@@ -25,7 +25,7 @@ let LevelsResult = Array(lvlJSON.length).fill(LvlStatus.status2);
 export class App {
   lvl: number;
   currentDeg = 0;
-  private headerView? = new HeaderView();
+  private headerView = new HeaderView();
   private footerView? = new FooterView();
   private mainView? = new MainView();
   private gameView? = new GameView();
@@ -38,9 +38,10 @@ export class App {
   markupView? = new MarkupView();
   lvlAboutView? = new LvlAboutView();
 
-  private readonly headerElement = this.headerView?.getHTMLElement();
-  private readonly reload = this.headerElement?.lastChild?.firstChild;
-  private readonly help = this.headerElement?.lastChild?.lastChild;
+  // private readonly headerElement = this.headerView?.getHTMLElement();
+  // private readonly reload = this.headerElement?.lastChild?.firstChild;
+  // private readonly reload = this.headerView?.reloadCreator;
+  private readonly help = this.headerView?.helpCreator;
 
   private readonly mainElement = this.mainView?.getHTMLElement();
   private readonly mainWrapper = this.mainElement?.firstChild;
@@ -83,6 +84,13 @@ export class App {
   }
 
   createView() {
+    
+    console.log(this.headerView.getPropertyElem(this.headerView.reloadCreator), 77777777777);
+    const headerElement = this.headerView.getHTMLElement();
+    const mainElement = this.mainView?.getHTMLElement();
+    // const mainWrapper = this.mainView?.wrapperCreator;
+    const gameViewElem = this.gameView?.getHTMLElement();
+    const lanternViewElem = this.lanternView?.getHTMLElement();
     if (this.footerElement) document.body.prepend(this.footerElement);
     if (this.lvlAboutViewElem && this.mainWrapper instanceof HTMLElement) {
       this.mainWrapper.append(this.lvlAboutViewElem);
@@ -92,24 +100,24 @@ export class App {
       this.editorWindowHtml?.appendChild(this.markupViewHTML);
     }
     if (
-      this.lanternViewElem &&
-      this.gameViewElem instanceof HTMLElement &&
+      lanternViewElem &&
+      gameViewElem instanceof HTMLElement &&
       this.gameQuestViewElem instanceof HTMLElement &&
       this.tableViewElem instanceof HTMLElement &&
       this.chopsticksElem instanceof HTMLElement &&
       this.editorViewElem instanceof HTMLElement
     ) {
-      this.gameViewElem.prepend(
-        this.lanternViewElem,
+      gameViewElem.prepend(
+        lanternViewElem,
         this.gameQuestViewElem,
         this.tableViewElem,
         this.chopsticksElem,
         this.editorViewElem
       );
     }
-    if (this.gameViewElem && this.mainWrapper instanceof HTMLElement) this.mainWrapper.prepend(this.gameViewElem);
-    if (this.mainElement) document.body.prepend(this.mainElement);
-    if (this.headerElement) document.body.prepend(this.headerElement);
+    if (gameViewElem && this.mainWrapper instanceof HTMLElement) this.mainWrapper.prepend(gameViewElem);
+    if (mainElement) document.body.prepend(mainElement);
+    if (headerElement) document.body.prepend(headerElement);
     this.renderLvl();
     this.setEvents();
   }
@@ -300,9 +308,9 @@ export class App {
   }
 
   reloadGameAnim(e: Event | null): void {
-    if (e?.target === this.reload) {
+    if (e?.target === this.headerView.getPropertyElem(this.headerView.reloadCreator)) {
       this.currentDeg -= 180;
-      if (this.reload instanceof HTMLElement) this.reload.style.transform = `rotate(${this.currentDeg}deg)`;
+      if (this.headerView.getPropertyElem(this.headerView.reloadCreator) instanceof HTMLElement) this.headerView.getPropertyElem(this.headerView.reloadCreator).style.transform = `rotate(${this.currentDeg}deg)`;
     }
   }
 
@@ -414,7 +422,7 @@ export class App {
       }
     });
 
-    this.reload?.addEventListener('click', (e: Event) => {
+    this.headerView.getPropertyElem(this.headerView.reloadCreator).addEventListener('click', (e: Event) => {
       this.reloadGame();
       this.reloadGameAnim(e);
     });

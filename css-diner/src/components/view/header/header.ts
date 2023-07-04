@@ -4,8 +4,11 @@ import { ElementFilled } from '../../creator/fillDiv';
 
 export class HeaderView {
   headerView: CreatorElement;
+  reloadCreator: HTMLElement | null = null;
+  helpCreator: HTMLElement | null = null;
   constructor() {
     this.headerView = this.createHeader();
+    
   }
 
   getHTMLElement() {
@@ -26,15 +29,15 @@ export class HeaderView {
     const logoIcoCreator = new CreatorElement(headerLogoIco).getElement();
     const logoTitleCreator = new CreatorElement(headerLogoTitle).getElement();
     const btnWrapperCreator = new CreatorElement(headerBtnWrapper).getElement();
-    const reloadCreator = new CreatorElement(headerReload).getElement();
-    const helpCreator = new CreatorElement(headerHelp).getElement();
+    this.reloadCreator = new CreatorElement(headerReload).getElement();
+    this.helpCreator = new CreatorElement(headerHelp).getElement();
 
-    if (reloadCreator && helpCreator) {
-      btnWrapperCreator?.prepend(reloadCreator, helpCreator);
+    if (this.reloadCreator && this.helpCreator) {
+      btnWrapperCreator?.prepend(this.reloadCreator, this.helpCreator);
     }
 
     if (logoIcoCreator && logoTitleCreator) {
-      logoCreator?.prepend(logoIcoCreator, logoTitleCreator);
+      logoCreator?.prepend(logoIcoCreator,logoTitleCreator);
     }
 
     if (logoCreator && btnWrapperCreator) {
@@ -42,5 +45,13 @@ export class HeaderView {
     }
 
     return headerCreator;
+  }
+
+  getPropertyElem(param: HTMLElement | null): HTMLElement {
+    if (param instanceof HTMLElement) {
+      return param
+    } else {
+      throw new Error;
+    }
   }
 }
