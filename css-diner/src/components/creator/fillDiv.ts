@@ -1,7 +1,6 @@
 import { Callback, ElementParam } from './creator';
 
 export class ElementFilled {
-
   createDiv(
     tag: string,
     classNames: string[],

@@ -21,7 +21,7 @@ export default class CreatorElement {
     if (this.elem) {
       return this.elem;
     } else {
-      throw new Error;
+      throw new Error();
     }
   }
 

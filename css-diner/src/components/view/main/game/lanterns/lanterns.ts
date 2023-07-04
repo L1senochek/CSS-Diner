@@ -1,40 +1,28 @@
-import CreatorElement from '../../../../creator/creator';
-import { ElementFilled } from '../../../../creator/fillDiv';
+import { ElementParam } from '../../../../creator/creator';
+import { View } from '../../../../creator/view';
 import './lanterns.css';
 
-export class LanternView {
-  lanternView: CreatorElement;
-  constructor() {
-    this.lanternView = this.createLanterns();
+class lanternView extends View {
+  constructor(param: ElementParam) {
+    super(param);
+  }
+}
+
+export class LanternView extends View {
+  constructor(param: ElementParam) {
+    super(param);
+    this.changeView();
   }
 
-  getHTMLElement() {
-    return this.lanternView.getElement();
-  }
+  changeView() {
+    const lanternOne = new lanternView({ tag: 'span', classNames: ['lantern'] });
+    lanternOne.appendElems([{ tag: 'span', classNames: ['lantern__title'], innerText: '壽司' }]);
+    const lanternTwo = new lanternView({ tag: 'span', classNames: ['lantern'] });
+    lanternTwo.appendElems([{ tag: 'span', classNames: ['lantern__title'], innerText: '貓' }]);
 
-  createLanterns() {
-    const creator = new ElementFilled();
-    const lanternParam = creator.createDiv('div', ['game__lanterns']);
-    const lantern = creator.createDiv('span', ['lantern']);
-    const firstLantern = creator.createDiv('span', ['lantern__title'], '壽司');
-    const secondLantern = creator.createDiv('span', ['lantern__title'], '貓');
-    const lanternWrapper = new CreatorElement(lanternParam);
-    const lanternCreatorOne = new CreatorElement(lantern).getElement();
-    const lanternCreatorTwo = new CreatorElement(lantern).getElement();
-    const firtsLanternCreator = new CreatorElement(firstLantern).getElement();
-    const secondLanternCreator = new CreatorElement(secondLantern).getElement();
-
-    if (firtsLanternCreator instanceof Node && secondLanternCreator instanceof Node) {
-      lanternCreatorOne?.appendChild(firtsLanternCreator);
-      lanternCreatorTwo?.appendChild(secondLanternCreator);
-    }
-
-    if (lanternCreatorOne && lanternCreatorTwo) {
-      lanternWrapper.getElement()?.appendChild(lanternCreatorOne);
-      lanternWrapper.getElement()?.appendChild(lanternCreatorTwo);
-      lanternWrapper.getElement()?.appendChild(lanternCreatorOne.cloneNode(true));
-      lanternWrapper.getElement()?.appendChild(lanternCreatorTwo.cloneNode(true));
-    }
-    return lanternWrapper;
+    this.view.getElement().append(lanternOne.getHTMLElement());
+    this.view.getElement().append(lanternTwo.getHTMLElement());
+    this.view.getElement().append(lanternOne.getHTMLElement().cloneNode(true));
+    this.view.getElement().append(lanternTwo.getHTMLElement().cloneNode(true));
   }
 }

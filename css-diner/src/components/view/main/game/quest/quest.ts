@@ -1,19 +1,9 @@
-import CreatorElement from '../../../../creator/creator';
-import { ElementFilled } from '../../../../creator/fillDiv';
+import { ElementParam } from '../../../../creator/creator';
+import { View } from '../../../../creator/view';
 import './quest.css';
 
-export class GameQuestView {
-  gameQuestView: CreatorElement;
-  constructor() {
-    this.gameQuestView = this.createGame();
-  }
-  getHTMLElement() {
-    return this.gameQuestView.getElement();
-  }
-  createGame() {
-    const creator = new ElementFilled();
-    const gameQuest = creator.createDiv('p2', ['game__quest']);
-    const gameCreator = new CreatorElement(gameQuest);
-    return gameCreator;
+export class GameQuestView extends View {
+  constructor(param: ElementParam) {
+    super(param);
   }
 }

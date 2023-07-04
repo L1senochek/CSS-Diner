@@ -25,10 +25,6 @@ export class HeaderView extends View {
     this.changeView() ;
   }
 
-  getHTMLElement() {
-    return this.view.getElement();
-  }
-
   // ChangeView или наполни вью
   changeView() {
     this.reloadCreator = new CreatorElement({tag: 'div', classNames: ['reload']}).getElement();

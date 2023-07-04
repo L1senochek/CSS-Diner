@@ -25,14 +25,14 @@ let LevelsResult = Array(lvlJSON.length).fill(LvlStatus.status2);
 export class App {
   lvl: number;
   currentDeg = 0;
-  private headerView = new HeaderView({tag: 'header', classNames: ['header']});
+  private headerView = new HeaderView({ tag: 'header', classNames: ['header'] });
   private footerView? = new FooterView();
   private mainView? = new MainView();
   private gameView? = new GameView();
-  private lanternView? = new LanternView();
-  gameQuestView? = new GameQuestView();
-  tableView? = new TableView();
-  private chopsticksView? = new ChopsticksView();
+  private lanternView = new LanternView({ tag: 'div', classNames: ['game__lanterns'] });
+  gameQuestView = new GameQuestView({ tag: 'p2', classNames: ['game__quest'] });
+  tableView = new TableView({ tag: 'div', classNames: ['game__table', 'table__wrapper'] });
+  private chopsticksView = new ChopsticksView({ tag: 'div', classNames: ['game__chopsticks'] });
   editorView? = new EditorView();
   editorCodeView? = new EditorCodeView();
   markupView? = new MarkupView();
@@ -40,19 +40,18 @@ export class App {
 
   // private readonly headerElement = this.headerView?.getHTMLElement();
   // private readonly reload = this.headerElement?.lastChild?.firstChild;
-  // private readonly reload = this.headerView?.reloadCreator;
-  // private readonly help = this.headerView?.helpCreator;
+  // private readonly help = this.headerElement?.lastChild?.lastChild;
 
   private readonly mainElement = this.mainView?.getHTMLElement();
   private readonly mainWrapper = this.mainElement?.firstChild;
   private readonly gameViewElem = this.gameView?.getHTMLElement();
-  private readonly lanternViewElem = this.lanternView?.getHTMLElement();
-  private readonly gameQuestViewElem = this.gameQuestView?.getHTMLElement();
-  private readonly tableViewElem = this.tableView?.getHTMLElement();
-  private readonly tableContent = this.tableViewElem?.childNodes[1];
-  private readonly tableWrapper = this.tableViewElem?.childNodes[0];
-  private readonly table = this.tableViewElem?.lastChild?.firstChild;
-  private readonly chopsticksElem = this.chopsticksView?.getHTMLElement();
+  // private readonly lanternViewElem = this.lanternView?.getHTMLElement();
+  // private readonly gameQuestViewElem = this.gameQuestView?.getHTMLElement();
+  // private readonly tableViewElem = this.tableView?.getHTMLElement();
+  // private readonly tableContent = this.tableViewElem?.childNodes[1];
+  // private readonly tableWrapper = this.tableViewElem?.childNodes[0];
+  // private readonly table = this.tableViewElem?.lastChild?.firstChild;
+  // private readonly chopsticksElem = this.chopsticksView?.getHTMLElement();
   private readonly editorViewElem = this.editorView?.getHTMLElement();
   private readonly editorCodeViewElem = this.editorCodeView?.getHTMLElement();
   private readonly editorInputCSS = this.editorCodeViewElem?.firstChild?.firstChild;
@@ -84,14 +83,7 @@ export class App {
   }
 
   createView() {
-    
-    console.log(this.headerView, 77777777777);
-
-    // const headerElement = this.headerView.getHTMLElement();
-    const mainElement = this.mainView?.getHTMLElement();
-    // const mainWrapper = this.mainView?.wrapperCreator;
-    const gameViewElem = this.gameView?.getHTMLElement();
-    const lanternViewElem = this.lanternView?.getHTMLElement();
+    console.log(this.tableView, 5555);
     if (this.footerElement) document.body.prepend(this.footerElement);
     if (this.lvlAboutViewElem && this.mainWrapper instanceof HTMLElement) {
       this.mainWrapper.append(this.lvlAboutViewElem);
@@ -101,23 +93,24 @@ export class App {
       this.editorWindowHtml?.appendChild(this.markupViewHTML);
     }
     if (
-      lanternViewElem &&
-      gameViewElem instanceof HTMLElement &&
-      this.gameQuestViewElem instanceof HTMLElement &&
-      this.tableViewElem instanceof HTMLElement &&
-      this.chopsticksElem instanceof HTMLElement &&
+      // this.lanternViewElem &&
+      this.gameViewElem instanceof HTMLElement &&
+      // this.gameQuestViewElem instanceof HTMLElement &&
+      // this.tableViewElem instanceof HTMLElement &&
+      // this.chopsticksElem instanceof HTMLElement &&
       this.editorViewElem instanceof HTMLElement
     ) {
-      gameViewElem.prepend(
-        lanternViewElem,
-        this.gameQuestViewElem,
-        this.tableViewElem,
-        this.chopsticksElem,
+      this.gameViewElem.prepend(
+        this.lanternView.getHTMLElement(),
+        this.gameQuestView.getHTMLElement(),
+        this.tableView.getHTMLElement(),
+        this.chopsticksView.getHTMLElement(),
         this.editorViewElem
       );
     }
-    if (gameViewElem && this.mainWrapper instanceof HTMLElement) this.mainWrapper.prepend(gameViewElem);
-    if (mainElement) document.body.prepend(mainElement);
+    if (this.gameViewElem && this.mainWrapper instanceof HTMLElement) this.mainWrapper.prepend(this.gameViewElem);
+    if (this.mainElement) document.body.prepend(this.mainElement);
+    // if (this.headerElement) document.body.prepend(this.headerElement);
     document.body.prepend(this.headerView.getHTMLElement());
     this.renderLvl();
     this.setEvents();
@@ -128,14 +121,14 @@ export class App {
   }
 
   changeQuestName(num = this.lvl) {
-    if (this.gameQuestViewElem instanceof HTMLElement) {
-      this.gameQuestViewElem.innerText = `${lvlJSON[num].quest}`;
-    }
+    // if (this.gameQuestViewElem instanceof HTMLElement) {
+    this.gameQuestView.getHTMLElement().innerText = `${lvlJSON[num].quest}`;
+    // }
   }
 
   changeTable(num = this.lvl) {
-    if (this.tableContent instanceof HTMLElement) {
-      this.tableContent.innerHTML = `${lvlJSON[num].markupOnTable}`;
+    if (this.tableView.tableContent instanceof HTMLElement) {
+      this.tableView.tableContent.innerHTML = `${lvlJSON[num].markupOnTable}`;
     }
   }
 
@@ -221,27 +214,27 @@ export class App {
   }
 
   changeWinClass(status: 'add' | 'remove') {
-    const table = this.tableViewElem?.childNodes[1].firstChild;
-    if (
-      this.gameQuestViewElem instanceof HTMLElement &&
-      this.tableWrapper instanceof HTMLElement &&
-      this.tableContent instanceof HTMLElement &&
-      table instanceof HTMLElement &&
-      this.chopsticksElem instanceof HTMLElement
-    ) {
-      if (status === 'add') {
-        this.gameQuestViewElem.innerText = 'YOU WIN!';
-        this.tableWrapper?.classList.add('win');
-        this.tableContent.classList.add('win');
-        table?.classList.add('win');
-        this.chopsticksElem.classList.add('win');
-      } else if (status === 'remove') {
-        this.tableWrapper?.classList.remove('win');
-        this.tableContent.classList.remove('win');
-        table.classList.remove('win');
-        this.chopsticksElem.classList.remove('win');
-      }
+    // const table = this.tableViewElem?.childNodes[1].firstChild;
+    // if (
+    //   // this.gameQuestViewElem instanceof HTMLElement &&
+    //   // this.tableWrapper instanceof HTMLElement &&
+    //   // this.tableContent instanceof HTMLElement &&
+    //   // table instanceof HTMLElement
+    //   // this.chopsticksElem instanceof HTMLElement
+    // ) {
+    if (status === 'add') {
+      this.gameQuestView.getHTMLElement().innerText = 'YOU WIN!';
+      // this.tableWrapper?.classList.add('win');
+      this.tableView.getHTMLElement().classList.add('win');
+      // table?.classList.add('win');
+      this.chopsticksView.getHTMLElement().classList.add('win');
+    } else if (status === 'remove') {
+      // this.tableWrapper?.classList.remove('win');
+      this.tableView.getHTMLElement().classList.remove('win');
+      // table.classList.remove('win');
+      this.chopsticksView.getHTMLElement().classList.remove('win');
     }
+    // }
   }
 
   clearInput() {
@@ -249,23 +242,22 @@ export class App {
   }
 
   checkInputValue(value: string) {
-    const table = this.tableViewElem?.childNodes[1].firstChild;
+    // const table = this.tableViewElem?.childNodes[1].firstChild;
     if (this.editorInputCSS instanceof HTMLInputElement) {
       if (value === lvlJSON[this.lvl].answer && this.lvl === lvlJSON.length - 1) {
-        if (
-          this.tableWrapper instanceof HTMLElement &&
-          this.tableContent instanceof HTMLElement &&
-          table instanceof HTMLElement &&
-          this.chopsticksElem instanceof HTMLElement
-        ) {
-          this.clearInput();
-          this.changeWinClass('add');
-          if (LevelsResult[this.lvl] === LvlStatus.status4) {
-            LevelsResult[this.lvl] = LvlStatus.status3;
-          } else {
-            LevelsResult[this.lvl] = LvlStatus.status1;
-          }
+        // if (
+        //   this.tableWrapper instanceof HTMLElement &&
+        //   this.tableContent instanceof HTMLElement &&
+        //   table instanceof HTMLElement
+        // ) {
+        this.clearInput();
+        this.changeWinClass('add');
+        if (LevelsResult[this.lvl] === LvlStatus.status4) {
+          LevelsResult[this.lvl] = LvlStatus.status3;
+        } else {
+          LevelsResult[this.lvl] = LvlStatus.status1;
         }
+        // }
         this.changeCheckmark();
       } else if (value === lvlJSON[this.lvl].answer) {
         this.clearInput();
@@ -274,13 +266,13 @@ export class App {
         } else {
           LevelsResult[this.lvl] = LvlStatus.status1;
         }
-        if (table instanceof HTMLElement) {
-          table.classList.add('roll-up_anim');
-          setTimeout(() => {
-            table.classList.remove('roll-up_anim');
-            this.nextLvl();
-          }, 1000);
-        }
+        // if (table instanceof HTMLElement) {
+        this.tableView.getHTMLElement().classList.add('roll-up_anim');
+        setTimeout(() => {
+          this.tableView.getHTMLElement().classList.remove('roll-up_anim');
+          this.nextLvl();
+        }, 1000);
+        // }
       } else {
         this.editorViewElem?.classList.add('shake');
         setTimeout(() => {
@@ -309,10 +301,13 @@ export class App {
   }
 
   reloadGameAnim(e: Event | null): void {
-    console.log(this.headerView.getPropertyElem(this.headerView.reloadCreator), 111111)
     if (e?.target === this.headerView.getPropertyElem(this.headerView.reloadCreator)) {
       this.currentDeg -= 180;
-      if (this.headerView.getPropertyElem(this.headerView.reloadCreator) instanceof HTMLElement) this.headerView.getPropertyElem(this.headerView.reloadCreator).style.transform = `rotate(${this.currentDeg}deg)`;
+      if (this.headerView.getPropertyElem(this.headerView.reloadCreator) instanceof HTMLElement) {
+        this.headerView.getPropertyElem(
+          this.headerView.reloadCreator
+        ).style.transform = `rotate(${this.currentDeg}deg)`;
+      }
     }
   }
 
@@ -382,12 +377,12 @@ export class App {
   }
 
   setMouse() {
-    const table = this.tableViewElem?.lastChild?.firstChild;
-    table?.addEventListener('mouseover', (e: Event) => {
+    // const table = this.tableViewElem?.lastChild?.firstChild;
+    this.tableView.tableContent?.addEventListener('mouseover', (e: Event) => {
       this.highlightingElem(e, 'add');
     });
 
-    table?.addEventListener('mouseout', (e: Event) => {
+    this.tableView.tableContent?.addEventListener('mouseout', (e: Event) => {
       this.highlightingElem(e, 'remove');
     });
 

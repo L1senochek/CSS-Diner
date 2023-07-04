@@ -23,12 +23,12 @@
   margin: 1vw;
 }
 
-.table__surface.win {
+.game__table.win>.table__surface {
   background: #000;
   background-image: url('../../../../../assets/img/wood-pattern.png');
 }
 
-.table__content.win {
+.game__table.win>.table__content {
   background-image: url('../../../../../assets/img/ninja.jpg');
   background-size: cover;
   margin: 0;
@@ -36,7 +36,7 @@
   height: 19vw;
 }
 
-.table.win {
+.game__table.win>.table__content>.table {
   display: none;
 }
 
@@ -58,7 +58,7 @@
   }
 }
 
-.roll-up_anim {
+.game__table.roll-up_anim>.table__content {
   animation: roll-up 1s ease-out forwards;
 }
 
