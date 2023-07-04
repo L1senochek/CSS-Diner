@@ -24,10 +24,25 @@ export class View {
     }
   }
 
-  appendElems([...elem]) {
+  // _appendElems([...elem]: ElementParam[]) {
+  //   [...elem].forEach(element => {
+  //     const mainElem = new CreatorElement(element);
+  //     this.view.getElement().append(mainElem.getElement());
+  //   });
+  // }
+
+  // appendElem(element: HTMLElement){
+  //   this.view.getElement().append(element)
+  // }
+
+  appendElems([...elem]: (ElementParam | HTMLElement)[]) {
     [...elem].forEach(element => {
-      const mainElem = new CreatorElement(element);
-      this.view.getElement().append(mainElem.getElement());
+      if (element instanceof HTMLElement) {
+        this.view.getElement().append(element);
+      } else {
+        const mainElem = new CreatorElement(element);
+        this.view.getElement().append(mainElem.getElement());
+      }
     });
   }
 }

@@ -424,9 +424,7 @@ export class App {
       }
     });
 
-    console.log(this.headerView.reloadCreator, this.headerView.getPropertyElem(this.headerView.reloadCreator) instanceof HTMLElement, 222)
     this.headerView.getPropertyElem(this.headerView.reloadCreator).addEventListener('click', (e: Event) => {
-      console.log('1!!!!!!!!!');
       this.reloadGame();
       this.reloadGameAnim(e);
     });
