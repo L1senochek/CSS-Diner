@@ -20,9 +20,9 @@ export class HeaderView extends View {
   helpCreator: HTMLElement | null = null;
 
   constructor(param: ElementParam) {
-    super(param)
+    super(param);
     // this.headerView = this.createCreate(); 
-    this.changeView() ;
+    this.changeView();
   }
 
   // ChangeView или наполни вью

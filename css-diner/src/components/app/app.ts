@@ -33,7 +33,7 @@ export class App {
   gameQuestView = new GameQuestView({ tag: 'p2', classNames: ['game__quest'] });
   tableView = new TableView({ tag: 'div', classNames: ['game__table', 'table__wrapper'] });
   private chopsticksView = new ChopsticksView({ tag: 'div', classNames: ['game__chopsticks'] });
-  editorView? = new EditorView();
+  editorView = new EditorView({ tag: 'div', classNames: ['game__editor', 'editor'], innerText: '' });
   editorCodeView? = new EditorCodeView();
   markupView? = new MarkupView();
   lvlAboutView? = new LvlAboutView();
@@ -52,12 +52,12 @@ export class App {
   // private readonly tableWrapper = this.tableViewElem?.childNodes[0];
   // private readonly table = this.tableViewElem?.lastChild?.firstChild;
   // private readonly chopsticksElem = this.chopsticksView?.getHTMLElement();
-  private readonly editorViewElem = this.editorView?.getHTMLElement();
+  // private readonly editorViewElem = this.editorView?.getHTMLElement();
   private readonly editorCodeViewElem = this.editorCodeView?.getHTMLElement();
   private readonly editorInputCSS = this.editorCodeViewElem?.firstChild?.firstChild;
   private readonly editorEnterBtn = this.editorCodeViewElem?.firstChild?.lastChild;
-  private readonly editorWindowCSS = this.editorViewElem?.childNodes[0].childNodes[1];
-  private readonly editorWindowHtml = this.editorViewElem?.childNodes[1].childNodes[1];
+  // private readonly editorWindowCSS = this.editorViewElem?.childNodes[0].childNodes[1];
+  // private readonly editorWindowHtml = this.editorViewElem?.childNodes[1].childNodes[1];
   private readonly markupViewHTML = this.markupView?.getHTMLElement();
   private readonly markup = this.markupView?.getHTMLElement()?.firstChild?.firstChild;
   private readonly lvlAboutViewElem = this.lvlAboutView?.getHTMLElement();
@@ -83,29 +83,29 @@ export class App {
   }
 
   createView() {
-    console.log(this.tableView, 5555);
+    console.log(this.editorView.windowCreatorCSS, 5555);
     if (this.footerElement) document.body.prepend(this.footerElement);
     if (this.lvlAboutViewElem && this.mainWrapper instanceof HTMLElement) {
       this.mainWrapper.append(this.lvlAboutViewElem);
     }
-    if (this.editorCodeViewElem instanceof HTMLElement) this.editorWindowCSS?.appendChild(this.editorCodeViewElem);
-    if (this.editorWindowHtml instanceof HTMLElement && this.markupViewHTML) {
-      this.editorWindowHtml?.appendChild(this.markupViewHTML);
+    if (this.editorView.windowCreatorCSS instanceof HTMLElement && this.editorCodeViewElem instanceof HTMLElement) this.editorView.windowCreatorCSS.appendChild(this.editorCodeViewElem);
+    if (this.editorView.windowCreatorHTML instanceof HTMLElement && this.markupViewHTML) {
+      this.editorView.windowCreatorHTML.appendChild(this.markupViewHTML);
     }
     if (
       // this.lanternViewElem &&
-      this.gameViewElem instanceof HTMLElement &&
+      this.gameViewElem instanceof HTMLElement
       // this.gameQuestViewElem instanceof HTMLElement &&
       // this.tableViewElem instanceof HTMLElement &&
       // this.chopsticksElem instanceof HTMLElement &&
-      this.editorViewElem instanceof HTMLElement
+      // this.editorViewElem instanceof HTMLElement
     ) {
       this.gameViewElem.prepend(
         this.lanternView.getHTMLElement(),
         this.gameQuestView.getHTMLElement(),
         this.tableView.getHTMLElement(),
         this.chopsticksView.getHTMLElement(),
-        this.editorViewElem
+        this.editorView.getHTMLElement()
       );
     }
     if (this.gameViewElem && this.mainWrapper instanceof HTMLElement) this.mainWrapper.prepend(this.gameViewElem);
@@ -274,9 +274,9 @@ export class App {
         }, 1000);
         // }
       } else {
-        this.editorViewElem?.classList.add('shake');
+        this.editorView.getHTMLElement().classList.add('shake');
         setTimeout(() => {
-          this.editorViewElem?.classList.remove('shake');
+          this.editorView.getHTMLElement().classList.remove('shake');
         }, 200);
       }
     }

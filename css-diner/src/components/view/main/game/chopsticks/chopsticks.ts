@@ -21,7 +21,7 @@ export class ChopsticksView extends View {
       { tag: 'span', classNames: ['chopstick__top'] },
       { tag: 'span', classNames: ['chopstick__bottom'] },
     ]);
-    this.view.getElement().append(chopstick.getHTMLElement());
-    this.view.getElement().append(chopstick.getHTMLElement().cloneNode(true));
+    this.view.getElement().append(chopstick.getHTMLElement(), chopstick.getHTMLElement().cloneNode(true));
+    // this.view.getElement().append(chopstick.getHTMLElement().cloneNode(true));
   }
 }
