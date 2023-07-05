@@ -34,7 +34,7 @@ export class App {
   tableView = new TableView({ tag: 'div', classNames: ['game__table', 'table__wrapper'] });
   private chopsticksView = new ChopsticksView({ tag: 'div', classNames: ['game__chopsticks'] });
   editorView = new EditorView({ tag: 'div', classNames: ['game__editor', 'editor'], innerText: '' });
-  editorCodeView? = new EditorCodeView();
+  editorCodeView = new EditorCodeView({ tag: 'div', classNames: ['editor__code']});
   markupView? = new MarkupView();
   lvlAboutView? = new LvlAboutView();
 
@@ -53,9 +53,9 @@ export class App {
   // private readonly table = this.tableViewElem?.lastChild?.firstChild;
   // private readonly chopsticksElem = this.chopsticksView?.getHTMLElement();
   // private readonly editorViewElem = this.editorView?.getHTMLElement();
-  private readonly editorCodeViewElem = this.editorCodeView?.getHTMLElement();
-  private readonly editorInputCSS = this.editorCodeViewElem?.firstChild?.firstChild;
-  private readonly editorEnterBtn = this.editorCodeViewElem?.firstChild?.lastChild;
+  // private readonly editorCodeViewElem = this.editorCodeView?.getHTMLElement();
+  // private readonly editorInputCSS = this.editorCodeViewElem?.firstChild?.firstChild;
+  // private readonly editorEnterBtn = this.editorCodeViewElem?.firstChild?.lastChild;
   // private readonly editorWindowCSS = this.editorViewElem?.childNodes[0].childNodes[1];
   // private readonly editorWindowHtml = this.editorViewElem?.childNodes[1].childNodes[1];
   private readonly markupViewHTML = this.markupView?.getHTMLElement();
@@ -83,14 +83,14 @@ export class App {
   }
 
   createView() {
-    console.log(this.editorView.windowCreatorCSS, 5555);
+    console.log(this.editorView.getPropertyElem(this.editorView.windowCreatorCSS), 5555);
     if (this.footerElement) document.body.prepend(this.footerElement);
     if (this.lvlAboutViewElem && this.mainWrapper instanceof HTMLElement) {
       this.mainWrapper.append(this.lvlAboutViewElem);
     }
-    if (this.editorView.windowCreatorCSS instanceof HTMLElement && this.editorCodeViewElem instanceof HTMLElement) this.editorView.windowCreatorCSS.appendChild(this.editorCodeViewElem);
-    if (this.editorView.windowCreatorHTML instanceof HTMLElement && this.markupViewHTML) {
-      this.editorView.windowCreatorHTML.appendChild(this.markupViewHTML);
+    this.editorView.getPropertyElem(this.editorView.windowCreatorCSS).appendChild(this.editorCodeView.getHTMLElement());
+    if (this.markupViewHTML) {
+      this.editorView.getPropertyElem(this.editorView.windowCreatorHTML).appendChild(this.markupViewHTML);
     }
     if (
       // this.lanternViewElem &&
@@ -238,12 +238,12 @@ export class App {
   }
 
   clearInput() {
-    if (this.editorInputCSS instanceof HTMLInputElement) this.editorInputCSS.value = '';
+    if (this.editorCodeView.inputField instanceof HTMLInputElement) this.editorCodeView.inputField.value = '';
   }
 
   checkInputValue(value: string) {
     // const table = this.tableViewElem?.childNodes[1].firstChild;
-    if (this.editorInputCSS instanceof HTMLInputElement) {
+    // if (this.editorInputCSS instanceof HTMLInputElement) {
       if (value === lvlJSON[this.lvl].answer && this.lvl === lvlJSON.length - 1) {
         // if (
         //   this.tableWrapper instanceof HTMLElement &&
@@ -279,13 +279,13 @@ export class App {
           this.editorView.getHTMLElement().classList.remove('shake');
         }, 200);
       }
-    }
+    // }
   }
 
   hintWriter(index = 0) {
     if (index < lvlJSON[this.lvl].answer.length) {
-      if (this.editorInputCSS instanceof HTMLInputElement) {
-        this.editorInputCSS.value += lvlJSON[this.lvl].answer.charAt(index);
+      if (this.editorCodeView.inputField instanceof HTMLInputElement) {
+        this.editorCodeView.inputField.value += lvlJSON[this.lvl].answer.charAt(index);
       }
       index += 1;
       setTimeout(() => this.hintWriter(index), 200);
@@ -408,16 +408,26 @@ export class App {
       this.nextLvl();
     });
 
-    this.editorEnterBtn?.addEventListener('click', () => {
-      if (this.editorInputCSS instanceof HTMLInputElement) this.checkInputValue(this.editorInputCSS?.value);
-    });
-
-    this.editorInputCSS?.addEventListener('keydown', (e: Event) => {
-      if (e instanceof KeyboardEvent && e.key === 'Enter') {
-        e.preventDefault();
-        if (this.editorInputCSS instanceof HTMLInputElement) this.checkInputValue(this.editorInputCSS?.value);
+    // if (this.editorCodeView.enterBtn instanceof HTMLElement) {
+      console.log(this.editorCodeView.enterBtn)
+    this.editorCodeView.getPropertyElem(this.editorCodeView.enterBtn).addEventListener('click', () => {
+      console.log(1)
+      if (this.editorCodeView.inputField instanceof HTMLInputElement) {
+      console.log(2)
+      this.checkInputValue(this.editorCodeView.inputField.value);
       }
     });
+    // }
+    // if (this.editorCodeView.inputField instanceof HTMLInputElement) {
+      console.log(this.editorCodeView.inputField)
+
+    this.editorCodeView.getPropertyElem(this.editorCodeView.inputField).addEventListener('keydown', (e: Event) => {
+      if (e instanceof KeyboardEvent && e.key === 'Enter') {
+        e.preventDefault();
+        if (this.editorCodeView.inputField instanceof HTMLInputElement) this.checkInputValue(this.editorCodeView.inputField.value);
+      }
+    });
+    // }
 
     this.headerView.getPropertyElem(this.headerView.reloadCreator).addEventListener('click', (e: Event) => {
       this.reloadGame();
