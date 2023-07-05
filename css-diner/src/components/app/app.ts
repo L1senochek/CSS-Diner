@@ -27,7 +27,7 @@ export class App {
   currentDeg = 0;
   private headerView = new HeaderView({ tag: 'header', classNames: ['header'] });
   private footerView? = new FooterView();
-  private mainView? = new MainView();
+  private mainView = new MainView({ tag: 'main', classNames: ['main']});
   private gameView = new GameView({ tag: 'div', classNames: ['game']});
   private lanternView = new LanternView({ tag: 'div', classNames: ['game__lanterns'] });
   gameQuestView = new GameQuestView({ tag: 'p2', classNames: ['game__quest'] });
@@ -42,8 +42,8 @@ export class App {
   // private readonly reload = this.headerElement?.lastChild?.firstChild;
   // private readonly help = this.headerElement?.lastChild?.lastChild;
 
-  private readonly mainElement = this.mainView?.getHTMLElement();
-  private readonly mainWrapper = this.mainElement?.firstChild;
+  // private readonly mainElement = this.mainView?.getHTMLElement();
+  // private readonly mainWrapper = this.mainElement?.firstChild;
   // private readonly gameViewElem = this.gameView?.getHTMLElement();
   // private readonly lanternViewElem = this.lanternView?.getHTMLElement();
   // private readonly gameQuestViewElem = this.gameQuestView?.getHTMLElement();
@@ -83,10 +83,10 @@ export class App {
   }
 
   createView() {
-    console.log(this.editorView.getPropertyElem(this.editorView.windowCreatorCSS), 5555);
+    console.log(this.mainView.getPropertyElem(this.mainView.mainWrapper), 5555);
     if (this.footerElement) document.body.prepend(this.footerElement);
-    if (this.lvlAboutViewElem && this.mainWrapper instanceof HTMLElement) {
-      this.mainWrapper.append(this.lvlAboutViewElem);
+    if (this.lvlAboutViewElem) {
+      this.mainView.getPropertyElem(this.mainView.mainWrapper).append(this.lvlAboutViewElem);
     }
     this.editorView.getPropertyElem(this.editorView.windowCreatorCSS).appendChild(this.editorCodeView.getHTMLElement());
     // if (this.markupViewHTML) {
@@ -108,8 +108,9 @@ export class App {
         this.editorView.getHTMLElement()
       );
     // }
-    if (this.mainWrapper instanceof HTMLElement) this.mainWrapper.prepend(this.gameView.getHTMLElement());
-    if (this.mainElement) document.body.prepend(this.mainElement);
+    console.log(this.mainView.getHTMLElement(), 9)
+    this.mainView.getPropertyElem(this.mainView.mainWrapper).prepend(this.gameView.getHTMLElement());
+    document.body.prepend(this.mainView.getHTMLElement());
     // if (this.headerElement) document.body.prepend(this.headerElement);
     document.body.prepend(this.headerView.getHTMLElement());
     this.renderLvl();
