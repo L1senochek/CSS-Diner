@@ -35,7 +35,7 @@ export class App {
   private chopsticksView = new ChopsticksView({ tag: 'div', classNames: ['game__chopsticks'] });
   editorView = new EditorView({ tag: 'div', classNames: ['game__editor', 'editor'], innerText: '' });
   editorCodeView = new EditorCodeView({ tag: 'div', classNames: ['editor__code']});
-  markupView? = new MarkupView();
+  markupView = new MarkupView({ tag: 'div', classNames: ['editor__code']});
   lvlAboutView? = new LvlAboutView();
 
   // private readonly headerElement = this.headerView?.getHTMLElement();
@@ -58,8 +58,8 @@ export class App {
   // private readonly editorEnterBtn = this.editorCodeViewElem?.firstChild?.lastChild;
   // private readonly editorWindowCSS = this.editorViewElem?.childNodes[0].childNodes[1];
   // private readonly editorWindowHtml = this.editorViewElem?.childNodes[1].childNodes[1];
-  private readonly markupViewHTML = this.markupView?.getHTMLElement();
-  private readonly markup = this.markupView?.getHTMLElement()?.firstChild?.firstChild;
+  // private readonly markupViewHTML = this.markupView?.getHTMLElement();
+  // private readonly markup = this.markupView?.getHTMLElement()?.firstChild?.firstChild;
   private readonly lvlAboutViewElem = this.lvlAboutView?.getHTMLElement();
   private readonly prevArr = this.lvlAboutViewElem?.firstChild?.childNodes[2]?.firstChild;
   private readonly nextArr = this.lvlAboutViewElem?.firstChild?.childNodes[2]?.lastChild;
@@ -89,9 +89,9 @@ export class App {
       this.mainWrapper.append(this.lvlAboutViewElem);
     }
     this.editorView.getPropertyElem(this.editorView.windowCreatorCSS).appendChild(this.editorCodeView.getHTMLElement());
-    if (this.markupViewHTML) {
-      this.editorView.getPropertyElem(this.editorView.windowCreatorHTML).appendChild(this.markupViewHTML);
-    }
+    // if (this.markupViewHTML) {
+    this.editorView.getPropertyElem(this.editorView.windowCreatorHTML).appendChild(this.markupView.getHTMLElement());
+    // }
     if (
       // this.lanternViewElem &&
       this.gameViewElem instanceof HTMLElement
@@ -117,7 +117,7 @@ export class App {
   }
 
   createMarkup(num = this.lvl) {
-    if (this.markup instanceof HTMLElement) this.markup.innerHTML = `${lvlJSON[num].markup}`;
+    this.markupView.getPropertyElem(this.markupView.codeWrapper).innerHTML = `${lvlJSON[num].markup}`;
   }
 
   changeQuestName(num = this.lvl) {
@@ -386,11 +386,11 @@ export class App {
       this.highlightingElem(e, 'remove');
     });
 
-    this.markup?.addEventListener('mouseover', (e: Event) => {
+    this.markupView.getPropertyElem(this.markupView.codeWrapper).addEventListener('mouseover', (e: Event) => {
       this.highlightingElem(e, 'add');
     });
 
-    this.markup?.addEventListener('mouseout', (e: Event) => {
+    this.markupView.getPropertyElem(this.markupView.codeWrapper).addEventListener('mouseout', (e: Event) => {
       this.highlightingElem(e, 'remove');
     });
   }
