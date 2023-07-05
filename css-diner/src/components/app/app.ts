@@ -28,7 +28,7 @@ export class App {
   private headerView = new HeaderView({ tag: 'header', classNames: ['header'] });
   private footerView? = new FooterView();
   private mainView? = new MainView();
-  private gameView? = new GameView();
+  private gameView = new GameView({ tag: 'div', classNames: ['game']});
   private lanternView = new LanternView({ tag: 'div', classNames: ['game__lanterns'] });
   gameQuestView = new GameQuestView({ tag: 'p2', classNames: ['game__quest'] });
   tableView = new TableView({ tag: 'div', classNames: ['game__table', 'table__wrapper'] });
@@ -44,7 +44,7 @@ export class App {
 
   private readonly mainElement = this.mainView?.getHTMLElement();
   private readonly mainWrapper = this.mainElement?.firstChild;
-  private readonly gameViewElem = this.gameView?.getHTMLElement();
+  // private readonly gameViewElem = this.gameView?.getHTMLElement();
   // private readonly lanternViewElem = this.lanternView?.getHTMLElement();
   // private readonly gameQuestViewElem = this.gameQuestView?.getHTMLElement();
   // private readonly tableViewElem = this.tableView?.getHTMLElement();
@@ -92,23 +92,23 @@ export class App {
     // if (this.markupViewHTML) {
     this.editorView.getPropertyElem(this.editorView.windowCreatorHTML).appendChild(this.markupView.getHTMLElement());
     // }
-    if (
-      // this.lanternViewElem &&
-      this.gameViewElem instanceof HTMLElement
-      // this.gameQuestViewElem instanceof HTMLElement &&
-      // this.tableViewElem instanceof HTMLElement &&
-      // this.chopsticksElem instanceof HTMLElement &&
-      // this.editorViewElem instanceof HTMLElement
-    ) {
-      this.gameViewElem.prepend(
+    // if (
+    //   // this.lanternViewElem &&
+    //   // this.gameViewElem instanceof HTMLElement
+    //   // this.gameQuestViewElem instanceof HTMLElement &&
+    //   // this.tableViewElem instanceof HTMLElement &&
+    //   // this.chopsticksElem instanceof HTMLElement &&
+    //   // this.editorViewElem instanceof HTMLElement
+    // ) {
+      this.gameView.getHTMLElement().prepend(
         this.lanternView.getHTMLElement(),
         this.gameQuestView.getHTMLElement(),
         this.tableView.getHTMLElement(),
         this.chopsticksView.getHTMLElement(),
         this.editorView.getHTMLElement()
       );
-    }
-    if (this.gameViewElem && this.mainWrapper instanceof HTMLElement) this.mainWrapper.prepend(this.gameViewElem);
+    // }
+    if (this.mainWrapper instanceof HTMLElement) this.mainWrapper.prepend(this.gameView.getHTMLElement());
     if (this.mainElement) document.body.prepend(this.mainElement);
     // if (this.headerElement) document.body.prepend(this.headerElement);
     document.body.prepend(this.headerView.getHTMLElement());
