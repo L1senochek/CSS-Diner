@@ -1,5 +1,6 @@
-import CreatorElement from '../../../creator/creator';
+import CreatorElement, { ElementParam } from '../../../creator/creator';
 import { ElementFilled } from '../../../creator/fillDiv';
+import { View } from '../../../creator/view';
 import './lvl.css';
 
 export class LvlAboutView {
@@ -15,6 +16,7 @@ export class LvlAboutView {
   createLvlAbout() {
     const creator = new ElementFilled();
     const lvlParam = creator.createDiv('div', ['lvl__about'], '');
+
     const lvlWrapper = creator.createDiv('div', ['lvl__wrapper'], '');
     const lvlTitle = creator.createDiv('h2', ['lvl__title'], '');
     const lvlCheckmark = creator.createDiv('span', ['lvl__checkmark'], '');
@@ -111,5 +113,58 @@ export class LvlAboutView {
         ?.prepend(lvlWrapperCreator, lvlProgressBarCreator, lvlDescriptionCreator, lvlcurtainCreator);
     }
     return lvlCreator;
+  }
+}
+
+class descriptionHintView extends View {
+  hintContent: HTMLElement | null = null;
+
+  constructor(param: ElementParam) {
+    super(param);
+    this.changeView();
+  }
+  
+  changeView() {
+    const earWrapper = new CreatorElement({tag: 'span', classNames: ['hint__ear_wrapper'], innerText: ''}).getElement();
+    const hintLeftEar = new CreatorElement({tag: 'span', classNames: ['hint__left-ear'], innerText: ''}).getElement();
+    const hintRightEar = new CreatorElement({tag: 'span', classNames: ['hint__right-ear'], innerText: ''}).getElement();
+    earWrapper.prepend(hintLeftEar, hintRightEar);
+
+
+    
+    const hintWrapper = new CreatorElement({tag: 'span', classNames: ['hint__wrapper'], innerText: ''}).getElement();
+    const hintCat = new CreatorElement({tag: 'div', classNames: ['hint__cat'], innerText: ' > ω < '}).getElement();
+    this.hintContent = new CreatorElement({tag: 'div', classNames: ['hint__content'], innerText: ''}).getElement();
+    hintWrapper.prepend(hintCat, this.hintContent); 
+
+    this.view.getElement().prepend(earWrapper, hintWrapper);
+  }
+
+}
+
+class descriptionCreatorView extends View {
+  hintContent: HTMLElement | null = null;
+  constructor(param: ElementParam) {
+    super(param);
+    this.changeView();
+  }
+  
+  changeView() {
+    const descriptionHint = new descriptionHintView({tag: 'div', classNames: ['description__hint'], innerText: ''})
+    // изменяемый параметр descriptionHint.hintContent
+    this.hintContent = descriptionHint.hintContent;
+  }
+
+}
+
+export class _LvlAboutView extends View {
+  description: HTMLElement | null = null;
+
+  constructor(param: ElementParam) {
+    super(param);
+    this.changeView();
+  }
+  
+  changeView() {
   }
 }

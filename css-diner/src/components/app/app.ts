@@ -37,6 +37,7 @@ export class App {
   editorCodeView = new EditorCodeView({ tag: 'div', classNames: ['editor__code']});
   markupView = new MarkupView({ tag: 'div', classNames: ['editor__code']});
   lvlAboutView? = new LvlAboutView();
+  // lvlAboutView = new LvlAboutView({ tag: 'div', classNames: ['lvl__about', 'editor'], innerText: '' });
 
   // private readonly headerElement = this.headerView?.getHTMLElement();
   // private readonly reload = this.headerElement?.lastChild?.firstChild;
