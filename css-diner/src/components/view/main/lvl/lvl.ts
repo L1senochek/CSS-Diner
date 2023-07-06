@@ -25,6 +25,7 @@ export class LvlAboutView {
     const lvlNavNext = creator.createDiv('span', ['arrow__next'], '');
     const burger = creator.createDiv('div', ['burger'], '');
     const burgerLine = creator.createDiv('div', ['burger__line'], '');
+
     const lvlProgressBar = creator.createDiv('div', ['lvl__progress-bar'], '');
     const lvlProgress = creator.createDiv('div', ['lvl__progress'], '');
     const lvlDescription = creator.createDiv('div', ['lvl__description', 'description'], '');
@@ -116,7 +117,7 @@ export class LvlAboutView {
   }
 }
 
-class descriptionHintView extends View {
+class DescriptionHintView extends View {
   hintContent: HTMLElement | null = null;
 
   constructor(param: ElementParam) {
@@ -125,40 +126,105 @@ class descriptionHintView extends View {
   }
   
   changeView() {
-    const earWrapper = new CreatorElement({tag: 'span', classNames: ['hint__ear_wrapper'], innerText: ''}).getElement();
-    const hintLeftEar = new CreatorElement({tag: 'span', classNames: ['hint__left-ear'], innerText: ''}).getElement();
-    const hintRightEar = new CreatorElement({tag: 'span', classNames: ['hint__right-ear'], innerText: ''}).getElement();
-    earWrapper.prepend(hintLeftEar, hintRightEar);
+    const earWrapper = new CreatorElement({tag: 'span', classNames: ['hint__ear_wrapper'], innerText: ''});
+    const hintLeftEar = new CreatorElement({tag: 'span', classNames: ['hint__left-ear'], innerText: ''});
+    const hintRightEar = new CreatorElement({tag: 'span', classNames: ['hint__right-ear'], innerText: ''});
+    earWrapper.getElement().prepend(hintLeftEar.getElement(), hintRightEar.getElement());
 
 
     
-    const hintWrapper = new CreatorElement({tag: 'span', classNames: ['hint__wrapper'], innerText: ''}).getElement();
-    const hintCat = new CreatorElement({tag: 'div', classNames: ['hint__cat'], innerText: ' > ω < '}).getElement();
+    const hintWrapper = new CreatorElement({tag: 'span', classNames: ['hint__wrapper'], innerText: ''});
+    const hintCat = new CreatorElement({tag: 'div', classNames: ['hint__cat'], innerText: ' > ω < '});
     this.hintContent = new CreatorElement({tag: 'div', classNames: ['hint__content'], innerText: ''}).getElement();
-    hintWrapper.prepend(hintCat, this.hintContent); 
+    hintWrapper.getElement().prepend(hintCat.getElement(), this.hintContent); 
 
-    this.view.getElement().prepend(earWrapper, hintWrapper);
+    this.view.getElement().prepend(earWrapper.getElement(), hintWrapper.getElement());
   }
 
 }
 
-class descriptionCreatorView extends View {
+class DescriptionCreatorView extends View {
   hintContent: HTMLElement | null = null;
+  lvlExample: HTMLElement | null = null;
   constructor(param: ElementParam) {
     super(param);
     this.changeView();
   }
   
   changeView() {
-    const descriptionHint = new descriptionHintView({tag: 'div', classNames: ['description__hint'], innerText: ''})
+    const descriptionSelector = new CreatorElement({tag: 'h3', classNames: ['description__selector-name'], innerText: 'Type Selector'});
+    const descriptionTitle = new CreatorElement({tag: 'h3', classNames: ['description__title'], innerText: 'Select elements by their type'});
+    const descriptionSyntax = new CreatorElement({tag: 'h2', classNames: ['description__title'], innerText: 'Select elements by their type'});
+    const descriptionExamples = new CreatorElement({tag: 'h3', classNames: ['lvl__examples'] });
+    this.lvlExample = new CreatorElement({tag: 'div', classNames: ['lvl__example'], innerText: ''}).getElement();
+    const descriptionHint = new DescriptionHintView({tag: 'div', classNames: ['description__hint'], innerText: ''});
     // изменяемый параметр descriptionHint.hintContent
     this.hintContent = descriptionHint.hintContent;
+
+    this.view.getElement().prepend(descriptionSelector.getElement(), descriptionTitle.getElement(), descriptionSyntax.getElement(), descriptionExamples.getElement(), this.lvlExample, descriptionHint.getHTMLElement());
   }
 
 }
+/////////////////////////////////////////////
 
+export class TitleLvlView extends View {
+  lvlTitle: HTMLElement | null = null;
+  lvlCheckmark: HTMLElement | null = null;
+  lvlNavPrev: HTMLElement | null = null;
+  lvlNavNext: HTMLElement | null = null;
+  burger: HTMLElement | null = null;
+
+  constructor(param: ElementParam) {
+    super(param);
+    this.changeView();
+  }
+
+  changeView() {
+  this.lvlTitle = new CreatorElement({tag: 'h2', classNames: ['lvl__title'], innerText: ''}).getElement();
+  this.lvlTitle = new CreatorElement({tag: 'span', classNames: ['lvl__checkmark'], innerText: ''}).getElement();
+  this.lvlTitle = new CreatorElement({tag: 'div', classNames: ['lvl__nav'], innerText: ''}).getElement();
+  this.lvlTitle = new CreatorElement({tag: 'span', classNames: ['arrow__prev'], innerText: ''}).getElement();
+  this.lvlTitle = new CreatorElement({tag: 'span', classNames: ['arrow__next'], innerText: ''}).getElement();
+  this.lvlTitle = new CreatorElement({tag: 'div', classNames: ['burger'], innerText: ''}).getElement();
+  this.lvlTitle = new CreatorElement({tag: 'div', classNames: ['burger__line'], innerText: ''}).getElement();
+  return {
+    lvlTitle: this.lvlTitle,
+    lvlCheckmark: this.lvlCheckmark,
+    lvlNavPrev: this.lvlNavPrev,
+    lvlNavNext: this.lvlNavNext,
+    burger: this.burger
+    }
+  }
+}
+
+export class ProgressBarView extends View {
+  lvlProgress: HTMLElement | null = null;
+
+  constructor(param: ElementParam) {
+    super(param);
+    this.changeView();
+  }
+
+  changeView() {
+    this.lvlProgress = new CreatorElement({ tag: 'div', classNames: ['lvl__progress'], innerText: '' }).getElement();
+
+    this.view.getElement().append(this.lvlProgress);
+  }
+}
+
+
+// export class CurtainBurgerView extends View {
+
+// }
+  
 export class _LvlAboutView extends View {
+  lvlTitle: HTMLElement | null = null;
+  // 
   description: HTMLElement | null = null;
+  //
+  lvlProgress: HTMLElement | null = null;
+  hintContent: HTMLElement | null = null;
+  curtainBurger: HTMLElement | null = null;
 
   constructor(param: ElementParam) {
     super(param);
@@ -166,5 +232,18 @@ export class _LvlAboutView extends View {
   }
   
   changeView() {
+    const title = new TitleLvlView({tag: 'div', classNames: ['lvl__wrapper'], innerText: ''});
+    const progressBar = new ProgressBarView({tag: 'div', classNames: ['lvl__progress-bar'], innerText: ''});
+    
+    const lvlDescription = new DescriptionCreatorView({tag: 'div', classNames: ['lvl__description', 'description'], innerText: ''});
+    
+    this.lvlProgress = progressBar.lvlProgress;
+    this.hintContent = lvlDescription.hintContent;
+
+    // if (this.lvlTitle instanceof HTMLElement) this.lvlTitle = title;
+    this.curtainBurger = new CreatorElement({tag: 'div', classNames: ['lvl__curtain-burger'], innerText: ''}).getElement();
+
+
+    this.view.getElement().prepend(title.getHTMLElement(), progressBar.getHTMLElement(), lvlDescription.getHTMLElement(), this.curtainBurger);
   }
 }
