@@ -3,14 +3,11 @@ import CreatorElement, { ElementParam } from '../../../../../creator/creator';
 import { View } from '../../../../../creator/view';
 import './editorCode.css';
 
+
 const codeFragment = `
-<pre class="input__code">
-<code class="input__tip">
   {
     /* Styles would go here. */
-  }  
-</code>
-</pre>`;
+  }`;
 
 // export class _EditorCodeView {
 //   editorCodeView: CreatorElement;
@@ -55,6 +52,7 @@ class inputWrapperCreatorView extends View {
 export class EditorCodeView extends View {
   inputField: HTMLElement | null = null;
   enterBtn: HTMLElement | null = null;
+  test?: 4;
   constructor(param: ElementParam) {
     super(param);
     this.changeView();
@@ -66,8 +64,22 @@ export class EditorCodeView extends View {
       placeholder: 'Type in a CSS selector',
     }}).getElement();
     this.enterBtn = new CreatorElement({tag: 'button', classNames: ['input__enter'], innerText: 'enter'}).getElement();
-    const inputWrapperCreator = new inputWrapperCreatorView({tag: 'div', classNames: ['input__wrapper']});
-    inputWrapperCreator.appendElems([this.inputField, this.enterBtn]);
-    this.view.getElement().innerHTML = `${inputWrapperCreator.getHTMLElement().outerHTML}${codeFragment}`;
+    const inputWrapperCreator = new CreatorElement({tag: 'div', classNames: ['input__wrapper']}).getElement();
+    // if (this.inputField instanceof HTMLInputElement) {
+      
+    //   console.log(this.inputField.value, 636)
+    // }
+    const pre = new CreatorElement({tag: 'pre', classNames: ['input__code']}).getElement();
+    const codeTip = new CreatorElement({ tag: 'code', classNames: ['input__tip'], innerText: `${codeFragment}` }).getElement();
+    pre.prepend(codeTip);  
+   
+    inputWrapperCreator.prepend(this.inputField, this.enterBtn);
+
+    // this.view.getElement().innerHTML = `${inputWrapperCreator.outerHTML}${codeFragment}`;
+    this.view.getElement().prepend(inputWrapperCreator, pre);
+    // this.view.getElement().innerHTML += codeFragment;
+
+
+
   }
 }

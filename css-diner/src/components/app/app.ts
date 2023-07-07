@@ -36,7 +36,8 @@ export class App {
   editorView = new EditorView({ tag: 'div', classNames: ['game__editor', 'editor'], innerText: '' });
   editorCodeView = new EditorCodeView({ tag: 'div', classNames: ['editor__code']});
   markupView = new MarkupView({ tag: 'div', classNames: ['editor__code']});
-  lvlAboutView? = new LvlAboutView();
+  lvlAboutView = new LvlAboutView({ tag: 'div', classNames: ['lvl__about'], innerText: '' });
+  
   // lvlAboutView = new LvlAboutView({ tag: 'div', classNames: ['lvl__about', 'editor'], innerText: '' });
 
   // private readonly headerElement = this.headerView?.getHTMLElement();
@@ -62,19 +63,19 @@ export class App {
   // private readonly markupViewHTML = this.markupView?.getHTMLElement();
   // private readonly markup = this.markupView?.getHTMLElement()?.firstChild?.firstChild;
   private readonly lvlAboutViewElem = this.lvlAboutView?.getHTMLElement();
-  private readonly prevArr = this.lvlAboutViewElem?.firstChild?.childNodes[2]?.firstChild;
-  private readonly nextArr = this.lvlAboutViewElem?.firstChild?.childNodes[2]?.lastChild;
-  private readonly lvlProgress = this.lvlAboutViewElem?.children[1].firstChild;
-  private readonly lvlTitle = this.lvlAboutViewElem?.firstChild?.childNodes[0]; // Level 1 of 32
-  private readonly checkmark = this.lvlAboutViewElem?.firstChild?.childNodes[1]; // checkmark
-  private readonly burger = this.lvlAboutViewElem?.firstChild?.lastChild; // burger
-  private readonly curtainBurger = this.lvlAboutViewElem?.lastChild; // curtain-burger
-  private readonly descriptionSelector = this.lvlAboutViewElem?.childNodes[2]?.firstChild; // description__selector-name // Type Selector
-  private readonly descriptionSyntax = this.lvlAboutViewElem?.children[2].children[2]; // description__syntax highlight // A
-  private readonly descriptionTitle = this.lvlAboutViewElem?.children[2].children[1]; // description__title // Select elements by their type
-  private readonly lvlExample = this.lvlAboutViewElem?.children[2].children[4];
+  // private readonly prevArr = this.lvlAboutViewElem?.firstChild?.childNodes[2]?.firstChild;
+  // private readonly nextArr = this.lvlAboutViewElem?.firstChild?.childNodes[2]?.lastChild;
+  // private readonly lvlProgress = this.lvlAboutViewElem?.children[1].firstChild;
+  // private readonly lvlTitle = this.lvlAboutViewElem?.firstChild?.childNodes[0]; // Level 1 of 32
+  // private readonly checkmark = this.lvlAboutViewElem?.firstChild?.childNodes[1]; // checkmark
+  // private readonly burger = this.lvlAboutViewElem?.firstChild?.lastChild; // burger
+  // private readonly curtainBurger = this.lvlAboutViewElem?.lastChild; // curtain-burger
+  // private readonly descriptionSelector = this.lvlAboutViewElem?.childNodes[2]?.firstChild; // description__selector-name // Type Selector
+  // private readonly descriptionSyntax = this.lvlAboutViewElem?.children[2].children[2]; // description__syntax highlight // A
+  // private readonly descriptionTitle = this.lvlAboutViewElem?.children[2].children[1]; // description__title // Select elements by their type
+  // private readonly lvlExample = this.lvlAboutViewElem?.children[2].children[4];
   private readonly hintWrapper = this.lvlAboutViewElem?.children[2].children[5];
-  private readonly lvlhint = this.lvlAboutViewElem?.children[2].children[5].lastChild?.lastChild;
+  // private readonly lvlhint = this.lvlAboutViewElem?.children[2].children[5].lastChild?.lastChild;
   private readonly footerElement = this.footerView?.getHTMLElement();
 
   constructor() {
@@ -84,11 +85,10 @@ export class App {
   }
 
   createView() {
-    console.log(this.mainView.getPropertyElem(this.mainView.mainWrapper), 5555);
     if (this.footerElement) document.body.prepend(this.footerElement);
-    if (this.lvlAboutViewElem) {
-      this.mainView.getPropertyElem(this.mainView.mainWrapper).append(this.lvlAboutViewElem);
-    }
+    // if (this.lvlAboutViewElem) {
+    this.mainView.getPropertyElem(this.mainView.mainWrapper).append(this.lvlAboutView.getHTMLElement());
+    // }
     this.editorView.getPropertyElem(this.editorView.windowCreatorCSS).appendChild(this.editorCodeView.getHTMLElement());
     // if (this.markupViewHTML) {
     this.editorView.getPropertyElem(this.editorView.windowCreatorHTML).appendChild(this.markupView.getHTMLElement());
@@ -129,59 +129,63 @@ export class App {
   }
 
   changeTable(num = this.lvl) {
-    if (this.tableView.tableContent instanceof HTMLElement) {
-      this.tableView.tableContent.innerHTML = `${lvlJSON[num].markupOnTable}`;
-    }
+    // if (this.tableView.tableContent instanceof HTMLElement) {
+      this.tableView.getPropertyElem(this.tableView.tableContent).innerHTML = `${lvlJSON[num].markupOnTable}`;
+    // }
   }
 
   changeCheckmark() {
-    if (this.checkmark instanceof HTMLElement) {
+    if (this.lvlAboutView.lvlTitle?.lvlCheckmark instanceof HTMLElement) {
       if (LevelsResult[this.lvl] === LvlStatus.status1) {
-        this.checkmark?.classList.add('completed');
-        this.checkmark?.classList.remove('with-hint');
+        this.lvlAboutView.getPropertyElem(this.lvlAboutView.lvlTitle.lvlCheckmark).classList.add('completed');
+        this.lvlAboutView.lvlTitle.lvlCheckmark.classList.remove('with-hint');
       } else if (LevelsResult[this.lvl] === LvlStatus.status2) {
-        this.checkmark?.classList.remove('completed');
-        this.checkmark?.classList.remove('with-hint');
+        this.lvlAboutView.lvlTitle.lvlCheckmark.classList.remove('completed');
+        this.lvlAboutView.lvlTitle.lvlCheckmark.classList.remove('with-hint');
       } else if (LevelsResult[this.lvl] === LvlStatus.status3) {
-        this.checkmark?.classList.remove('completed');
-        this.checkmark?.classList.add('with-hint');
+        this.lvlAboutView.lvlTitle.lvlCheckmark.classList.remove('completed');
+        this.lvlAboutView.lvlTitle.lvlCheckmark.classList.add('with-hint');
       }
     }
   }
 
   changeAboutLvl(num = this.lvl) {
     if (
-      this.lvlTitle instanceof HTMLElement &&
-      this.descriptionSelector instanceof HTMLElement &&
-      this.descriptionTitle instanceof HTMLElement &&
-      this.descriptionSyntax instanceof HTMLElement &&
-      this.lvlExample instanceof HTMLElement &&
-      this.lvlhint instanceof HTMLElement
+      // this.lvlAboutView.lvlTitle?.lvlTitle instanceof HTMLElement &&
+      this.lvlAboutView.lvlTitle?.lvlTitle &&
+      this.lvlAboutView.description?.descriptionSelector &&
+      this.lvlAboutView.description.descriptionTitle &&
+      this.lvlAboutView.description.descriptionSyntax &&
+      this.lvlAboutView.description.lvlExample &&
+      this.lvlAboutView.description.hintContent
     ) {
       this.changeCheckmark();
-      this.lvlTitle.innerText = `Level ${num + 1} of ${lvlJSON.length}`;
-      this.descriptionSelector.innerText = `${lvlJSON[num].selectorName}`;
-      this.descriptionTitle.innerText = `${lvlJSON[num].title}`;
-      this.descriptionSyntax.innerText = `${lvlJSON[num].syntax}`;
-      this.lvlExample.innerHTML = `${lvlJSON[num].examples}`;
-      this.lvlhint.innerText = `${lvlJSON[num].hint}`;
+      this.lvlAboutView.lvlTitle.lvlTitle.innerText = `Level ${num + 1} of ${lvlJSON.length}`;
+      this.lvlAboutView.description.descriptionSelector.innerText = `${lvlJSON[num].selectorName}`;
+      this.lvlAboutView.description.descriptionTitle.innerText = `${lvlJSON[num].title}`;
+      this.lvlAboutView.description.descriptionSyntax.innerText = `${lvlJSON[num].syntax}`;
+      this.lvlAboutView.description.lvlExample.innerHTML = `${lvlJSON[num].examples}`;
+      this.lvlAboutView.description.hintContent.innerText = `${lvlJSON[num].hint}`;
     }
   }
 
   changeProgressBar(num = this.lvl) {
-    if (this.lvlProgress instanceof HTMLElement) {
-      this.lvlProgress.style.width = `${((num + 1) / lvlJSON.length) * 100}%`;
+    if (this.lvlAboutView.lvlProgress instanceof HTMLElement) {
+      this.lvlAboutView.lvlProgress.style.width = `${((num + 1) / lvlJSON.length) * 100}%`;
     }
   }
 
   changeHintClass(status: 'add' | 'remove') {
-    if (this.hintWrapper instanceof HTMLElement) {
+    // if (this.hintWrapper instanceof HTMLElement) {
       if (status === 'add') {
-        this.hintWrapper?.classList.add('active');
+        this.lvlAboutView.hintWrapper?.classList.add('active');
+        // this.hintWrapper?.classList.add('active');
       } else if (status === 'remove') {
-        this.hintWrapper?.classList.remove('active');
+        this.lvlAboutView.hintWrapper?.classList.remove('active');
+
+        // this.hintWrapper?.classList.remove('active');
       }
-    }
+    // }
   }
 
   renderLvl(num?: number) {
@@ -240,7 +244,10 @@ export class App {
   }
 
   clearInput() {
-    if (this.editorCodeView.inputField instanceof HTMLInputElement) this.editorCodeView.inputField.value = '';
+    if (this.editorCodeView.inputField instanceof HTMLInputElement) {
+      console.log(711)
+      this.editorCodeView.inputField.value = '';
+    }
   }
 
   checkInputValue(value: string) {
@@ -287,6 +294,7 @@ export class App {
   hintWriter(index = 0) {
     if (index < lvlJSON[this.lvl].answer.length) {
       if (this.editorCodeView.inputField instanceof HTMLInputElement) {
+        console.log(this.editorCodeView.inputField.value, 945, lvlJSON[this.lvl].answer.charAt(index))
         this.editorCodeView.inputField.value += lvlJSON[this.lvl].answer.charAt(index);
       }
       index += 1;
@@ -326,19 +334,24 @@ export class App {
         li.innerHTML = `<span class='lvl__checkmark'></span><span class='lvl__id'>${lvl.id}</span><span class='lvl__syntax'>${lvl.syntax}</span>`;
       }
       if (this.lvl === lvl.id - 1) li.classList.add('active');
-      if (this.curtainBurger instanceof HTMLElement) this.curtainBurger?.append(li);
+      this.lvlAboutView.curtainBurger?.append(li);
+      // if (this.curtainBurger instanceof HTMLElement) this.curtainBurger?.append(li);
     });
   }
 
   changeBurgerClass(status: 'toogle' | 'remove') {
     if (status === 'toogle') {
-      if (this.burger instanceof HTMLElement) this.burger?.classList.toggle('active');
-      if (this.curtainBurger instanceof HTMLElement) this.curtainBurger?.classList.toggle('active');
+      this.lvlAboutView.lvlTitle?.burger?.classList.toggle('active');
+      this.lvlAboutView.curtainBurger?.classList.toggle('active');
+      // if (this.burger instanceof HTMLElement) this.burger?.classList.toggle('active');
+      // if (this.curtainBurger instanceof HTMLElement) this.curtainBurger?.classList.toggle('active');
     } else if (status === 'remove') {
-      if (this.burger instanceof HTMLElement) this.burger?.classList.remove('active');
-      if (this.curtainBurger instanceof HTMLElement) this.curtainBurger?.classList.remove('active');
+      this.lvlAboutView.lvlTitle?.burger?.classList.remove('active');
+      this.lvlAboutView.curtainBurger?.classList.remove('active');
+      // if (this.burger instanceof HTMLElement) this.burger?.classList.remove('active');
+      // if (this.curtainBurger instanceof HTMLElement) this.curtainBurger?.classList.remove('active');
     }
-    if (this.curtainBurger instanceof HTMLElement) this.curtainBurger.innerHTML = '';
+    if (this.lvlAboutView.curtainBurger instanceof HTMLElement) this.lvlAboutView.curtainBurger.innerHTML = '';
   }
 
   changeLvlOnTarget(event: Event) {
@@ -354,7 +367,7 @@ export class App {
   highlightingElem(event: Event, status: 'add' | 'remove') {
     if (event.target instanceof HTMLElement && event.target.dataset.light) {
       const dataAtrubute = event.target.dataset.light;
-      console.log(dataAtrubute);
+      // console.log(dataAtrubute);
       const lightElem = document.querySelectorAll(`[data-light="${dataAtrubute}"]`);
       if (status === 'add') {
         lightElem.forEach((element) => {
@@ -402,26 +415,26 @@ export class App {
       this.setLocalStorageLvl();
     });
 
-    this.prevArr?.addEventListener('click', () => {
+    this.lvlAboutView.lvlTitle?.lvlNavPrev?.addEventListener('click', () => {
       this.prevLvl();
     });
 
-    this.nextArr?.addEventListener('click', () => {
+    this.lvlAboutView.lvlTitle?.lvlNavNext?.addEventListener('click', () => {
       this.nextLvl();
     });
 
     // if (this.editorCodeView.enterBtn instanceof HTMLElement) {
-      console.log(this.editorCodeView.enterBtn)
-    this.editorCodeView.getPropertyElem(this.editorCodeView.enterBtn).addEventListener('click', () => {
-      console.log(1)
+      // console.log(this.editorCodeView.enterBtn)
+      this.editorCodeView.enterBtn?.addEventListener('click', () => {
+      // console.log(1)
       if (this.editorCodeView.inputField instanceof HTMLInputElement) {
-      console.log(2)
+      // console.log(2)
       this.checkInputValue(this.editorCodeView.inputField.value);
       }
     });
     // }
     // if (this.editorCodeView.inputField instanceof HTMLInputElement) {
-      console.log(this.editorCodeView.inputField)
+      // console.log(this.editorCodeView.getPropertyElem(this.editorCodeView.inputField))
 
     this.editorCodeView.getPropertyElem(this.editorCodeView.inputField).addEventListener('keydown', (e: Event) => {
       if (e instanceof KeyboardEvent && e.key === 'Enter') {
@@ -443,12 +456,12 @@ export class App {
       this.hintWriter();
     });
 
-    this.burger?.addEventListener('click', () => {
+    this.lvlAboutView.lvlTitle?.burger?.addEventListener('click', () => {
       this.changeBurgerClass('toogle');
       this.createCurtainBurgerItem();
     });
 
-    this.curtainBurger?.addEventListener('click', (event: Event) => {
+    this.lvlAboutView.curtainBurger?.addEventListener('click', (event: Event) => {
       this.changeLvlOnTarget(event);
       this.changeBurgerClass('remove');
     });
