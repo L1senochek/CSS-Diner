@@ -1,5 +1,4 @@
 import CreatorElement, { ElementParam } from '../../../../creator/creator';
-import { ElementFilled } from '../../../../creator/fillDiv';
 import { View } from '../../../../creator/view';
 import './editor.css';
 
@@ -103,13 +102,13 @@ export class EditorView extends View {
     const cssPaneCreator = new CreatorElement({tag: 'div', classNames: ['editor__pane', 'css-pane'], innerText: ''});
     cssPaneCreator.getElement().prepend(headerCreator.getHTMLElement(), this.windowCreatorCSS)
     const htmlPaneCreator = new CreatorElement({tag: 'div', classNames: ['editor__pane', 'html-pane'], innerText: ''});
+
     const headerCreatorWin = new editorHeaderView({ tag: 'div', classNames: ['editor__header-input'], innerText: '' });
     headerCreatorWin.appendElems([
       { tag: 'div', classNames: ['editor__title'], innerText: 'HTML Viewer'},
       { tag: 'div', classNames: ['editor__file-name'], innerText: 'table.html'}
     ]);
     htmlPaneCreator.getElement().prepend(headerCreatorWin.getHTMLElement(), this.windowCreatorHTML);
-    console.log(this.view)
     this.view.getElement().prepend(cssPaneCreator.getElement(), htmlPaneCreator.getElement());
   }
 }

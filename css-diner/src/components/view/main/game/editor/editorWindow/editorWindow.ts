@@ -1,5 +1,4 @@
 import CreatorElement, { ElementParam } from '../../../../../creator/creator';
-import { ElementFilled } from '../../../../../creator/fillDiv';
 import { View } from '../../../../../creator/view';
 import './editorWindow.css';
 

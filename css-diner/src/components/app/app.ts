@@ -1,4 +1,3 @@
-import { FooterView } from '../view/footer/footer';
 import { HeaderView } from '../view/header/header';
 import { ChopsticksView } from '../view/main/game/chopsticks/chopsticks';
 import { EditorView } from '../view/main/game/editor/editor';
@@ -26,7 +25,6 @@ export class App {
   lvl: number;
   currentDeg = 0;
   private headerView = new HeaderView({ tag: 'header', classNames: ['header'] });
-  private footerView? = new FooterView();
   private mainView = new MainView({ tag: 'main', classNames: ['main']});
   private gameView = new GameView({ tag: 'div', classNames: ['game']});
   private lanternView = new LanternView({ tag: 'div', classNames: ['game__lanterns'] });
@@ -38,81 +36,24 @@ export class App {
   markupView = new MarkupView({ tag: 'div', classNames: ['editor__code']});
   lvlAboutView = new LvlAboutView({ tag: 'div', classNames: ['lvl__about'], innerText: '' });
   
-  // lvlAboutView = new LvlAboutView({ tag: 'div', classNames: ['lvl__about', 'editor'], innerText: '' });
-
-  // private readonly headerElement = this.headerView?.getHTMLElement();
-  // private readonly reload = this.headerElement?.lastChild?.firstChild;
-  // private readonly help = this.headerElement?.lastChild?.lastChild;
-
-  // private readonly mainElement = this.mainView?.getHTMLElement();
-  // private readonly mainWrapper = this.mainElement?.firstChild;
-  // private readonly gameViewElem = this.gameView?.getHTMLElement();
-  // private readonly lanternViewElem = this.lanternView?.getHTMLElement();
-  // private readonly gameQuestViewElem = this.gameQuestView?.getHTMLElement();
-  // private readonly tableViewElem = this.tableView?.getHTMLElement();
-  // private readonly tableContent = this.tableViewElem?.childNodes[1];
-  // private readonly tableWrapper = this.tableViewElem?.childNodes[0];
-  // private readonly table = this.tableViewElem?.lastChild?.firstChild;
-  // private readonly chopsticksElem = this.chopsticksView?.getHTMLElement();
-  // private readonly editorViewElem = this.editorView?.getHTMLElement();
-  // private readonly editorCodeViewElem = this.editorCodeView?.getHTMLElement();
-  // private readonly editorInputCSS = this.editorCodeViewElem?.firstChild?.firstChild;
-  // private readonly editorEnterBtn = this.editorCodeViewElem?.firstChild?.lastChild;
-  // private readonly editorWindowCSS = this.editorViewElem?.childNodes[0].childNodes[1];
-  // private readonly editorWindowHtml = this.editorViewElem?.childNodes[1].childNodes[1];
-  // private readonly markupViewHTML = this.markupView?.getHTMLElement();
-  // private readonly markup = this.markupView?.getHTMLElement()?.firstChild?.firstChild;
-  private readonly lvlAboutViewElem = this.lvlAboutView?.getHTMLElement();
-  // private readonly prevArr = this.lvlAboutViewElem?.firstChild?.childNodes[2]?.firstChild;
-  // private readonly nextArr = this.lvlAboutViewElem?.firstChild?.childNodes[2]?.lastChild;
-  // private readonly lvlProgress = this.lvlAboutViewElem?.children[1].firstChild;
-  // private readonly lvlTitle = this.lvlAboutViewElem?.firstChild?.childNodes[0]; // Level 1 of 32
-  // private readonly checkmark = this.lvlAboutViewElem?.firstChild?.childNodes[1]; // checkmark
-  // private readonly burger = this.lvlAboutViewElem?.firstChild?.lastChild; // burger
-  // private readonly curtainBurger = this.lvlAboutViewElem?.lastChild; // curtain-burger
-  // private readonly descriptionSelector = this.lvlAboutViewElem?.childNodes[2]?.firstChild; // description__selector-name // Type Selector
-  // private readonly descriptionSyntax = this.lvlAboutViewElem?.children[2].children[2]; // description__syntax highlight // A
-  // private readonly descriptionTitle = this.lvlAboutViewElem?.children[2].children[1]; // description__title // Select elements by their type
-  // private readonly lvlExample = this.lvlAboutViewElem?.children[2].children[4];
-  private readonly hintWrapper = this.lvlAboutViewElem?.children[2].children[5];
-  // private readonly lvlhint = this.lvlAboutViewElem?.children[2].children[5].lastChild?.lastChild;
-  private readonly footerElement = this.footerView?.getHTMLElement();
-
   constructor() {
     this.lvl = 0;
     this.getLocalStorageLvl();
-    // this.createView();
   }
 
   createView() {
-    if (this.footerElement) document.body.prepend(this.footerElement);
-    // if (this.lvlAboutViewElem) {
     this.mainView.getPropertyElem(this.mainView.mainWrapper).append(this.lvlAboutView.getHTMLElement());
-    // }
     this.editorView.getPropertyElem(this.editorView.windowCreatorCSS).appendChild(this.editorCodeView.getHTMLElement());
-    // if (this.markupViewHTML) {
     this.editorView.getPropertyElem(this.editorView.windowCreatorHTML).appendChild(this.markupView.getHTMLElement());
-    // }
-    // if (
-    //   // this.lanternViewElem &&
-    //   // this.gameViewElem instanceof HTMLElement
-    //   // this.gameQuestViewElem instanceof HTMLElement &&
-    //   // this.tableViewElem instanceof HTMLElement &&
-    //   // this.chopsticksElem instanceof HTMLElement &&
-    //   // this.editorViewElem instanceof HTMLElement
-    // ) {
-      this.gameView.getHTMLElement().prepend(
-        this.lanternView.getHTMLElement(),
-        this.gameQuestView.getHTMLElement(),
-        this.tableView.getHTMLElement(),
-        this.chopsticksView.getHTMLElement(),
-        this.editorView.getHTMLElement()
-      );
-    // }
-    console.log(this.mainView.getHTMLElement(), 9)
+    this.gameView.getHTMLElement().prepend(
+      this.lanternView.getHTMLElement(),
+      this.gameQuestView.getHTMLElement(),
+      this.tableView.getHTMLElement(),
+      this.chopsticksView.getHTMLElement(),
+      this.editorView.getHTMLElement()
+    );
     this.mainView.getPropertyElem(this.mainView.mainWrapper).prepend(this.gameView.getHTMLElement());
     document.body.prepend(this.mainView.getHTMLElement());
-    // if (this.headerElement) document.body.prepend(this.headerElement);
     document.body.prepend(this.headerView.getHTMLElement());
     this.renderLvl();
     this.setEvents();
@@ -123,15 +64,11 @@ export class App {
   }
 
   changeQuestName(num = this.lvl) {
-    // if (this.gameQuestViewElem instanceof HTMLElement) {
     this.gameQuestView.getHTMLElement().innerText = `${lvlJSON[num].quest}`;
-    // }
   }
 
   changeTable(num = this.lvl) {
-    // if (this.tableView.tableContent instanceof HTMLElement) {
-      this.tableView.getPropertyElem(this.tableView.tableContent).innerHTML = `${lvlJSON[num].markupOnTable}`;
-    // }
+    this.tableView.getPropertyElem(this.tableView.tableContent).innerHTML = `${lvlJSON[num].markupOnTable}`;
   }
 
   changeCheckmark() {
@@ -151,7 +88,6 @@ export class App {
 
   changeAboutLvl(num = this.lvl) {
     if (
-      // this.lvlAboutView.lvlTitle?.lvlTitle instanceof HTMLElement &&
       this.lvlAboutView.lvlTitle?.lvlTitle &&
       this.lvlAboutView.description?.descriptionSelector &&
       this.lvlAboutView.description.descriptionTitle &&
@@ -176,16 +112,11 @@ export class App {
   }
 
   changeHintClass(status: 'add' | 'remove') {
-    // if (this.hintWrapper instanceof HTMLElement) {
-      if (status === 'add') {
-        this.lvlAboutView.hintWrapper?.classList.add('active');
-        // this.hintWrapper?.classList.add('active');
-      } else if (status === 'remove') {
-        this.lvlAboutView.hintWrapper?.classList.remove('active');
-
-        // this.hintWrapper?.classList.remove('active');
-      }
-    // }
+    if (status === 'add') {
+      this.lvlAboutView.hintWrapper?.classList.add('active');
+    } else if (status === 'remove') {
+      this.lvlAboutView.hintWrapper?.classList.remove('active');
+    }
   }
 
   renderLvl(num?: number) {
@@ -220,27 +151,14 @@ export class App {
   }
 
   changeWinClass(status: 'add' | 'remove') {
-    // const table = this.tableViewElem?.childNodes[1].firstChild;
-    // if (
-    //   // this.gameQuestViewElem instanceof HTMLElement &&
-    //   // this.tableWrapper instanceof HTMLElement &&
-    //   // this.tableContent instanceof HTMLElement &&
-    //   // table instanceof HTMLElement
-    //   // this.chopsticksElem instanceof HTMLElement
-    // ) {
     if (status === 'add') {
       this.gameQuestView.getHTMLElement().innerText = 'YOU WIN!';
-      // this.tableWrapper?.classList.add('win');
       this.tableView.getHTMLElement().classList.add('win');
-      // table?.classList.add('win');
       this.chopsticksView.getHTMLElement().classList.add('win');
     } else if (status === 'remove') {
-      // this.tableWrapper?.classList.remove('win');
       this.tableView.getHTMLElement().classList.remove('win');
-      // table.classList.remove('win');
       this.chopsticksView.getHTMLElement().classList.remove('win');
     }
-    // }
   }
 
   clearInput() {
@@ -251,44 +169,33 @@ export class App {
   }
 
   checkInputValue(value: string) {
-    // const table = this.tableViewElem?.childNodes[1].firstChild;
-    // if (this.editorInputCSS instanceof HTMLInputElement) {
-      if (value === lvlJSON[this.lvl].answer && this.lvl === lvlJSON.length - 1) {
-        // if (
-        //   this.tableWrapper instanceof HTMLElement &&
-        //   this.tableContent instanceof HTMLElement &&
-        //   table instanceof HTMLElement
-        // ) {
-        this.clearInput();
-        this.changeWinClass('add');
-        if (LevelsResult[this.lvl] === LvlStatus.status4) {
-          LevelsResult[this.lvl] = LvlStatus.status3;
-        } else {
-          LevelsResult[this.lvl] = LvlStatus.status1;
-        }
-        // }
-        this.changeCheckmark();
-      } else if (value === lvlJSON[this.lvl].answer) {
-        this.clearInput();
-        if (LevelsResult[this.lvl] === LvlStatus.status4) {
-          LevelsResult[this.lvl] = LvlStatus.status3;
-        } else {
-          LevelsResult[this.lvl] = LvlStatus.status1;
-        }
-        // if (table instanceof HTMLElement) {
-        this.tableView.getHTMLElement().classList.add('roll-up_anim');
-        setTimeout(() => {
-          this.tableView.getHTMLElement().classList.remove('roll-up_anim');
-          this.nextLvl();
-        }, 1000);
-        // }
+    if (value === lvlJSON[this.lvl].answer && this.lvl === lvlJSON.length - 1) {
+      this.clearInput();
+      this.changeWinClass('add');
+      if (LevelsResult[this.lvl] === LvlStatus.status4) {
+        LevelsResult[this.lvl] = LvlStatus.status3;
       } else {
-        this.editorView.getHTMLElement().classList.add('shake');
-        setTimeout(() => {
-          this.editorView.getHTMLElement().classList.remove('shake');
-        }, 200);
+        LevelsResult[this.lvl] = LvlStatus.status1;
       }
-    // }
+      this.changeCheckmark();
+    } else if (value === lvlJSON[this.lvl].answer) {
+      this.clearInput();
+      if (LevelsResult[this.lvl] === LvlStatus.status4) {
+        LevelsResult[this.lvl] = LvlStatus.status3;
+      } else {
+        LevelsResult[this.lvl] = LvlStatus.status1;
+      }
+      this.tableView.getHTMLElement().classList.add('roll-up_anim');
+      setTimeout(() => {
+        this.tableView.getHTMLElement().classList.remove('roll-up_anim');
+        this.nextLvl();
+      }, 1000);
+    } else {
+      this.editorView.getHTMLElement().classList.add('shake');
+      setTimeout(() => {
+        this.editorView.getHTMLElement().classList.remove('shake');
+      }, 200);
+    }
   }
 
   hintWriter(index = 0) {
@@ -335,7 +242,6 @@ export class App {
       }
       if (this.lvl === lvl.id - 1) li.classList.add('active');
       this.lvlAboutView.curtainBurger?.append(li);
-      // if (this.curtainBurger instanceof HTMLElement) this.curtainBurger?.append(li);
     });
   }
 
@@ -343,13 +249,9 @@ export class App {
     if (status === 'toogle') {
       this.lvlAboutView.lvlTitle?.burger?.classList.toggle('active');
       this.lvlAboutView.curtainBurger?.classList.toggle('active');
-      // if (this.burger instanceof HTMLElement) this.burger?.classList.toggle('active');
-      // if (this.curtainBurger instanceof HTMLElement) this.curtainBurger?.classList.toggle('active');
     } else if (status === 'remove') {
       this.lvlAboutView.lvlTitle?.burger?.classList.remove('active');
       this.lvlAboutView.curtainBurger?.classList.remove('active');
-      // if (this.burger instanceof HTMLElement) this.burger?.classList.remove('active');
-      // if (this.curtainBurger instanceof HTMLElement) this.curtainBurger?.classList.remove('active');
     }
     if (this.lvlAboutView.curtainBurger instanceof HTMLElement) this.lvlAboutView.curtainBurger.innerHTML = '';
   }
@@ -367,7 +269,6 @@ export class App {
   highlightingElem(event: Event, status: 'add' | 'remove') {
     if (event.target instanceof HTMLElement && event.target.dataset.light) {
       const dataAtrubute = event.target.dataset.light;
-      // console.log(dataAtrubute);
       const lightElem = document.querySelectorAll(`[data-light="${dataAtrubute}"]`);
       if (status === 'add') {
         lightElem.forEach((element) => {
@@ -392,7 +293,6 @@ export class App {
   }
 
   setMouse() {
-    // const table = this.tableViewElem?.lastChild?.firstChild;
     this.tableView.tableContent?.addEventListener('mouseover', (e: Event) => {
       this.highlightingElem(e, 'add');
     });
@@ -423,18 +323,11 @@ export class App {
       this.nextLvl();
     });
 
-    // if (this.editorCodeView.enterBtn instanceof HTMLElement) {
-      // console.log(this.editorCodeView.enterBtn)
-      this.editorCodeView.enterBtn?.addEventListener('click', () => {
-      // console.log(1)
+    this.editorCodeView.enterBtn?.addEventListener('click', () => {
       if (this.editorCodeView.inputField instanceof HTMLInputElement) {
-      // console.log(2)
       this.checkInputValue(this.editorCodeView.inputField.value);
       }
     });
-    // }
-    // if (this.editorCodeView.inputField instanceof HTMLInputElement) {
-      // console.log(this.editorCodeView.getPropertyElem(this.editorCodeView.inputField))
 
     this.editorCodeView.getPropertyElem(this.editorCodeView.inputField).addEventListener('keydown', (e: Event) => {
       if (e instanceof KeyboardEvent && e.key === 'Enter') {
@@ -442,7 +335,6 @@ export class App {
         if (this.editorCodeView.inputField instanceof HTMLInputElement) this.checkInputValue(this.editorCodeView.inputField.value);
       }
     });
-    // }
 
     this.headerView.getPropertyElem(this.headerView.reloadCreator).addEventListener('click', (e: Event) => {
       this.reloadGame();

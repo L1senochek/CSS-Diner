@@ -2,7 +2,6 @@ import CreatorElement, { ElementParam } from './creator';
 
 export class View {
   protected view: CreatorElement;
-
   constructor(param: ElementParam) {
     this.view = this.createView(param);
   }
