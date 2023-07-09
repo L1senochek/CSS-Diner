@@ -3,9 +3,3 @@
   flex-direction: column;
   align-items: center;
 }
-
-@media (max-width: 900px) {
-  .game {
-    max-width: 56vw;
-  }
-}

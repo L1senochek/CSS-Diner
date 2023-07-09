@@ -14,12 +14,11 @@ export class LanternView extends View {
     this.changeView();
   }
 
-  changeView() {
+  private changeView(): void {
     const lanternOne = new lanternView({ tag: 'span', classNames: ['lantern'] });
     lanternOne.appendElems([{ tag: 'span', classNames: ['lantern__title'], innerText: '壽司' }]);
     const lanternTwo = new lanternView({ tag: 'span', classNames: ['lantern'] });
     lanternTwo.appendElems([{ tag: 'span', classNames: ['lantern__title'], innerText: '貓' }]);
-
     this.view.getElement().append(lanternOne.getHTMLElement());
     this.view.getElement().append(lanternTwo.getHTMLElement());
     this.view.getElement().append(lanternOne.getHTMLElement().cloneNode(true));

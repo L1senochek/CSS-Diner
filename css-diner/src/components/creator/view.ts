@@ -6,11 +6,11 @@ export class View {
     this.view = this.createView(param);
   }
 
-  getHTMLElement() {
+  getHTMLElement(): HTMLElement {
     return this.view.getElement();
   }
 
-  createView(param: ElementParam) {
+  createView(param: ElementParam): CreatorElement {
     return new CreatorElement(param);
   }
 
@@ -18,12 +18,11 @@ export class View {
     if (param instanceof HTMLElement) {
       return param;
     } else {
-      console.log(param, 'error');
       throw new Error();
     }
   }
 
-  appendElems([...elem]: (ElementParam | HTMLElement)[]) {
+  appendElems([...elem]: (ElementParam | HTMLElement)[]): void {
     [...elem].forEach((element) => {
       if (element instanceof HTMLElement) {
         this.view.getElement().append(element);

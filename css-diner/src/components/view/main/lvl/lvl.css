@@ -391,16 +391,12 @@
   }
 
   .lvl__curtain-burger.active {
-    padding: 8vw 0vw 0 2vw;
-    width: 40vw;
+    padding: 8vw 0vw 0 3vw;
+    width: 24vw;
   }
 
   .lvl__checkmark {
     width: 3vw;
     height: 3.7vw;
-  }
-
-  .lvl__id {
-    padding: 0 1vw;
   }
 }

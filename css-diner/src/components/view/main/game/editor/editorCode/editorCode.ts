@@ -16,15 +16,29 @@ export class EditorCodeView extends View {
     this.changeView();
   }
 
-  changeView() {
-    this.inputField = new CreatorElement({tag: 'input', classNames: ['input__field'], innerText: '', callback: null, attributes: {
-      type: 'text',
-      placeholder: 'Type in a CSS selector',
-    }}).getElement();
-    this.enterBtn = new CreatorElement({tag: 'button', classNames: ['input__enter'], innerText: 'enter'}).getElement();
-    const inputWrapperCreator = new CreatorElement({tag: 'div', classNames: ['input__wrapper']}).getElement();
-    const pre = new CreatorElement({tag: 'pre', classNames: ['input__code']}).getElement();
-    const codeTip = new CreatorElement({ tag: 'code', classNames: ['input__tip'], innerText: `${codeFragment}` }).getElement();
+  private changeView(): void {
+    this.inputField = new CreatorElement({
+      tag: 'input',
+      classNames: ['input__field'],
+      innerText: '',
+      callback: null,
+      attributes: {
+        type: 'text',
+        placeholder: 'Type in a CSS selector',
+      },
+    }).getElement();
+    this.enterBtn = new CreatorElement({
+      tag: 'button',
+      classNames: ['input__enter'],
+      innerText: 'enter',
+    }).getElement();
+    const inputWrapperCreator = new CreatorElement({ tag: 'div', classNames: ['input__wrapper'] }).getElement();
+    const pre = new CreatorElement({ tag: 'pre', classNames: ['input__code'] }).getElement();
+    const codeTip = new CreatorElement({
+      tag: 'code',
+      classNames: ['input__tip'],
+      innerText: `${codeFragment}`,
+    }).getElement();
 
     pre.prepend(codeTip);
     inputWrapperCreator.prepend(this.inputField, this.enterBtn);

@@ -8,9 +8,8 @@ export class MainView extends View {
     super(param);
     this.changeView();
   }
-
-  changeView() {
-    this.mainWrapper = new CreatorElement({tag: 'div', classNames: ['wrapper']}).getElement();
-    this.view.getElement().prepend(this.mainWrapper)
+  private changeView(): void {
+    this.mainWrapper = new CreatorElement({ tag: 'div', classNames: ['wrapper'] }).getElement();
+    this.view.getElement().prepend(this.mainWrapper);
   }
 }

@@ -14,7 +14,7 @@ export class ChopsticksView extends View {
     this.changeView();
   }
 
-  changeView() {
+  private changeView(): void {
     const chopstick = new ChopstickView({ tag: 'div', classNames: ['chopstick'] });
     chopstick.appendElems([
       { tag: 'span', classNames: ['chopstick__back'] },

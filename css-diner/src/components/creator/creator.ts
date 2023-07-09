@@ -25,7 +25,7 @@ export default class CreatorElement {
     }
   }
 
-  createElem(param: ElementParam) {
+  createElem(param: ElementParam): void {
     this.elem = document.createElement(param.tag);
     param.classNames.map((cssClass) => {
       if (this.elem instanceof HTMLElement) this.elem.classList.add(cssClass);

@@ -9,7 +9,7 @@ export class TableView extends View {
     this.changeView();
   }
 
-  changeView() {
+  private changeView(): void {
     this.tableContent = new CreatorElement({ tag: 'div', classNames: ['table__content'] }).getElement();
     const tableSurface = new CreatorElement({ tag: 'div', classNames: ['table__surface'] }).getElement();
     this.view.getElement().prepend(this.tableContent, tableSurface);
