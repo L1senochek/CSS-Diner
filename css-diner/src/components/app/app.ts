@@ -31,7 +31,7 @@ enum StatusAddRemove {
 let LevelsResult = Array(lvlJSON.length).fill(LvlStatus.status2);
 
 export class App {
-  private lvl: number;
+  lvl: number;
   private currentDeg = 0;
   private headerView = new HeaderView({ tag: 'header', classNames: ['header'] });
   private mainView = new MainView({ tag: 'main', classNames: ['main'] });
@@ -41,9 +41,9 @@ export class App {
   private tableView = new TableView({ tag: 'div', classNames: ['game__table', 'table__wrapper'] });
   private chopsticksView = new ChopsticksView({ tag: 'div', classNames: ['game__chopsticks'] });
   private editorView = new EditorView({ tag: 'div', classNames: ['game__editor', 'editor'], innerText: '' });
-  private editorCodeView = new EditorCodeView({ tag: 'div', classNames: ['editor__code'] });
+  editorCodeView = new EditorCodeView({ tag: 'div', classNames: ['editor__code'] });
   private markupView = new MarkupView({ tag: 'div', classNames: ['editor__code'] });
-  private lvlAboutView = new LvlAboutView({ tag: 'div', classNames: ['lvl__about'], innerText: '' });
+  lvlAboutView = new LvlAboutView({ tag: 'div', classNames: ['lvl__about'], innerText: '' });
 
   constructor() {
     this.lvl = 0;
@@ -116,7 +116,7 @@ export class App {
     }
   }
 
-  private changeProgressBar(num: number = this.lvl): void {
+  changeProgressBar(num: number = this.lvl): void {
     if (this.lvlAboutView.lvlProgress instanceof HTMLElement) {
       this.lvlAboutView.lvlProgress.style.width = `${((num + 1) / lvlJSON.length) * 100}%`;
     }
@@ -142,21 +142,21 @@ export class App {
     this.setMouse();
   }
 
-  private nextLvl(): void {
+  nextLvl(): void {
     if (this.lvl < lvlJSON.length - 1) {
       this.lvl += 1;
       this.renderLvl();
     }
   }
 
-  private prevLvl(): void {
+  prevLvl(): void {
     if (this.lvl > 0) {
       this.lvl -= 1;
       this.renderLvl();
     }
   }
 
-  private toLvl(num: number): void {
+  toLvl(num: number): void {
     this.lvl = num;
     this.renderLvl(num);
   }
@@ -172,7 +172,7 @@ export class App {
     }
   }
 
-  private clearInput(): void {
+  clearInput(): void {
     if (this.editorCodeView.inputField instanceof HTMLInputElement) {
       this.editorCodeView.inputField.value = '';
     }
