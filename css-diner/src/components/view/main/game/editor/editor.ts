@@ -1,4 +1,5 @@
-import CreatorElement, { ElementParam } from '../../../../creator/creator';
+import { ElementParam } from '../../../../../types/creator/creator';
+import CreatorElement from '../../../../creator/creator';
 import { View } from '../../../../creator/view';
 import './editor.css';
 
@@ -9,8 +10,8 @@ class editorHeaderView extends View {
 }
 
 export class EditorView extends View {
-  windowCreatorCSS: HTMLElement | null = null;
-  windowCreatorHTML: HTMLElement | null = null;
+  windowCreatorCSS!: HTMLElement;
+  windowCreatorHTML!: HTMLElement;
   constructor(param: ElementParam) {
     super(param);
     this.changeView();
@@ -18,17 +19,14 @@ export class EditorView extends View {
 
   private changeView(): void {
     this.windowCreatorCSS = new CreatorElement({
-      tag: 'div',
       classNames: ['editor__window'],
       innerText: '',
     }).getElement();
     this.windowCreatorHTML = new CreatorElement({
-      tag: 'div',
       classNames: ['editor__window'],
       innerText: '',
     }).getElement();
     const lineNumCreator = new CreatorElement({
-      tag: 'div',
       classNames: ['editor__line-numbers'],
       innerText: '',
     }).getElement();
@@ -38,22 +36,21 @@ export class EditorView extends View {
     this.windowCreatorCSS.prepend(lineNumCreator);
     this.windowCreatorHTML.prepend(lineNumCreator.cloneNode(true));
 
-    const headerCreator = new editorHeaderView({ tag: 'div', classNames: ['editor__header-input'], innerText: '' });
+    const headerCreator = new editorHeaderView({ classNames: ['editor__header-input'], innerText: '' });
     headerCreator.appendElems([
-      { tag: 'div', classNames: ['editor__title'], innerText: 'CSS Editor' },
-      { tag: 'div', classNames: ['editor__file-name'], innerText: 'style.css' },
+      { classNames: ['editor__title'], innerText: 'CSS Editor' },
+      { classNames: ['editor__file-name'], innerText: 'style.css' },
     ]);
-    const cssPaneCreator = new CreatorElement({ tag: 'div', classNames: ['editor__pane', 'css-pane'], innerText: '' });
+    const cssPaneCreator = new CreatorElement({ classNames: ['editor__pane', 'css-pane'], innerText: '' });
     cssPaneCreator.getElement().prepend(headerCreator.getHTMLElement(), this.windowCreatorCSS);
     const htmlPaneCreator = new CreatorElement({
-      tag: 'div',
       classNames: ['editor__pane', 'html-pane'],
       innerText: '',
     });
-    const headerCreatorWin = new editorHeaderView({ tag: 'div', classNames: ['editor__header-input'], innerText: '' });
+    const headerCreatorWin = new editorHeaderView({ classNames: ['editor__header-input'], innerText: '' });
     headerCreatorWin.appendElems([
-      { tag: 'div', classNames: ['editor__title'], innerText: 'HTML Viewer' },
-      { tag: 'div', classNames: ['editor__file-name'], innerText: 'table.html' },
+      { classNames: ['editor__title'], innerText: 'HTML Viewer' },
+      { classNames: ['editor__file-name'], innerText: 'table.html' },
     ]);
     htmlPaneCreator.getElement().prepend(headerCreatorWin.getHTMLElement(), this.windowCreatorHTML);
     this.view.getElement().prepend(cssPaneCreator.getElement(), htmlPaneCreator.getElement());

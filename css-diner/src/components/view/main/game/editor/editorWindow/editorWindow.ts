@@ -1,9 +1,10 @@
-import CreatorElement, { ElementParam } from '../../../../../creator/creator';
+import { ElementParam } from '../../../../../../types/creator/creator';
+import CreatorElement from '../../../../../creator/creator';
 import { View } from '../../../../../creator/view';
 import './editorWindow.css';
 
 export class MarkupView extends View {
-  codeWrapper: HTMLElement | null = null;
+  codeWrapper!: HTMLElement;
   constructor(param: ElementParam) {
     super(param);
     this.changeView();

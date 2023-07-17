@@ -1,4 +1,4 @@
-import { ElementParam } from '../../../../creator/creator';
+import { ElementParam } from '../../../../../types/creator/creator';
 import { View } from '../../../../creator/view';
 import './lanterns.css';
 

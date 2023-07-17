@@ -1,14 +1,4 @@
-export type Callback<T> = (data?: T) => void;
-export interface ElementParam {
-  tag: string;
-  classNames: string[];
-  innerText?: string;
-  callback?: Callback<Event> | null;
-  attributes?: {
-    type: string;
-    placeholder: string;
-  };
-}
+import { ElementParam } from '../../types/creator/creator';
 
 export default class CreatorElement {
   elem: HTMLElement | null;
@@ -26,11 +16,15 @@ export default class CreatorElement {
   }
 
   createElem(param: ElementParam): void {
-    this.elem = document.createElement(param.tag);
+    this.elem = document.createElement(param.tag ?? 'div');
     param.classNames.map((cssClass) => {
-      if (this.elem instanceof HTMLElement) this.elem.classList.add(cssClass);
+      if (this.elem instanceof HTMLElement) {
+        this.elem.classList.add(cssClass);
+      }
     });
-    if (param.innerText !== undefined) this.elem.innerText = param.innerText;
+    if (param.innerText !== undefined) {
+      this.elem.innerText = param.innerText;
+    }
     if (param.attributes) {
       const { type, placeholder } = param.attributes;
       this.elem.setAttribute('type', type);

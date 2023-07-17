@@ -1,4 +1,4 @@
-import { ElementParam } from '../../../../creator/creator';
+import { ElementParam } from '../../../../../types/creator/creator';
 import { View } from '../../../../creator/view';
 import './chopsticks.css';
 
@@ -15,7 +15,7 @@ export class ChopsticksView extends View {
   }
 
   private changeView(): void {
-    const chopstick = new ChopstickView({ tag: 'div', classNames: ['chopstick'] });
+    const chopstick = new ChopstickView({ classNames: ['chopstick'] });
     chopstick.appendElems([
       { tag: 'span', classNames: ['chopstick__back'] },
       { tag: 'span', classNames: ['chopstick__top'] },

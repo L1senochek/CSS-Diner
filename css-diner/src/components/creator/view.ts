@@ -1,4 +1,5 @@
-import CreatorElement, { ElementParam } from './creator';
+import { ElementParam } from '../../types/creator/creator';
+import CreatorElement from './creator';
 
 export class View {
   protected view: CreatorElement;

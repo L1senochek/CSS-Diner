@@ -1,4 +1,5 @@
-import CreatorElement, { ElementParam } from '../../../../../creator/creator';
+import { ElementParam } from '../../../../../../types/creator/creator';
+import CreatorElement from '../../../../../creator/creator';
 import { View } from '../../../../../creator/view';
 import './editorCode.css';
 
@@ -8,8 +9,8 @@ const codeFragment = `
   }`;
 
 export class EditorCodeView extends View {
-  inputField: HTMLElement | null = null;
-  enterBtn: HTMLElement | null = null;
+  inputField!: HTMLElement;
+  enterBtn!: HTMLElement;
   test?: 4;
   constructor(param: ElementParam) {
     super(param);
@@ -32,7 +33,7 @@ export class EditorCodeView extends View {
       classNames: ['input__enter'],
       innerText: 'enter',
     }).getElement();
-    const inputWrapperCreator = new CreatorElement({ tag: 'div', classNames: ['input__wrapper'] }).getElement();
+    const inputWrapperCreator = new CreatorElement({ classNames: ['input__wrapper'] }).getElement();
     const pre = new CreatorElement({ tag: 'pre', classNames: ['input__code'] }).getElement();
     const codeTip = new CreatorElement({
       tag: 'code',
