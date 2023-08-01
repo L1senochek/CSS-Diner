@@ -1,0 +1,91 @@
+.game__editor {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 0 auto;
+  border: solid 0.5vw rgb(0 0 0 / 45%);
+  border-radius: 5px;
+  width: 95%;
+  box-shadow: 10px 5px 5px rgb(110 109 109 / 20%);
+}
+
+.editor__pane {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  flex-grow: 1;
+  width: 50%;
+}
+
+.editor__header-input {
+  display: flex;
+  justify-content: space-between;
+  background: #0f0a07;
+  color: #FFE8CA;
+  padding: 0.5vw;
+}
+
+.editor__file-name {
+  opacity: 0.5;
+}
+
+.editor__window {
+  display: flex;
+  border: 1px #ffe8ca9c solid;
+  flex-grow: 1;
+  background-color: #1a1918;
+}
+
+.css-pane>.editor__window {
+  justify-content: center;
+}
+
+.editor__line-numbers {
+  display: flex;
+  white-space: pre;
+  padding: .5vw;
+  background-color: #53525263;
+  line-height: 150%;
+}
+
+.css-pane>.editor__window>.editor__line-numbers {
+  background-color: #a5a2a28a;
+}
+
+.shake {
+  animation: shake .1s 4;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+@media (max-width: 1200px) {
+  .game__editor {
+    flex-direction: column;
+    align-items: center;
+    margin: 3vw 0;
+  }
+
+  .editor__pane {
+    width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .game__editor {
+    margin: 2vw auto;
+  }
+
+}

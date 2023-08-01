@@ -1,0 +1,316 @@
+.game__table {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+} 
+
+.table__surface {
+  background: #ce964d;
+  background: #9a7544;
+  background-image: url('../../../../../assets/img/wood-pattern.png');
+  border-radius: 10px;
+  box-shadow: 10px 20px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 10px 20px 10px rgb(110 109 109 / 20%);
+  width: 55vw;
+  height: 19vw;
+}
+
+.table__content {
+  display: flex;
+  position: absolute;
+  width: 50vw;
+  height: 12vw;
+  margin: 1vw;
+}
+
+.game__table.win>.table__surface {
+  background: #000;
+  background-image: url('../../../../../assets/img/wood-pattern.png');
+}
+
+.game__table.win>.table__content {
+  background-image: url('../../../../../assets/img/ninja.jpg');
+  background-size: cover;
+  margin: 0;
+  width: 19vw;
+  height: 19vw;
+}
+
+.game__table.win>.table__content>.table {
+  display: none;
+}
+
+.table {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+@keyframes roll-up {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+.game__table.roll-up_anim>.table__content {
+  animation: roll-up 1s ease-out forwards;
+}
+
+.table plate {
+  display: flex;
+  justify-content: center;
+  width: 10vw;
+  height: 50%;
+  margin: 0.5vw;
+  background: radial-gradient(ellipse at center, rgb(255 255 255 / 35%) 0%, rgba(255,255,255,.35) 32%, rgba(0,0,0,.15) 35%, rgba(0,0,0,.05) 37%, rgba(0,0,0,0) 50%, rgba(0,0,0,0) 100%), linear-gradient(to right, #ffb680 0%, #5e4c41 60%);
+  border: solid 1px #000;
+  box-shadow: 0 0 0 2px rgb(235, 97, 54) inset, 0 2px 3px 0 rgba(36, 14, 0, 0.3);
+  border-radius: 50% 50%;
+  box-sizing: border-box;
+  margin: 0.5vw;
+  /* background: radial-gradient(ellipse at center, rgb(255 255 255 / 35%) 0%, rgba(255,255,255,.35) 32%, rgba(0,0,0,.15) 35%, rgba(0,0,0,.05) 37%, rgba(0,0,0,0) 50%, rgba(0,0,0,0) 100%), linear-gradient(to right, #80fffb 0%, #415e5b 60%); */
+  /* border: solid 1px #000; */
+  /* box-shadow: 0 0 0 2px rgb(54 235 223) inset, 0 2px 3px 0 rgb(0 36 32 / 30%); */
+}
+
+plate.active,
+dish.active,
+shrimpcat.active,
+tunacat.active,
+salmoncat.active,
+redcaviarcat.active,
+makicat.active,
+tamagocat.active {
+  animation: vibro 1s both .1s ease infinite;
+}
+
+.table dish {
+  display: flex;
+  justify-content: center;
+  width: 10vw;
+  height: 50%;
+  background: radial-gradient(ellipse at center, rgba(255,255,255,.35) 0%, rgba(255,255,255,.35) 32%, rgba(0,0,0,.15) 35%, rgba(0,0,0,.05) 37%, rgba(0,0,0,0) 50%, rgba(0,0,0,0) 100%), linear-gradient(145deg, #f2f2f2 0%, #990000 30%, #990000 64%, rgb(253, 135, 63) 64%, rgb(253, 135, 63) 65%, #990000 65%, #990000 70%, rgb(253, 135, 63) 70%, rgb(253, 135, 63) 71%, #990000 71%, #990000 100%);
+  border: solid 1px #FFE8CA;
+  box-shadow: 0 0 0 1px rgb(255 61 0) inset, 0 2px 3px 0 rgb(255 0 0 / 26%);
+  border-radius: 50% 50%;
+  box-sizing: border-box;
+  margin: 0.5vw;
+}
+
+dish.emerald {
+  background: radial-gradient(ellipse at center, rgba(255,255,255,.35) 0%, rgba(255,255,255,.35) 32%, rgba(0,0,0,.15) 35%, rgba(0,0,0,.05) 37%, rgba(0,0,0,0) 50%, rgba(0,0,0,0) 100%), linear-gradient(145deg, #f2f2f2 0%, #009924 30%, #00993a 64%, rgb(63 253 72) 64%, rgb(63 253 100) 65%, #009935 65%, #009924 70%, rgb(63 253 93) 70%, rgb(63 253 107) 71%, #009924 71%, #00991e 100%);
+  border: solid 1px #caffcd;
+  box-shadow: 0 0 0 1px rgb(0 255 50) inset, 0 2px 3px 0 rgb(0 255 41 / 26%);
+}
+
+shrimpcat {
+  background-image: url('../../../../../assets/img/shrimp-cat.png');
+  width: 10vw;
+  height: 6.65vw;
+  background-size: cover;
+  margin: 0.5vw;
+  z-index: 11;
+}
+
+tunacat {
+  background-image: url('../../../../../assets/img/tuna-cat-smoked.png');
+  width: 10vw;
+  height: 7.75vw;
+  background-size: cover;
+  margin: 0.5vw;
+}
+
+salmoncat {
+  background-image: url('../../../../../assets/img/salmon-cat.png');
+  width: 10vw;
+  height: 7.84vw;
+  background-size: cover;
+  margin: 0.5vw;
+}
+
+redcaviarcat {
+  background-image: url('../../../../../assets/img/red-caviar-cat.png');
+  width: 10vw;
+  height: 9.22vw;
+  background-size: cover;
+  margin: 0.5vw;
+}
+
+makicat {
+  background-image: url('../../../../../assets/img/maki-cat.png');
+  width: 9vw;
+  height: 8.58vw;
+  background-size: cover;
+  margin: 0.5vw;
+}
+
+tamagocat {
+  background-image: url('../../../../../assets/img/tamago-cat.png');
+  width: 10vw;
+  height: 8.35vw;
+  background-size: cover;
+  margin: 0.5vw;
+}
+
+plate redcaviarcat {
+  position: relative;
+  width: 8vw;
+  height: 7.376vw;
+  margin: 0.5vw;
+  top: -2vw;
+}
+
+plate makicat {
+  position: relative;
+  width: 7vw;
+  height: 6.58vw;
+  margin: 0.5vw;
+  top: -2vw;
+}
+
+dish tamagocat {
+  position: relative;
+  width: 8vw;
+  height: 6.68vw;
+  margin: 0.5vw;
+  top: -2vw;
+}
+
+dish tunacat {
+  position: relative;
+  width: 8vw;
+  height: 6.2vw;
+  margin: 0.5vw;
+  top: -2vw;
+}
+
+dish redcaviarcat {
+  position: relative;
+  width: 8vw;
+  height: 7.22vw;
+  margin: 0.5vw;
+  top: -2vw;
+}
+
+dish makicat {
+  top: -4vw;
+}
+
+.emerald>.two {
+  top: -3vw;
+  left: -1vw;
+  z-index: 9;
+}
+
+tamagocat tunacat {
+  position: absolute;
+  top: 1vw;
+  left: 2vw;
+  z-index: 10;
+}
+
+shrimpcat salmoncat {
+  top: 0vw;
+  left: 4vw;
+  z-index: 5;
+}
+
+tunacat.hovered {
+  background-image: url('../../../../../assets/img/tuna-cat-smoked_hovered.png');
+}
+
+makicat.hovered {
+  background-image: url('../../../../../assets/img/maki-cat_hovered.png');
+}
+
+redcaviarcat.hovered {
+  background-image: url('../../../../../assets/img/red-caviar-cat_hovered.png');
+}
+
+salmoncat.hovered {
+  background-image: url('../../../../../assets/img/salmon-cat_hovered.png');
+}
+
+shrimpcat.hovered {
+  background-image: url('../../../../../assets/img/shrimp-cat_hovered.png');
+}
+
+tamagocat.hovered {
+  background-image: url('../../../../../assets/img/tamago-cat_hovered.png');
+}
+
+.table > plate.hovered,
+.table > dish.hovered {
+  box-shadow: 0 1px 5px 5px rgb(232 98 56);
+}
+
+.code__wrapper > span:not(:first-child):not(:last-child).hovered {
+  color: rgb(232 98 56);
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  z-index: 10;
+}
+
+.tooltip::before {
+  content: attr(data-title);
+  position: absolute;
+  top: -4vw;
+  background: radial-gradient(circle farthest-side at center center, rgb(255 164 108) 0%, rgb(232 98 56) 100%);
+  color: #FFE8CA;
+  border-radius: 10px;
+  border: 1px #000000 solid;
+  box-shadow: 0 1px 10px 5px #ffe8ca69;
+  box-shadow: 0 1px 5px 5px rgb(232 98 56);
+  padding: .7vw;
+  opacity: 0;
+  visibility: hidden;
+  visibility: visible;
+  transition: opacity 0.3s;
+  white-space: nowrap;
+}
+
+.tooltip.hovered::before {
+  opacity: 1;
+  visibility: visible;
+}
+
+shrimpcat.two {
+  z-index: 12;
+  top: -3vw;
+  left: -2vw;
+}
+
+@keyframes vibro {
+  0% {
+    transform: skew(2deg,0deg) scaleX(1);
+  }
+  10% {
+    transform: skew(1deg,0deg) scaleY(.9);
+  }
+  50% {
+    transform: skew(-2deg,0deg) scaleX(1);
+  }
+  60% {
+    transform: skew(-1deg,0deg) scaleY(.9);
+  }
+  100% {
+    transform: skew(2deg,0deg) scaleX(1);
+  }
+}
+
+@media (max-width: 900px) {
+  .table__content {
+    height: 16vw;
+    margin: 1vw;
+  }
+}
+

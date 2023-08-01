@@ -1,0 +1,77 @@
+.game__lanterns {
+  display: flex;
+  padding: 1.4vw 28vw;
+}
+
+.lantern:after {
+  content: "";
+  position: absolute;
+  background-color: #808080;
+  top: -0.5vw;
+  left: 0.6vw;
+  width: 3.2vw;
+  height: 0.5vw;
+  z-index: 3;
+}
+
+.lantern {
+  display: flex;
+  content: "";
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  top: 5.3vw;
+  left: -10px;
+  width: 6.3vw;
+  height: 6.7vw;
+  background: radial-gradient(circle farthest-side at center center, rgb(255 164 108) 0%, rgb(232 98 56) 100%);
+  border-radius: 10px;
+  z-index: 2;
+  width: 4.4vw;
+  height: 4.7vw;
+}
+
+.lantern:before {
+  content: "";
+  position: absolute;
+  top: -2.3vw;
+  left: 2.1vw;
+  width: 0.2vw;
+  height: 2vw;
+  background-color: #808080;
+}
+
+.lantern .lantern__title {
+  color:#FFE8CA;
+  font-size: 120%;
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+.lantern:nth-child(1) {
+  left: 3vw;
+}
+
+.lantern:nth-child(2) {
+  left: 13vw;
+}
+
+.lantern:nth-child(3) {
+  left: 47vw;
+}
+
+.lantern:nth-child(4) {
+  left: 57vw;
+}
+
+@media (max-width: 1000px) {
+  .lantern .lantern__title {
+    font-size: 90%;
+  }
+}
+
+@media (max-width: 900px) {
+  .game__lanterns {
+    display: none;
+  }
+}
